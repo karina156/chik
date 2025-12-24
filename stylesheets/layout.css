@@ -1,3 +1,34 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+/* БЕГУЩАЯ СТРОКА */
+.marquee{
+  --h: 10vw;        /* высота полосы */
+  --gap: 6vw;       /* расстояние между фразами */
+  --speed: 16s;     /* скорость: меньше = быстрее */
+
+  height: var(--h);
+  width: 100vw;
+  overflow: hidden;
+  background: var(--lime);
+  border-bottom: 0.25vw solid #000;
+  display: flex;
+  align-items: center;
+}
+
+.marquee__track{
+  display: flex;
+  gap: var(--gap);
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee var(--speed) linear infinite;
+  padding-left: 2vw;
+}
+.marquee__track span{
+  flex: 0 0 auto;
+  font-weight: 900;
+  font-size: 3.3vw;
+  letter-spacing: 0.08vw;
+  color: var(--purple);
+  text-transform: uppercase;
+}

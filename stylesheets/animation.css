@@ -1,0 +1,22 @@
+/* БЕГУЩАЯ СТРОКА */
+/* двигаем на половину трека, потому что вторая половина — дубль */
+@keyframes marquee{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* адаптивы (всё равно в vw) */
+@media (max-width: 900px){
+  .marquee{ --h: 14vw; --gap: 10vw; --speed: 14s; }
+  .marquee__track span{ font-size: 5vw; }
+}
+
+@media (max-width: 520px){
+  .marquee{ --h: 18vw; --gap: 12vw; --speed: 12s; }
+  .marquee__track span{ font-size: 6.2vw; }
+}
+
+/* на всякий: если пользователь отключил анимации */
+@media (prefers-reduced-motion: reduce){
+  .marquee__track{ animation: none; }
+}
