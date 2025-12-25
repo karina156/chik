@@ -130,3 +130,22 @@
   animation: star-swing 1s ease-in-out infinite;
   transform-origin: 50% 50%; /* вращение из центра */
 }
+@keyframes sparkle-pulse{
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+.sparkle{
+  animation: sparkle-pulse 0.6s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+/* задержки */
+.star1{ animation-delay: 0s; }
+.star2{ animation-delay: .2s; }
+.star3{ animation-delay: .45s; }
+.star4{ animation-delay: .65s; }
+.star5{ animation-delay: .9s; }
+.star6{ animation-delay: 1.15s; }
+.star7{ animation-delay: 1.35s; }
+.star8{ animation-delay: 1.6s; }

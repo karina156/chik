@@ -6,17 +6,16 @@ body {
 .hero{
   width: 100vw;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .hero__grid{
   width: 100vw;
-  height: calc(100vh - 5.8333vw); /* (84px в vw для 1440) */
   display: flex;
+  flex-direction: row;
+} 
 
-  /* БЫЛО: flex-direction: column-reverse; */
-  flex-direction: row;         /* ✅ левый и правый блок рядом */
-}
-
+/* колонки */
 .left,
 .right{
   width: 50vw;
@@ -101,7 +100,6 @@ body {
   width: var(--moon-d);
   height: var(--moon-d);
   border-radius: 50%;
-  margin-left: calc(var(--moon-overlap) * -1);
 }
 
 .moon:first-child{ margin-left: 0; }
@@ -134,7 +132,7 @@ body {
   width: 50vw;   /* 730 / 1440 */
   height: 22.0833vw;  /* 318 / 1440 */
 
-  background: #6552D0; /* фиолетовый фон */
+  background: #6552D0;
   position: relative;
 
   display: grid;
@@ -215,11 +213,9 @@ body {
   display: block;
 }
 
-/* правая колонка */
+/* правая колонка (доп. настройки) */
 .right{
-width: 49.3056vw;   /* 710px */
-  height: 50.4861vw;  /* 727px */
-
+  height: 50.6vw;  /* 727px */
   position: relative;
   display: flex;
   align-items: center;
@@ -242,6 +238,7 @@ width: 49.3056vw;   /* 710px */
   height: auto;
   z-index: 2;
 }
+
 /* слой для мелких звёзд */
 .sparkle{
   position: absolute;
@@ -252,51 +249,24 @@ width: 49.3056vw;   /* 710px */
 }
 
 /* расстановка звезд */
+.star1{ left: 2vw;  top: 22vw; }
+.star2{ left: 38vw; top: 27vw; }
+.star3{ left: 9vw;  top: 37vw; }
+.star4{ left: 4vw;  top: 41vw; }
+.star5{ left: 10vw; top: 45vw; }
+.star6{ left: 4vw;  top: 15vw; }
+.star7{ left: 35vw; top: 45vw; }
+.star8{ left: 40vw; top: 41.30vw; }
 
-/* большая слева 1  */
-.star1{
-  left: 2vw;
-  top: 22vw;
+
+
+/* ВТОРОЙ ЭКРАН */
+.hero--second .hero__grid{
+  height: 100vh;
 }
 
-/* большая справа 2 */
-.star2{
-  left: 38vw;
-  top: 27vw;
-}
-
-/* маленькая снизу-слева (первая) */
-.star3{
-  left: 9vw;
-  top: 37vw;
-}
-
-/* маленькая снизу-слева (вторая) */
-.star4{
-  left: 4vw;
-  top: 41vw;
-}
-
-/* маленькая снизу */
-.star5{
-  left: 10vw;
-  top: 45vw;
-}
-
-/* маленькая */
-.star6{
-  left: 4vw;
-  top: 15vw;
-}
-
-/* маленькая снизу-справа */
-.star7{
-  left: 35vw;
-  top: 45vw;
-}
-
-/* маленькая справа-ниже */
-.star8{
-  left: 40vw;
-  top: 41.30vw;
+.hero--second .left{
+  width: 50.6944vw;   /* 730px */
+  height: 56.25vw;    /* 810px */
+  background-color: #6552D0;
 }
