@@ -18,7 +18,7 @@
   align-items: center;
   will-change: transform;
 
-  animation: moons-loop 5s linear infinite;
+  animation: moons-loop 8s linear infinite;
 }
 
 /* ПЛАВНЫЙ, БЕСШОВНЫЙ LOOP */
@@ -40,7 +40,7 @@
 /* FRAME TILE (364x164) */
 .frame-tile__frame{
   opacity: 0;
-  animation: frameSwap 1.2s steps(1, end) infinite;
+  animation: frameSwap 1s steps(1, end) infinite;
   will-change: opacity;
 }
 
@@ -51,7 +51,7 @@
 
 /* 2-й кадр смещаем на половину времени */
 .frame-2{
-  animation-delay: -0.6s; /* -(duration/2) */
+  animation-delay: -0.5s; /* -(duration/2) */
 }
 
 @keyframes frameSwap{
@@ -74,7 +74,7 @@
   outline: 0.3472vw solid #D9EE61; /* 5px */
   outline-offset: 0;
 
-  animation: logoFramePulse 1.6s ease-in-out infinite;
+  animation: logoFramePulse 1s ease-in-out infinite;
   will-change: outline-width;
   pointer-events: none;
 }
@@ -98,7 +98,7 @@
 }
 .icon-marquee__track{
   will-change: transform;
-  animation: iconRun 8s linear infinite;
+  animation: iconRun 4s linear infinite;
 }
 
 @keyframes iconRun{
@@ -114,24 +114,19 @@
   .icon-marquee__track{ animation: none; }
 }
 
-/* ===== STAR ROTATION ===== */
-.star--rotate{
-  animation: starRotate 18s linear infinite;
-  will-change: transform;
-}
 
-@keyframes starRotate{
-  from{
-    transform: rotate(0deg);
+@keyframes star-swing {
+  0% {
+    transform: rotate(-12deg);
   }
-  to{
-    transform: rotate(360deg);
+  50% {
+    transform: rotate(12deg);
+  }
+  100% {
+    transform: rotate(-12deg);
   }
 }
-
-/* accessibility */
-@media (prefers-reduced-motion: reduce){
-  .star--rotate{
-    animation: none;
-  }
+.star{
+  animation: star-swing 1s ease-in-out infinite;
+  transform-origin: 50% 50%; /* вращение из центра */
 }

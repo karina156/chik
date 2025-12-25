@@ -12,6 +12,9 @@ body {
   width: 100vw;
   height: calc(100vh - 5.8333vw); /* (84px в vw для 1440) */
   display: flex;
+
+  /* БЫЛО: flex-direction: column-reverse; */
+  flex-direction: row;         /* ✅ левый и правый блок рядом */
 }
 
 .left,
@@ -116,7 +119,7 @@ body {
   position: relative;
   overflow: hidden;
   display: block;
-  background: #D9EE61;
+  background: #6552D0;
 }
 
 .frame-tile__frame{
@@ -124,12 +127,11 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 
 /* LOGO BLOCK: background 730x318 */
 .logo-block{
-  width: 50.6944vw;   /* 730 / 1440 */
+  width: 50vw;   /* 730 / 1440 */
   height: 22.0833vw;  /* 318 / 1440 */
 
   background: #6552D0; /* фиолетовый фон */
@@ -215,28 +217,86 @@ body {
 
 /* правая колонка */
 .right{
+width: 49.3056vw;   /* 710px */
+  height: 50.4861vw;  /* 727px */
+
   position: relative;
-  display: grid;
-  place-items: center; /* КЛЮЧЕВОЕ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-/* STAR */
+/* звезда — фон */
 .star{
   position: absolute;
-
-  width: 42.1528vw;   /* 607 / 1440 */
-  height: 35.5556vw;  /* 512 / 1440 */
-
-  right: 4vw;
-  top: 8vw;
-
-  object-fit: contain;
-  display: block;
-
-  pointer-events: none;
-  user-select: none;
-
-  transform-origin: 50% 50%;
+  width: 42vw;
+  height: auto;
+  z-index: 1;
 }
 
+/* попугай — поверх */
+.parrot{
+  position: relative;
+  width: 23vw;
+  height: auto;
+  z-index: 2;
+}
+/* слой для мелких звёзд */
+.sparkle{
+  position: absolute;
+  height: auto;
+  z-index: 3;
+  pointer-events: none;
+  user-select: none;
+}
 
+/* расстановка звезд */
+
+/* большая слева 1  */
+.star1{
+  left: 2vw;
+  top: 22vw;
+}
+
+/* большая справа 2 */
+.star2{
+  left: 38vw;
+  top: 27vw;
+}
+
+/* маленькая снизу-слева (первая) */
+.star3{
+  left: 9vw;
+  top: 37vw;
+}
+
+/* маленькая снизу-слева (вторая) */
+.star4{
+  left: 4vw;
+  top: 41vw;
+}
+
+/* маленькая снизу */
+.star5{
+  left: 10vw;
+  top: 45vw;
+}
+
+/* маленькая */
+.star6{
+  left: 4vw;
+  top: 15vw;
+}
+
+/* маленькая снизу-справа */
+.star7{
+  left: 35vw;
+  top: 45vw;
+}
+
+/* маленькая справа-ниже */
+.star8{
+  left: 40vw;
+  top: 41.30vw;
+}
