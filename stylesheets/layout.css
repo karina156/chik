@@ -1,34 +1,242 @@
 body {
   font-family: 'Montserrat', sans-serif;
+  background: #0A0A0A;
 }
+
+.hero{
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.hero__grid{
+  width: 100vw;
+  height: calc(100vh - 5.8333vw); /* (84px в vw для 1440) */
+  display: flex;
+}
+
+.left,
+.right{
+  width: 50vw;
+  height: 100%;
+  position: relative;
+  background:#0E0E0E;
+}
+
+.top-row{
+  display:flex;
+  align-items:flex-start;
+  padding-left: 0vw;
+  padding-top: 0vw;
+}
+
 /* БЕГУЩАЯ СТРОКА */
 .marquee{
-  --h: 10vw;        /* высота полосы */
-  --gap: 6vw;       /* расстояние между фразами */
-  --speed: 16s;     /* скорость: меньше = быстрее */
-
-  height: var(--h);
   width: 100vw;
   overflow: hidden;
-  background: var(--lime);
-  border-bottom: 0.25vw solid #000;
   display: flex;
   align-items: center;
+
+  --h: 5.8333vw;        /* 84px / 1440 */
+  --font: 2.7778vw;     /* 40px / 1440 */
+  --gap: 1.3889vw;      /* 20px / 1440 */
+
+  height: var(--h);
+  background: #D9EE61;
 }
 
 .marquee__track{
   display: flex;
   gap: var(--gap);
   white-space: nowrap;
-  will-change: transform;
-  animation: marquee var(--speed) linear infinite;
-  padding-left: 2vw;
+  padding-left: var(--gap); /* слева 20px */
 }
+
 .marquee__track span{
   flex: 0 0 auto;
-  font-weight: 900;
-  font-size: 3.3vw;
-  letter-spacing: 0.08vw;
-  color: var(--purple);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;            /* SemiBold */
+  font-size: var(--font);      /* 40px */
+  color: #6552D0;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
+
+:root{
+  --lime: #D9EE61;
+  --purple: #6552D0;
+  --black: #0A0A0A;
+}
+
+/* ФИОЛЕТОВАЯ ПЛАШКА С КРУГАМИ  */
+.moon-tile{
+  --moon-tile-w: 25.4167vw;  /* 366 / 1440 * 100 */
+  --moon-tile-h: 11.3889vw;  /* 164 / 1440 * 100 */
+
+  /* круги */
+  --moon-d: 9.7222vw;        /* 140 / 1440 * 100 */
+  --moon-overlap: 3.7500vw;  /* 54 / 1440 * 100 */ 
+
+  width: var(--moon-tile-w);
+  height: var(--moon-tile-h);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--purple);
+  border-radius: 0;
+}
+
+.moon-tile__track{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.moon{
+  flex: 0 0 auto;
+  width: var(--moon-d);
+  height: var(--moon-d);
+  border-radius: 50%;
+  margin-left: calc(var(--moon-overlap) * -1);
+}
+
+.moon:first-child{ margin-left: 0; }
+
+.moon--lime{ background: var(--lime); }
+.moon--black{ background: var(--black); }
+
+/* FRAME TILE (364x164) */
+.frame-tile{
+  --frame-w: 25.2778vw;  /* 364 / 1440 */
+  --frame-h: 11.3889vw;  /* 164 / 1440 */
+
+  width: var(--frame-w);
+  height: var(--frame-h);
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: #D9EE61;
+}
+
+.frame-tile__frame{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* LOGO BLOCK: background 730x318 */
+.logo-block{
+  width: 50.6944vw;   /* 730 / 1440 */
+  height: 22.0833vw;  /* 318 / 1440 */
+
+  background: #6552D0; /* фиолетовый фон */
+  position: relative;
+
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.logo-block__logo{
+  width: 32.2222vw;   /* 464 / 1440 */
+  height: 7.6389vw;   /* 110 / 1440 */
+
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* SCRIBBLE TILE (370x248) */
+.scribble-tile{
+  width: 25.6944vw;   /* 370 / 1440 */
+  height: 17.2222vw;  /* 248 / 1440 */
+
+  position: relative;
+  background:#6552D0;
+  overflow: hidden;
+}
+
+/* рамка сверху — без заливки, внутренняя */
+.scribble-tile__frame{
+  position: absolute;
+  inset: 0;
+  border: 1.1111vw solid #D9EE61; /* 16px / 1440 */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* SCRIBBLE IMAGE */
+.scribble-image{
+  position: absolute;
+  width: 31.3194vw;   /* 451 / 1440 */
+  height: 25.9028vw;  /* 373 / 1440 */
+  will-change: transform;
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+  z-index: 1;
+}
+
+/* нижний ряд: две плитки рядом, без отступа */
+.bottom-row{
+  display: flex;
+  gap: 0;
+}
+
+/* ICON MARQUEE BLOCK (360x248) */
+.icon-marquee{
+  width: 25.0000vw;   /* 360 / 1440 */
+  height: 17.2222vw;  /* 248 / 1440 */
+
+  background: #D9EE61;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+}
+
+/* трек не переносится */
+.icon-marquee__track{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+/* размеры SVG (увеличенные) */
+.icon-marquee__icon{
+  width: 13.1250vw;   /* 189 / 1440 */
+  height: 13.9583vw;  /* 201 / 1440 */
+  flex: 0 0 auto;
+  display: block;
+}
+
+/* правая колонка */
+.right{
+  position: relative;
+  display: grid;
+  place-items: center; /* КЛЮЧЕВОЕ */
+}
+
+/* STAR */
+.star{
+  position: absolute;
+
+  width: 42.1528vw;   /* 607 / 1440 */
+  height: 35.5556vw;  /* 512 / 1440 */
+
+  right: 4vw;
+  top: 8vw;
+
+  object-fit: contain;
+  display: block;
+
+  pointer-events: none;
+  user-select: none;
+
+  transform-origin: 50% 50%;
+}
+
+

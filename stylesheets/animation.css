@@ -1,22 +1,137 @@
 /* БЕГУЩАЯ СТРОКА */
-/* двигаем на половину трека, потому что вторая половина — дубль */
+.marquee__track{
+  will-change: transform;
+  animation: marquee 16s linear infinite;
+}
+
 @keyframes marquee{
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(-50%); }
 }
-
-/* адаптивы (всё равно в vw) */
-@media (max-width: 900px){
-  .marquee{ --h: 14vw; --gap: 10vw; --speed: 14s; }
-  .marquee__track span{ font-size: 5vw; }
-}
-
-@media (max-width: 520px){
-  .marquee{ --h: 18vw; --gap: 12vw; --speed: 12s; }
-  .marquee__track span{ font-size: 6.2vw; }
-}
-
-/* на всякий: если пользователь отключил анимации */
 @media (prefers-reduced-motion: reduce){
   .marquee__track{ animation: none; }
+}
+
+/*  ФИОЛЕТОВАЯ ПЛАШКА С КРУГАМИ  */
+.moon-tile__track{
+  display: flex;
+  align-items: center;
+  will-change: transform;
+
+  animation: moons-loop 5s linear infinite;
+}
+
+/* ПЛАВНЫЙ, БЕСШОВНЫЙ LOOP */
+@keyframes moons-loop{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-50%);
+  }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce){
+  .moon-tile__track{
+    animation: none;
+  }
+}
+/* FRAME TILE (364x164) */
+.frame-tile__frame{
+  opacity: 0;
+  animation: frameSwap 1.2s steps(1, end) infinite;
+  will-change: opacity;
+}
+
+/* 1-й кадр виден в первой половине */
+.frame-1{
+  animation-delay: 0s;
+}
+
+/* 2-й кадр смещаем на половину времени */
+.frame-2{
+  animation-delay: -0.6s; /* -(duration/2) */
+}
+
+@keyframes frameSwap{
+  0%{ opacity: 1; }
+  50%{ opacity: 1; }
+  50.001%{ opacity: 0; }
+  100%{ opacity: 0; }
+}
+
+/* ===== INNER FRAME: 507x160 (pulse 5px -> 20px -> 5px) ===== */
+.logo-block__frame{
+  width: 35.2083vw;   /* 507/1440 */
+  height: 11.1111vw;  /* 160/1440 */
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  outline: 0.3472vw solid #D9EE61; /* 5px */
+  outline-offset: 0;
+
+  animation: logoFramePulse 1.6s ease-in-out infinite;
+  will-change: outline-width;
+  pointer-events: none;
+}
+
+@keyframes logoFramePulse{
+  0%   { outline-width: 0.3472vw; }  /* 5px */
+  50%  { outline-width: 1.3889vw; }  /* 20px */
+  100% { outline-width: 0.3472vw; }  /* 5px */
+}
+/* ===== SCRIBBLE HOVER MOVE (NO JS) ===== */
+.scribble-tile:hover .scribble-image{
+  transform:
+    translate3d(1.1vw, -0.8vw, 0);
+}
+
+/* доступность */
+@media (prefers-reduced-motion: reduce){
+  .scribble-image{
+    transition: none;
+  }
+}
+.icon-marquee__track{
+  will-change: transform;
+  animation: iconRun 8s linear infinite;
+}
+
+@keyframes iconRun{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+.icon-marquee:hover .icon-marquee__track{
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .icon-marquee__track{ animation: none; }
+}
+
+/* ===== STAR ROTATION ===== */
+.star--rotate{
+  animation: starRotate 18s linear infinite;
+  will-change: transform;
+}
+
+@keyframes starRotate{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+/* accessibility */
+@media (prefers-reduced-motion: reduce){
+  .star--rotate{
+    animation: none;
+  }
 }

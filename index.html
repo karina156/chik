@@ -1,25 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Веб-плакат Chik</title>
-    <link rel="stylesheet" href="stylesheets/style.css" />
-</head>
-<body>
-    <div class="marquee" aria-label="Бегущая строка">
-  <div class="marquee__track">
-    <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Веб-плакат Chik</title>
 
-    <!-- дубль -->
-    <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
-    <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+  <link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+
+<body>
+  <section class="hero">
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span>МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+
+        <!-- дубль -->
+        <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+        <span aria-hidden="true">МУЗЫКАЛЬНАЯ ПЛАТФОРМА ДЛЯ ПТИЦ</span>
+      </div>
+    </div>
+
+    <div class="hero__grid">
+      <div class="left">
+        <div class="left">
+
+  <!-- TOP ROW: two tiles -->
+  <div class="top-row">
+    <!-- MOON TILE -->
+    <div class="moon-tile" aria-hidden="true">
+      <div class="moon-tile__track">
+        <span class="moon moon--lime"></span>
+        <span class="moon moon--black"></span>
+        <span class="moon moon--lime"></span>
+        <span class="moon moon--black"></span>
+        <span class="moon moon--lime"></span>
+        <span class="moon moon--black"></span>
+
+        <!-- дубль -->
+        <span class="moon moon--lime" aria-hidden="true"></span>
+        <span class="moon moon--black" aria-hidden="true"></span>
+        <span class="moon moon--lime" aria-hidden="true"></span>
+        <span class="moon moon--black" aria-hidden="true"></span>
+        <span class="moon moon--lime" aria-hidden="true"></span>
+        <span class="moon moon--black" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <!-- FRAME TILE -->
+    <div class="frame-tile" aria-hidden="true">
+      <img class="frame-tile__frame frame-1" src="images/nota1.svg" alt="">
+      <img class="frame-tile__frame frame-2" src="images/nota2.svg" alt="">
+    </div>
+  </div>
+
+  <!-- CENTER LOGO BLOCK -->
+  <div class="logo-block">
+    <div class="logo-block__frame" aria-hidden="true"></div>
+    <img class="logo-block__logo" src="images/logo.svg" alt="Chik">
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+    <div class="scribble-tile">
+      <div class="scribble-tile__frame" aria-hidden="true"></div>
+      <img class="scribble-image" src="images/line3.svg" alt="" aria-hidden="true">
+    </div>
+
+    <div class="icon-marquee">
+      <div class="icon-marquee__track">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+
+        <!-- дубль -->
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+        <img class="icon-marquee__icon" src="images/Group 427.svg" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </div>
+
+</div>
+
   </div>
 </div>
+      </div>
+
+      <div class="right">
+  <img class="star" src="../chik/images/star.svg" alt="" aria-hidden="true">
+</div>
+    </div>
+  </section>
 </body>
 </html>
