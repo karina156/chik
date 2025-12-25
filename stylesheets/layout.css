@@ -5,7 +5,6 @@ body {
 
 .hero{
   width: 100vw;
-  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -266,7 +265,7 @@ body {
 }
 
 .hero--second .left{
-  width: 50.6944vw;   /* 730px */
+  width: 50vw;   /* 730px */
   height: 56.25vw;    /* 810px */
-  background-color: #6552D0;
+  background-color:#0E0E0E;
 }
