@@ -263,9 +263,10 @@
 /* траектория (можно подправлять точки) */
 @keyframes birdFly{
   0%   { transform: translate(-6vw, 0vw)   rotate(-10deg); }
-  20%  { transform: translate( 6vw, 4vw)   rotate(10deg); }
-  40%  { transform: translate(-6vw, 8vw)   rotate(-8deg); }
-  60%  { transform: translate( 6vw, 12vw)  rotate(10deg); }
-  80%  { transform: translate(-6vw, 16vw)  rotate(-8deg); }
-  100% { transform: translate( 6vw, 20vw)  rotate(10deg); }
+  16%  { transform: translate( 6vw, 3.5vw) rotate(10deg); }
+  32%  { transform: translate(-6vw, 7vw)   rotate(-8deg); }
+  48%  { transform: translate( 6vw, 13.5vw)rotate(10deg); }
+  64%  { transform: translate(-6vw, 14vw)  rotate(-8deg); }
+  80%  { transform: translate( 6vw, 17.5vw)rotate(10deg); }
+  100% { transform: translate(-6vw, 21vw)  rotate(-8deg); }
 }
