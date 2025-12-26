@@ -437,3 +437,9 @@ body {
   animation: birdFly 6s linear infinite;
   will-change: transform;
 }
+
+.hero--second .right{
+  width: 16.53vw;     /* 238px */
+  height: 56.25vw;    /* 810px */
+  background: #D9EE61;
+}
