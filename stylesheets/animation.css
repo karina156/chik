@@ -270,3 +270,47 @@
   80%  { transform: translate( 6vw, 17.5vw)rotate(10deg); }
   100% { transform: translate(-6vw, 21vw)  rotate(-8deg); }
 }
+
+@keyframes fallDown{
+  0%{
+    transform: translateY(0) rotate(-8deg);
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  80%{
+    transform: translateY(48vw) rotate(6deg);
+  }
+  100%{
+    transform: translateY(52vw) rotate(0deg);
+  }
+}
+
+/* БУКВЫ: базовая диагональ */
+.hero--second .right .i1{ --x: -1.0vw; --y: 22vw; }
+.hero--second .right .k1{ --x:  0.2vw; --y: 31vw; }
+.hero--second .right .h1{ --x:  1.6vw; --y: 40vw; }
+.hero--second .right .C1{ --x: -0.4vw; --y: 12vw; --r: 18deg; }
+
+/* КРУГИ: как на макете — поверх букв */
+.hero--second .right .c1{ --x:  3.4vw; --y: 14.2vw; }
+.hero--second .right .c2{ --x: -2.8vw; --y: 24.0vw; }
+.hero--second .right .c3{ --x:  3.8vw; --y: 34.0vw; }
+.hero--second .right .c4{ --x: -3.2vw; --y: 44.5vw; }
+.hero--second .right .c5{ --x:  2.8vw; --y: 49.0vw; }
+
+/* ---------- ЗАДЕРЖКИ: ПАДАЮТ СТРОГО ПО ОЧЕРЕДИ ---------- */
+.hero--second .right .c1{ animation-delay: 0.0s; }
+.hero--second .right .i1{ animation-delay: 0.25s; }
+
+.hero--second .right .c2{ animation-delay: 0.50s; }
+.hero--second .right .k1{ animation-delay: 0.75s; }
+
+.hero--second .right .c3{ animation-delay: 1.00s; }
+.hero--second .right .h1{ animation-delay: 1.25s; }
+
+.hero--second .right .c4{ animation-delay: 1.50s; }
+.hero--second .right .C1{ animation-delay: 1.75s; }
+
+.hero--second .right .c5{ animation-delay: 2.00s; }

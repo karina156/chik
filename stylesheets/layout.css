@@ -439,7 +439,15 @@ body {
 }
 
 .hero--second .right{
+  position: relative;
   width: 16.53vw;     /* 238px */
   height: 56.25vw;    /* 810px */
   background: #D9EE61;
+  overflow: hidden;
+}
+
+.hero--second .right .fall{
+  position: absolute;
+  top: -1vw;                 /* старт выше экрана */
+  animation: fallDown 1.6s ease-out forwards;
 }
