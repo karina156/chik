@@ -312,32 +312,18 @@
 }
 
 
-/* ---------- БУКВЫ ---------- */
-.hero--second .right .i1{ --x: 4vw;  --y: 18vw; --r: 22deg; }
-.hero--second .right .k1{ --x: 5vw;  --y: 27vw; --r: 22deg; }
-.hero--second .right .h1{ --x: 6vw;  --y: 36vw; --r: 22deg; }
-.hero--second .right .C1{ --x: 3.5vw;--y: 10vw; --r: 18deg; }
-
-/* ---------- КРУГИ ---------- */
-.hero--second .right .c1{ --x: 9vw;  --y: 12vw; }
-.hero--second .right .c2{ --x: 2vw;  --y: 20vw; }
-.hero--second .right .c3{ --x: 10vw; --y: 30vw; }
-.hero--second .right .c4{ --x: 1.5vw;--y: 40vw; }
-.hero--second .right .c5{ --x: 8vw;  --y: 47vw; }
-
-
 /* БУКВЫ: базовая диагональ */
-.hero--second .right .i1{ --x: -1.0vw; --y: 22vw; }
-.hero--second .right .k1{ --x:  0.2vw; --y: 31vw; }
+.hero--second .right .i1{ --x: 0vw; --y: 56vw; }
+.hero--second .right .k1{ --x:  0.2vw; --y: 56vw; }
 .hero--second .right .h1{ --x:  1.6vw; --y: 40vw; }
 .hero--second .right .C1{ --x: -0.4vw; --y: 12vw; --r: 18deg; }
 
 /* КРУГИ: как на макете — поверх букв */
-.hero--second .right .c1{ --x:  3.4vw; --y: 14.2vw; }
-.hero--second .right .c2{ --x: -2.8vw; --y: 24.0vw; }
+.hero--second .right .c1{ --x:  5vw; --y: 51vw; }
+.hero--second .right .c2{ --x: -5vw; --y: 51vw; }
 .hero--second .right .c3{ --x:  3.8vw; --y: 34.0vw; }
 .hero--second .right .c4{ --x: -3.2vw; --y: 44.5vw; }
-.hero--second .right .c5{ --x:  2.8vw; --y: 49.0vw; }
+.hero--second .right .c5{ --x:  0vw; --y: 0vw; }
 
 /* ---------- ЗАДЕРЖКИ: ПАДАЮТ СТРОГО ПО ОЧЕРЕДИ ---------- */
 .hero--second .right .c1{ animation-delay: 0.0s; }
