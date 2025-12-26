@@ -301,9 +301,139 @@ body {
 .hero--second .star1-5{ top:42vw; left:2vw; }
 .hero--second .star1-6{ top:43vw; left:36vw; }
 
-
-.hero--second .right{
-  width:50vw;
-  background-color: aquamarine;
+/* CENTER */
+.hero--second .center{
+  width:32.78vw;
    height: 56.25vw;
+  background-color:#bbb8cd;
+}
+/* контейнер центра */
+.bird-center{
+  width: 32.78vw;   /* 472px */
+  height: 20.21vw;  /* 291px */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  background-color:#6552D0;
+  z-index: 6;  
+}
+
+/* группа нот/птиц */
+.bird-union{
+  position: absolute;
+  bottom: 2.5vw;  
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 2vw;
+}
+
+
+/* сама "птица-нота" */
+.bird-note{
+  transform-origin: bottom center;
+  animation: jump 1s ease-in-out infinite;
+}
+
+/* CENTER — внешний контейнер (472 × 810) */
+.hero--second .center{
+  width: 32.78vw;      /* 472px */
+  height: 56.25vw;     /* 810px */
+  display: flex;
+  background: #bbb8cd;
+}
+
+/* левая колонка (239px) */
+.hero--second .center__left{
+  width: 16.60vw;      /* 239px */
+  display: flex;
+  flex-direction: column;
+  background: #6552D0;
+}
+
+/* правая колонка (233px) */
+.hero--second .center__right{
+  width: 16.60vw;      /* 233px */
+  background: #42494f;
+}
+/* нижний блок слева (силуэты + текст) */
+.hero--second .bird-center2{
+  width: 16.60vw;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #6552D0;
+  overflow: hidden;
+}
+
+/* верхняя часть (260px) */
+.hero--second .center2-top{
+  height: 18.06vw;     /* 260px */
+  background: #505344;
+  position: relative;
+  overflow: hidden;
+}
+
+/* нижняя часть */
+.hero--second .center2-bottom{
+  flex: 1;
+  background: #6552D0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* текст */
+.hero--second .text1{
+  color: #D9F25A;
+  font-size: 2.08vw;   /* 30px */
+  line-height: 1.008;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* покадровая птица */
+.hero--second .flipbird{
+  position: absolute;
+  inset: 0;
+}
+
+.hero--second .flipbird__frame{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+.hero--second .center__right{
+  width: 16.18vw;        /* 233px (правильное значение) */
+  height: 56.25vw;       /* 810px */
+  position: relative;
+  overflow: hidden;
+  background: #42494f;
+}
+
+/* фон со стрелками */
+.hero--second .center__right .right-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* важно */
+  display: block;
+  z-index: 1;
+}
+
+.hero--second .center__right .right-bird{
+  position: absolute;
+  z-index: 2;
+  left: 4.5vw;           /* стартовая точка */
+  top: 20vw;
+  cursor: pointer;
+
+  animation: birdFly 6s linear infinite;
+  will-change: transform;
 }

@@ -149,3 +149,123 @@
 .star6{ animation-delay: 1.15s; }
 .star7{ animation-delay: 1.35s; }
 .star8{ animation-delay: 1.6s; }
+
+/* подпрыгивающие при наведении птицы */
+
+.hero--second .bird{
+  transition: transform 0.45s cubic-bezier(.25,1.6,.5,1);
+  will-change: transform;
+  cursor: pointer;
+}
+
+.hero--second .bird-big:hover{
+  transform: translateY(-2.2vw);
+}
+
+.hero--second .bird-small:hover{
+  transform: translateY(-1.4vw);
+}
+.hero--second .bird-big:hover{
+  transform: translateY(-2.2vw) rotate(-1.2deg);
+}
+
+.hero--second .bird-small:hover{
+  transform: translateY(-1.4vw) rotate(1deg);
+}
+
+/* прыгающие ноты-птички */
+@keyframes jump {
+  0%   { transform: translateY(0) scaleY(1); }
+  10%  { transform: translateY(0) scaleY(0.95); }
+  30%  { transform: translateY(-2.2vw) scaleY(1.02); }
+  50%  { transform: translateY(0) scaleY(0.98); }
+  65%  { transform: translateY(-0.8vw) scaleY(1.01); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+/* СТАТИЧНОЕ СОСТОЯНИЕ */
+.flipbird .f1{ opacity: 1; }
+.flipbird .f2{ opacity: 0; }
+
+/* АНИМАЦИЯ ТОЛЬКО ПРИ НАВЕДЕНИИ */
+.flipbird:hover .f1{
+  animation: frame1 0.28s steps(1) infinite;
+}
+
+.flipbird:hover .f2{
+  animation: frame2 0.28s steps(1) infinite;
+}
+
+/* ключевые кадры */
+@keyframes frame1{
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes frame2{
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
+
+
+.center2-bottom{
+  animation: invertBg 0.5s ease-in-out infinite;
+}
+
+/* текст */
+.text1{
+  animation: invertText 0.5s ease-in-out infinite;
+}
+
+/*  ПАУЗА ПРИ НАВЕДЕНИИ */
+.center2-bottom:hover{
+  animation-play-state: paused;
+}
+
+.center2-bottom:hover .text1{
+  animation-play-state: paused;
+}
+@keyframes invertBg{
+  0%,100%{
+    background:#6552D0;
+  }
+  50%{
+    background:#D9F25A;
+  }
+}
+
+@keyframes invertText{
+  0%,100%{
+    color:#D9F25A;
+  }
+  50%{
+    color:#6552D0;
+  }
+}
+
+/* птица летит по траектории */
+
+.hero--second .center__right .right-bird{
+  animation: birdFly 6s linear infinite;
+  animation-direction: alternate;
+}
+
+/* стоп при наведении */
+.hero--second .center__right .right-bird:hover{
+  animation-play-state: paused;
+}
+
+/* траектория (можно подправлять точки) */
+@keyframes birdFly{
+  0%   { transform: translate(-6vw, 0vw)   rotate(-10deg); }
+  20%  { transform: translate( 6vw, 4vw)   rotate(10deg); }
+  40%  { transform: translate(-6vw, 8vw)   rotate(-8deg); }
+  60%  { transform: translate( 6vw, 12vw)  rotate(10deg); }
+  80%  { transform: translate(-6vw, 16vw)  rotate(-8deg); }
+  100% { transform: translate( 6vw, 20vw)  rotate(10deg); }
+}
