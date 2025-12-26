@@ -287,6 +287,45 @@
   }
 }
 
+
+@keyframes drop{
+  0%{
+    transform: translate(var(--x), -25vw) rotate(var(--r));
+    opacity: 0;
+  }
+  15%{ opacity: 1; }
+  100%{
+    transform: translate(var(--x), var(--y)) rotate(var(--r));
+    opacity: 1;
+  }
+}
+
+.hero--second .right .fall{
+  /* стартовые значения по умолчанию */
+  --x: 0vw;
+  --y: 40vw;
+  --r: 0deg;
+
+  opacity: 0;
+  animation: drop 0.9s cubic-bezier(.2,.9,.2,1) forwards;
+  will-change: transform, opacity;
+}
+
+
+/* ---------- БУКВЫ ---------- */
+.hero--second .right .i1{ --x: 4vw;  --y: 18vw; --r: 22deg; }
+.hero--second .right .k1{ --x: 5vw;  --y: 27vw; --r: 22deg; }
+.hero--second .right .h1{ --x: 6vw;  --y: 36vw; --r: 22deg; }
+.hero--second .right .C1{ --x: 3.5vw;--y: 10vw; --r: 18deg; }
+
+/* ---------- КРУГИ ---------- */
+.hero--second .right .c1{ --x: 9vw;  --y: 12vw; }
+.hero--second .right .c2{ --x: 2vw;  --y: 20vw; }
+.hero--second .right .c3{ --x: 10vw; --y: 30vw; }
+.hero--second .right .c4{ --x: 1.5vw;--y: 40vw; }
+.hero--second .right .c5{ --x: 8vw;  --y: 47vw; }
+
+
 /* БУКВЫ: базовая диагональ */
 .hero--second .right .i1{ --x: -1.0vw; --y: 22vw; }
 .hero--second .right .k1{ --x:  0.2vw; --y: 31vw; }

@@ -449,5 +449,4 @@ body {
 .hero--second .right .fall{
   position: absolute;
   top: -1vw;                 /* старт выше экрана */
-  animation: fallDown 1.6s ease-out forwards;
 }
