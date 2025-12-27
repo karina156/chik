@@ -1,0 +1,78 @@
+@media screen and (min-width: 1px) and (max-width: 1023px) {
+
+    /* LEFT */
+    .left {
+        width: 100vw;
+        margin-top: 100vw;
+    }
+
+    /* RIGHT */
+    .right1 {
+        width: 100%;
+        height: 100vw;
+        margin-top: 0;
+        margin-left: 1vw; /* было -49vw, оставил последнее значение */
+    }
+
+    /* CENTER */
+    .center {
+        margin-top: 100vw;
+    }
+
+    /* DECOR */
+    .parrot {
+        width: 40vw;
+        margin-top: 33vw;
+    }
+
+    .star {
+        width: 65vw;
+        margin-left: -4vw;
+    }
+
+    .sparklestar1,
+    .sparklestar2,
+    .sparklestar3,
+    .sparklestar4,
+    .sparklestar5,
+    .sparklestar6,
+    .sparklestar7,
+    .sparklestar8 {
+        margin-left: -70vw;
+    }
+
+    /* TILES */
+    .moon-tile,
+    .frame-tile,
+    .scribble-tile,
+    .icon-marquee {
+        width: 50vw;
+        height: 33vw;
+    }
+
+    .scribble-image {
+        width: 50vw;
+        height: 40vw;
+    }
+
+    /* LOGO BLOCK */
+    .logo-block {
+        width: 100vw;
+        height: 33vw;
+    }
+
+    .logo-block__frame {
+        width: 60vw;
+        height: 21vw;
+    }
+
+    .logo-block__logo {
+        width: 40vw;
+        height: 21vw;
+    }
+
+    .icon-marquee__icon {
+        width: 30vw;
+        height: 21vw;
+    }
+}
