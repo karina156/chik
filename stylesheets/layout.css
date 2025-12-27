@@ -16,7 +16,7 @@ body {
 
 /* колонки */
 .left,
-.right{
+.right1{
   width: 50vw;
   height: 100%;
   position: relative;
@@ -213,7 +213,7 @@ body {
 }
 
 /* правая колонка (доп. настройки) */
-.right{
+.right1{
   height: 50.6vw;  /* 727px */
   position: relative;
   display: flex;
