@@ -313,29 +313,141 @@
 
 
 /* БУКВЫ: базовая диагональ */
-.hero--second .right .i1{ --x: 0vw; --y: 56vw; }
-.hero--second .right .k1{ --x:  0.2vw; --y: 56vw; }
-.hero--second .right .h1{ --x:  1.6vw; --y: 40vw; }
-.hero--second .right .C1{ --x: -0.4vw; --y: 12vw; --r: 18deg; }
+.hero--second .right .i1{ --x: 1vw; --y: 46vw; }
+.hero--second .right .k1{ --x:  0.2vw; --y: 43vw; }
+.hero--second .right .h1{ --x:  2vw; --y: 34vw; }
+.hero--second .right .C1{ --x: 0vw; --y: 27vw; --r: 18deg; }
 
 /* КРУГИ: как на макете — поверх букв */
 .hero--second .right .c1{ --x:  5vw; --y: 51vw; }
 .hero--second .right .c2{ --x: -5vw; --y: 51vw; }
-.hero--second .right .c3{ --x:  3.8vw; --y: 34.0vw; }
-.hero--second .right .c4{ --x: -3.2vw; --y: 44.5vw; }
-.hero--second .right .c5{ --x:  0vw; --y: 0vw; }
+.hero--second .right .c3{ --x:  -3.5vw; --y: 38.0vw; }
+.hero--second .right .c4{ --x: 5vw; --y: 24vw; }
+.hero--second .right .c5{ --x:  -5vw; --y: 30vw; }
 
 /* ---------- ЗАДЕРЖКИ: ПАДАЮТ СТРОГО ПО ОЧЕРЕДИ ---------- */
-.hero--second .right .c1{ animation-delay: 0.0s; }
-.hero--second .right .i1{ animation-delay: 0.25s; }
+.hero--second .right .c1{ animation-delay: 1s; }
+.hero--second .right .i1{ animation-delay: 2s; }
 
-.hero--second .right .c2{ animation-delay: 0.50s; }
-.hero--second .right .k1{ animation-delay: 0.75s; }
+.hero--second .right .c2{ animation-delay: 3s; }
+.hero--second .right .k1{ animation-delay: 4s; }
 
-.hero--second .right .c3{ animation-delay: 1.00s; }
-.hero--second .right .h1{ animation-delay: 1.25s; }
+.hero--second .right .c3{ animation-delay: 5s; }
+.hero--second .right .h1{ animation-delay: 6s; }
 
-.hero--second .right .c4{ animation-delay: 1.50s; }
-.hero--second .right .C1{ animation-delay: 1.75s; }
+.hero--second .right .c4{ animation-delay: 7s; }
+.hero--second .right .C1{ animation-delay: 8s; }
 
-.hero--second .right .c5{ animation-delay: 2.00s; }
+.hero--second .right .c5{ animation-delay: 9s; }
+
+
+/* тайминги кадров */
+.left__bottom-a .frame--1{ animation-delay: 0s; }
+.left__bottom-a .frame--2{ animation-delay: 0.25s; }
+.left__bottom-a .frame--3{ animation-delay: 0.5s; }
+.left__bottom-a .frame--4{ animation-delay: 0.75s; }
+
+/* кадры включаются жёстко, без плавности */
+@keyframes frameStep{
+  0%   { opacity: 1; }
+  24%  { opacity: 1; }
+  25%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* задержки кадров */
+.left__bottom-b .frame--1{ animation-delay: 0s; }
+.left__bottom-b .frame--2{ animation-delay: 0.3s; }
+
+/* ⏸ стоп анимации при наведении */
+.left__bottom-b:hover .frame{
+  animation-play-state: paused;
+}
+
+/* покадровый ключ */
+@keyframes frameStepB{
+  0%   { opacity: 1; }
+  49%  { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+
+/* анимация: падаем вниз + легкий поворот */
+@keyframes noteFall{
+  0%   { transform: translate(-50%, -12vw) rotate(0deg); opacity: 0; }
+  8%   { opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--drift, 0%)), 62vw) rotate(180deg); opacity: 1; }
+}
+
+/* меньше наложений: дорожки + разные задержки */
+.center__only.notes-fall .n1{ left: 15%; animation-duration: 6.0s; animation-delay: 0s;   --drift: -6%; }
+.center__only.notes-fall .n2{ left: 35%; animation-duration: 5.2s; animation-delay: 0.8s; --drift:  4%; }
+.center__only.notes-fall .n3{ left: 55%; animation-duration: 6.6s; animation-delay: 1.6s; --drift: -3%; }
+.center__only.notes-fall .n4{ left: 75%; animation-duration: 5.6s; animation-delay: 2.4s; --drift:  6%; }
+.center__only.notes-fall .n5{ left: 25%; animation-duration: 7.0s; animation-delay: 3.2s; --drift: -5%; }
+.center__only.notes-fall .n6{ left: 45%; animation-duration: 5.9s; animation-delay: 4.0s; --drift:  3%; }
+.center__only.notes-fall .n7{ left: 65%; animation-duration: 6.3s; animation-delay: 4.8s; --drift: -4%; }
+.center__only.notes-fall .note:hover{
+  animation-play-state: paused;
+}
+
+
+/* цикличное уменьшение → обратно */
+@keyframes birdPulse{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(0.9); /* степень уменьшения */
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+
+
+/* базовое */
+.tag{
+  position: absolute;
+  will-change: transform;
+  cursor: pointer;
+}
+
+/* фиолетовые — едут вправо и обратно */
+.tag--purple{
+  animation: moveRight 3.2s ease-in-out infinite;
+}
+
+/* чёрные — едут влево и обратно */
+.tag--black{
+  animation: moveLeft 3.2s ease-in-out infinite;
+}
+
+/* небольшие сдвиги фаз */
+.t1{ animation-delay: 0s; }
+.t2{ animation-delay: .25s; }
+.t3{ animation-delay: .5s; }
+
+.t4{ animation-delay: 0s; }
+.t5{ animation-delay: .3s; }
+.t6{ animation-delay: .6s; }
+
+/* анимации движения */
+@keyframes moveRight{
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(35vw); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes moveLeft{
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(-39vw); }
+  100% { transform: translateX(0); }
+}
+
+/*при наведении — просто стоп */
+.tag:hover{
+  animation-play-state: paused;
+}

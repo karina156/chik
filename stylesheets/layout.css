@@ -1,6 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background: #0A0A0A;
+  background:#0A0A0A;
 }
 
 .hero{
@@ -246,7 +246,38 @@ body {
   pointer-events: none;
   user-select: none;
 }
-
+.sparkle.star1{
+  width: 10.53vw;   /* 151.66px @1440 */
+  height: auto;
+}
+.sparkle.star2{
+  width: 10.58vw;   /* 152.36px @1440 */
+  height: auto;
+}
+.sparkle.star3{
+  width: 2.85vw;   /* 41px @1440 */
+  height: auto;
+}
+.sparkle.star4{
+  width: 3.82vw;   /* 55px @1440 */
+  height: auto;
+}
+.sparkle.star5{
+  width: 2.85vw;   /* 41px @1440 */
+  height: auto;
+}
+.sparkle.star6{
+  width: 2.88vw;   /* 41.46px @1440 */
+  height: auto;
+}
+.sparkle.star7{
+  width: 2.49vw;   /* 35.89px @1440 */
+  height: auto;
+}
+.sparkle.star8{
+  width: 2.49vw;   /* 35.89px @1440 */
+  height: auto;
+}
 /* расстановка звезд */
 .star1{ left: 2vw;  top: 22vw; }
 .star2{ left: 38vw; top: 27vw; }
@@ -449,4 +480,325 @@ body {
 .hero--second .right .fall{
   position: absolute;
   top: -1vw;                 /* старт выше экрана */
+}
+
+
+.screen.screen--chik{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* все колонки одной высоты */
+}
+
+.bird.bird-big{
+  width: 25.21vw;   /* 363px @1440 */
+  height: auto;
+}
+.bird.bird-small{
+  width: 21.94vw;   /* 316px @1440 */
+  height: auto;
+}
+.sparkle.star1-2{
+  width: 11.41vw;   /* 164.36px @1440 */
+  height: auto;
+}
+.sparkle.star1-3{
+  width: 4.65vw;   /* 66.93px @1440 */
+  height: auto;
+}
+.sparkle.star1-4{
+  width: 7.63vw;   /* 109.94px @1440 */
+  height: auto;
+}
+.sparkle.star1-5{
+  width: 7.65vw;   /* 110.15px @1440 */
+  height: auto;
+}
+.sparkle.star1-6{
+  width: 7.65vw;   /* 110.15px @1440 */
+  height: auto;
+}
+.bird-note{
+  width: 8.59vw;   /* 123.73px @1440 */
+  height: auto;
+}
+.right-bird{
+  width: 13.19vw;   /* 189.94px @1440 */
+  height: auto;
+}
+.fall.circle{
+  width: 5.96vw;   /* 85.81px @1440 */
+  height: auto;
+  display: block;
+}
+.fall.letter.C1{
+  width: 9.75vw;   /* 140.46px @1440 */
+  height: auto;
+}
+.fall.letter.h1{
+  width: 8.20vw;   /* 118.14px @1440 */
+  height: auto;
+}
+.fall.letter.i1{
+  width: 8.20vw;   /* 47.5px @1440 */
+  height: 11.43vw;
+}
+.fall.letter.k1{
+  width: 8.93vw;   /* 128.59px @1440 */
+  height: auto;
+  
+}
+/* левый верхний блок третьего экрана */
+.left__top{
+  width: 50vw;
+  height: 34vw;
+  position: relative;
+  overflow: hidden;      /* на всякий */
+}
+
+.left__top img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;     /* или contain, если нужно */
+}
+/* общие стили плашек */
+.tag{
+  position: absolute;
+  z-index: 2;
+
+  height: 4.86vw;        /* 70px */
+  padding: 0 2.2vw;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 0.69vw;
+  font-size: 2.08vw;      /* 30px */
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* цвета */
+.tag--purple{
+  background: #6A5ACD;
+  color: #D9EE61;
+}
+
+.tag--black{
+  background: #0B0B0B;
+  color: #D9EE61;
+}
+/* фиолетовые слева */
+.t1{ top: 1vw;  left: 0vw; }
+.t2{ top: 12vw; left: 0vw; }
+.t3{ top: 23vw; left: 0vw; }
+
+/* чёрные справа */
+.t4{ top: 6.5vw;  left: 39vw; }
+.t5{ top: 17.3vw; left: 37vw; }
+.t6{ top: 28.7vw; left: 37vw; }
+
+
+.left__bottom{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start; /* или center */
+}
+/* левый левый нижний блок третьего экрана */
+/* контейнер */
+.left__bottom-a{
+  width: 25vw;   /* 366px @1440 */
+  height: 22.22vw;  /* 320px @1440 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* все кадры */
+.left__bottom-a .frame{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+
+  opacity: 0;
+  animation: frameStep 1s steps(1, end) infinite;
+}
+
+.left__bottom-b{
+  width: 25vw;   /* 365px @1440 */
+  height: 22.22vw;  /* 320px @1440 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* кадры */
+.left__bottom-b .frame{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+
+  opacity: 0;
+  animation: frameStepB 0.6s steps(1, end) infinite;
+}
+.left__bottom-a, .left__bottom-b{ margin: 0; }
+
+
+/* ноты */
+
+/* контейнер центра */
+.screen__center{
+  display: flex;
+  justify-content: center;
+}
+
+/* сам вертикальный блок */
+.center__only{
+  width: 16.6vw;    /* 239px @1440 */
+  height: 56.25vw;  /* 810px @1440 */
+  position: relative;
+  overflow: hidden; 
+}
+.center__only{ background:#0E0E0E; }
+/* базовые настройки каждой ноты */
+
+  .center__only.notes-fall .note{
+  position: absolute;
+  top: -12vw;
+  left: 50%;
+  width: 60%;          /* меняется тут */
+  height: auto;
+  display: block;
+
+  animation: noteFall linear infinite;
+  will-change: transform;
+}
+
+
+.screen__right{
+  width: 32.64vw;   /* 467px @1440 */
+  height: 56.39vw;  /* 812px @1440 */
+  position: relative;
+  overflow: hidden;
+  background-color: #D9EE61;
+}
+
+/* птица — фон */
+.screen__right .bird{
+  position: absolute;
+  inset: 0;
+  width: 32.43vw;
+  height: 56.39vw ;
+  object-fit: contain;
+  z-index: 1;
+
+
+  animation: birdPulse 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* звезды */
+.screen__right .star{
+  position: absolute;
+  height: auto;
+  z-index: 2;
+}
+.screen__right .s1{ top: 13vw;  left: 3vw;  width: 5vw; }
+.screen__right .s2{ top: 1vw; left: 15vw; width: 6vw; }
+.screen__right .s3{ top: 20vw; left: 23vw;  width: 5vw; }
+.screen__right .s4{ top: 34vw; left: 24vw; width: 7vw; }
+.screen__right .s5{ top: 44vw; left: 5vw; width: 7vw; }
+.screen__right .s6{ top: 50vw; left: 27vw; width: 3.8vw; }
+
+
+
+.credits{
+  width: 100vw;
+  height: 24.44vw;           /* 352px @1440 */
+  position: relative;
+  overflow: hidden;
+  background: #0B0B0B;
+}
+
+/* контент */
+.credits__inner{
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6vw;                  /* расстояние между колонками */
+  padding: 4.2vw 6vw 0 6vw;
+  box-sizing: border-box;
+}
+
+.credits__col{
+  min-width: 22vw;
+}
+
+/* текст */
+.credits__label{
+  font-size: 1.39vw;         /* 20px @1440 */
+  line-height: 1.2;
+  color: #D9EE61;
+  font-weight: 500;          /* Medium */
+}
+
+.credits__big{
+  font-size: 2.36vw;         /* 34px @1440 */
+  line-height: 1.15;
+  color: #D9EE61;
+  margin-top: 0.9vw;
+  font-weight: 600;          /* SemiBold */
+}
+
+.credits__spacer{
+  height: 2.4vw;
+}
+
+/* фоновые svg */
+.credits__bg{
+  position: absolute;
+  bottom: -2vw;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* звезда слева: “настоящий” размер 478×311 → во vw */
+.credits__bg--left{
+  left: -3vw;
+  width: 33.19vw;            /* 478px @1440 */
+}
+
+/* звезда справа: “настоящий” размер 573×262 → во vw */
+.credits__bg--right{
+  right: -3vw;
+  width: 39.79vw;            /* 573px @1440 */
+}
+
+.screen.screen--chik{
+  display: flex;
+  align-items: stretch;
+}
+
+.screen__left{
+  flex: 0 0 50vw;      /* левая колонка */
+}
+
+.screen__center{
+  flex: 0 0 16.6vw;    /* колонка с нотами (239px @1440) */
+  display: flex;
+  justify-content: center;
+}
+
+.screen__right{
+  flex: 0 0 32.64vw;   /* правая колонка (470px @1440) */
 }

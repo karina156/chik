@@ -1,0 +1,87 @@
+/* =========================
+   HERO MOBILE / TABLET
+   <= 1023px
+   ========================= */
+@media (max-width: 1023px){
+
+  /* 1. GRID → колонка-реверс */
+  .hero .hero__grid{
+    width: 100vw;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  /* 2. Колонки на всю ширину */
+  .hero .left,
+  .hero .right{
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  /* =========================
+     LEFT = квадрат
+     ========================= */
+  .hero .left{
+    height: 100vw;            /* квадрат */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* пропорции секций */
+  .hero .top-row{
+    height: 20%;              /* ≈83px @414 */
+    display: flex;
+  }
+
+  .hero .logo-block{
+    height: 45%;              /* ≈188px @414 */
+    width: 100%;
+  }
+
+  .hero .bottom-row{
+    height: 35%;              /* ≈141px @414 */
+    display: flex;
+  }
+
+  /* =========================
+     плитки внутри рядов
+     ========================= */
+  .hero .moon-tile,
+  .hero .frame-tile,
+  .hero .scribble-tile,
+  .hero .icon-marquee{
+    width: 50%;
+    height: 100%;
+  }
+
+  /* убираем десктопные vw-ограничения */
+  .hero .logo-block{
+    max-width: none;
+  }
+
+  /* =========================
+     RIGHT BLOCK
+     ========================= */
+  .hero .right{
+    height: auto;
+    padding: 10vw 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero .star{
+    width: 75vw;
+  }
+
+  .hero .parrot{
+    width: 42vw;
+  }
+
+  .hero .sparkle{
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
