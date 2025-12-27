@@ -1,0 +1,73 @@
+@media screen and (min-width: 1px) and (max-width: 1023px)  {
+
+.left, .right {
+    margin-top: 100vw;
+}
+
+.right {
+    margin-top: 0;
+    margin-left: -49vw;
+    width: 100%;
+    height: 100vw;
+}
+
+.parrot {
+    width: 40vw;
+    margin-top: 33vw;
+}
+
+.star {
+    width: 65vw;
+    margin-left: -4vw;
+}
+
+.sparklestar1, .sparklestar2, .sparklestar3, .sparklestar4, .sparklestar5, .sparklestar6, .sparklestar7, .sparklestar8 {
+
+margin-left: -70vw;
+}
+.left
+{
+    width: 100vw;
+}
+.moon-tile {
+     width: 50vw;
+     height: 33vw;
+}
+.frame-tile {
+     width: 50vw;
+     height: 33vw;
+}
+.logo-block{
+     width: 100vw;
+     height: 33vw;
+}
+.logo-block__frame{
+     width: 60vw;
+     height: 21vw;
+}
+.logo-block__logo{
+     width: 40vw;
+     height: 21vw;
+}
+.scribble-tile{
+     width: 50vw;
+     height: 33vw;
+}
+.scribble-image{
+     width: 50vw;
+     height: 40vw;
+}
+.icon-marquee{
+     width: 50vw;
+     height: 33vw;
+}
+.icon-marquee__icon{
+     width: 30vw;
+     height: 21vw;
+}
+.center{
+margin-top: 100vw;
+}
+.right{
+margin-left: 1vw;
+}

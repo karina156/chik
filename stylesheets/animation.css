@@ -316,13 +316,13 @@
 .hero--second .right .i1{ --x: 1vw; --y: 46vw; }
 .hero--second .right .k1{ --x:  0.2vw; --y: 43vw; }
 .hero--second .right .h1{ --x:  2vw; --y: 34vw; }
-.hero--second .right .C1{ --x: 0vw; --y: 27vw; --r: 18deg; }
+.hero--second .right .C1{ --x: -1vw; --y: 26vw; --r: 18deg; }
 
 /* КРУГИ: как на макете — поверх букв */
 .hero--second .right .c1{ --x:  5vw; --y: 51vw; }
 .hero--second .right .c2{ --x: -5vw; --y: 51vw; }
 .hero--second .right .c3{ --x:  -3.5vw; --y: 38.0vw; }
-.hero--second .right .c4{ --x: 5vw; --y: 24vw; }
+.hero--second .right .c4{ --x: 5vw; --y: 26vw; }
 .hero--second .right .c5{ --x:  -5vw; --y: 30vw; }
 
 /* ---------- ЗАДЕРЖКИ: ПАДАЮТ СТРОГО ПО ОЧЕРЕДИ ---------- */

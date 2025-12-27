@@ -539,8 +539,9 @@ body {
   height: auto;
 }
 .fall.letter.i1{
-  width: 8.20vw;   /* 47.5px @1440 */
+  width: 8.30vw;   /* 47.5px @1440 */
   height: 11.43vw;
+
 }
 .fall.letter.k1{
   width: 8.93vw;   /* 128.59px @1440 */
