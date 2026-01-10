@@ -3,33 +3,16 @@ body {
   background:#0A0A0A;
 }
 
-.hero{
+:root{
+  --lime: #D9EE61;
+  --purple: #6552D0;
+  --black: #0A0A0A;
+}
+
+.stroke{
   width: 100vw;
   overflow: hidden;
 }
-
-.hero__grid{
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-} 
-
-/* колонки */
-.left,
-.right1{
-  width: 50vw;
-  height: 100%;
-  position: relative;
-  background:#0E0E0E;
-}
-
-.top-row{
-  display:flex;
-  align-items:flex-start;
-  padding-left: 0vw;
-  padding-top: 0vw;
-}
-
 /* БЕГУЩАЯ СТРОКА */
 .marquee{
   width: 100vw;
@@ -37,9 +20,9 @@ body {
   display: flex;
   align-items: center;
 
-  --h: 5.8333vw;        /* 84px / 1440 */
-  --font: 2.7778vw;     /* 40px / 1440 */
-  --gap: 1.3889vw;      /* 20px / 1440 */
+  --h: 5.8vw;       
+  --font: 2.7vw;    
+  --gap: 1.3vw;     
 
   height: var(--h);
   background: #D9EE61;
@@ -49,757 +32,121 @@ body {
   display: flex;
   gap: var(--gap);
   white-space: nowrap;
-  padding-left: var(--gap); /* слева 20px */
+  padding-left: var(--gap); 
 }
 
 .marquee__track span{
   flex: 0 0 auto;
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;            /* SemiBold */
-  font-size: var(--font);      /* 40px */
+  font-weight: 700;           
+  font-size: 2.7vw;
   color: #6552D0;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-:root{
-  --lime: #D9EE61;
-  --purple: #6552D0;
-  --black: #0A0A0A;
+/* ЭКРАН 1 */
+.screen-1{
+  width: 100%;
+  height: 50vw;          
+  display: flex;         
 }
 
-/* ФИОЛЕТОВАЯ ПЛАШКА С КРУГАМИ  */
-.moon-tile{
-  --moon-tile-w: 25.4167vw;  /* 366 / 1440 * 100 */
-  --moon-tile-h: 11.3889vw;  /* 164 / 1440 * 100 */
-
-  /* круги */
-  --moon-d: 9.7222vw;        /* 140 / 1440 * 100 */
-  --moon-overlap: 3.7500vw;  /* 54 / 1440 * 100 */ 
-
-  width: var(--moon-tile-w);
-  height: var(--moon-tile-h);
-  overflow: hidden;
+.left-1, .right-1{
+  width: 50vw;
+  height: 100%;
   position: relative;
+}
+
+.left-1{ background:#b02424; }
+.right-1{ background:#52d51a; }
+
+/* чтобы alt/иконки не ломали верстку, пока нет картинок */
+.right-1 img{
+  display: block;
+}
+/* ЛЕВАЯ ВЕРХНЯЯ ЧАСТЬ ПЕРВОГО ЭКРАНА */
+.left-top-1{
+  width: 50vw;
+  height: 12vw;          
+  display: flex;         
+}
+/* Круги */
+.left-top-circle-1{
+  width: 25vw;
+  height: 12vw;
+  background:var(--purple);  
   display: flex;
-  align-items: center;
+  align-items: center;    
+}
+.circle-wrap{
+  position: relative;
+}
+.circle-wrap img{
+  width: 9vw;
+  height: 9vw;
+}
+.circle-wrap:not(:first-child){
+  margin-left: -7vw;
+}
+.circle-wrap:nth-child(1){ z-index: 1; }
+.circle-wrap:nth-child(2){ z-index: 2; }
+.circle-wrap:nth-child(3){ z-index: 3; }
+.circle-wrap:nth-child(4){ z-index: 4; }
+.circle-wrap:nth-child(5){ z-index: 5; }
+.circle-wrap:nth-child(6){ z-index: 6; }
+
+/* Ноты */
+.left-top-note-1{
+  width: 25vw;
+  height: 12vw;
   background: var(--purple);
-  border-radius: 0;
-}
-
-.moon-tile__track{
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  will-change: transform;
-}
-
-.moon{
-  flex: 0 0 auto;
-  width: var(--moon-d);
-  height: var(--moon-d);
-  border-radius: 50%;
-}
-
-.moon:first-child{ margin-left: 0; }
-
-.moon--lime{ background: var(--lime); }
-.moon--black{ background: var(--black); }
-
-/* FRAME TILE (364x164) */
-.frame-tile{
-  --frame-w: 25.2778vw;  /* 364 / 1440 */
-  --frame-h: 11.3889vw;  /* 164 / 1440 */
-
-  width: var(--frame-w);
-  height: var(--frame-h);
   position: relative;
   overflow: hidden;
-  display: block;
-  background: #6552D0;
 }
 
-.frame-tile__frame{
-  position: absolute;
+.note-1,
+.note-2{
+  position: absolute;   
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-/* LOGO BLOCK: background 730x318 */
-.logo-block{
-  width: 50vw;   /* 730 / 1440 */
-  height: 22.0833vw;  /* 318 / 1440 */
-
-  background: #6552D0;
-  position: relative;
-
-  display: grid;
-  place-items: center;
-  z-index: 2;
-}
-
-.logo-block__logo{
-  width: 32.2222vw;   /* 464 / 1440 */
-  height: 7.6389vw;   /* 110 / 1440 */
-
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-
-/* SCRIBBLE TILE (370x248) */
-.scribble-tile{
-  width: 25.6944vw;   /* 370 / 1440 */
-  height: 17.2222vw;  /* 248 / 1440 */
-
-  position: relative;
-  background:#6552D0;
-  overflow: hidden;
-}
-
-/* рамка сверху — без заливки, внутренняя */
-.scribble-tile__frame{
-  position: absolute;
-  inset: 0;
-  border: 1.1111vw solid #D9EE61; /* 16px / 1440 */
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* SCRIBBLE IMAGE */
-.scribble-image{
-  position: absolute;
-  width: 31.3194vw;   /* 451 / 1440 */
-  height: 25.9028vw;  /* 373 / 1440 */
-  will-change: transform;
-  transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
-  z-index: 1;
-}
-
-/* нижний ряд: две плитки рядом, без отступа */
-.bottom-row{
-  display: flex;
-  gap: 0;
-}
-
-/* ICON MARQUEE BLOCK (360x248) */
-.icon-marquee{
-  width: 25.0000vw;   /* 360 / 1440 */
-  height: 17.2222vw;  /* 248 / 1440 */
-
-  background: #D9EE61;
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-}
-
-/* трек не переносится */
-.icon-marquee__track{
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-  will-change: transform;
-}
-
-/* размеры SVG (увеличенные) */
-.icon-marquee__icon{
-  width: 13.1250vw;   /* 189 / 1440 */
-  height: 13.9583vw;  /* 201 / 1440 */
-  flex: 0 0 auto;
+.note-1 img,
+.note-2 img{
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-/* правая колонка (доп. настройки) */
-.right1{
-  height: 50.6vw;  /* 727px */
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.note-1{
+  z-index: 2; 
 }
-
-/* звезда — фон */
-.star{
-  position: absolute;
-  width: 42vw;
-  height: auto;
-  z-index: 1;
+.note-2{
+  z-index: 1; 
 }
-
-/* попугай — поверх */
-.parrot{
-  position: relative;
-  width: 23vw;
-  height: auto;
-  z-index: 2;
-}
-
-/* слой для мелких звёзд */
-.sparkle{
-  position: absolute;
-  height: auto;
-  z-index: 3;
-  pointer-events: none;
-  user-select: none;
-}
-.sparkle.star1{
-  width: 10.53vw;   /* 151.66px @1440 */
-  height: auto;
-}
-.sparkle.star2{
-  width: 10.58vw;   /* 152.36px @1440 */
-  height: auto;
-}
-.sparkle.star3{
-  width: 2.85vw;   /* 41px @1440 */
-  height: auto;
-}
-.sparkle.star4{
-  width: 3.82vw;   /* 55px @1440 */
-  height: auto;
-}
-.sparkle.star5{
-  width: 2.85vw;   /* 41px @1440 */
-  height: auto;
-}
-.sparkle.star6{
-  width: 2.88vw;   /* 41.46px @1440 */
-  height: auto;
-}
-.sparkle.star7{
-  width: 2.49vw;   /* 35.89px @1440 */
-  height: auto;
-}
-.sparkle.star8{
-  width: 2.49vw;   /* 35.89px @1440 */
-  height: auto;
-}
-/* расстановка звезд */
-.star1{ left: 2vw;  top: 22vw; }
-.star2{ left: 38vw; top: 27vw; }
-.star3{ left: 9vw;  top: 37vw; }
-.star4{ left: 4vw;  top: 41vw; }
-.star5{ left: 10vw; top: 45vw; }
-.star6{ left: 4vw;  top: 15vw; }
-.star7{ left: 35vw; top: 45vw; }
-.star8{ left: 40vw; top: 41.30vw; }
-
-
-
-/* ВТОРОЙ ЭКРАН */
-.hero--second .hero__grid{
-  width: 100vw;
-  display: flex;
-  flex-direction: row;
-}
-
-/* LEFT BLOCK */
-.hero--second .left{
-  position: relative;
+/* лого-середина */
+.left-center-1{
   width: 50vw;
-   height: 56.25vw;
+  height: 22vw;
+  background: var(--purple);
   overflow: hidden;
-  background:#0E0E0E;
-}
-
-/* все картинки */
-.hero--second .left img{
-  position: absolute;
-  height: auto;
-  display: block;
-}
-
-/* линии */
-.hero--second .line-1-2{ top:24vw; left:0vw;width: 50.625vw;z-index:1; }
-
-.hero--second .bird-big{ bottom:4vw; left:0vw; z-index:2; }
-
-.hero--second .line-2-2{ bottom:0vw;  left:0vw; width: 50.625vw;z-index:3; }
-
-.hero--second .bird-small{ top:30vw; left:12vw; z-index:4; }
-
-.hero--second .line-3-2{ bottom:0vw; left:0vw; width: 42.29vw; z-index:5; }
-
-/* звезды */
-.hero--second .sparkle{ z-index:6; }
-.hero--second .star1-2{ top:10vw; left:1vw; }
-.hero--second .star1-3{ top:2vw; left:17vw; }
-.hero--second .star1-4{ top:10vw; left:28vw; }
-.hero--second .star1-5{ top:42vw; left:2vw; }
-.hero--second .star1-6{ top:43vw; left:36vw; }
-
-/* CENTER */
-.hero--second .center{
-  width:32.78vw;
-   height: 56.25vw;
-  background-color:#bbb8cd;
-}
-/* контейнер центра */
-.bird-center{
-  width: 32.78vw;   /* 472px */
-  height: 20.21vw;  /* 291px */
   display: flex;
-  align-items: flex-end;
+  align-items: center;    
   justify-content: center;
-  position: relative;
-  background-color:#6552D0;
-  z-index: 6;  
 }
-
-/* группа нот/птиц */
-.bird-union{
-  position: absolute;
-  bottom: 2.5vw;  
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: flex-end;
-  gap: 2vw;
+.logo-left img{
+  display: block;
+  height: 11vw;
+  width: 35vw;
 }
-
-
-/* сама "птица-нота" */
-.bird-note{
-  transform-origin: bottom center;
-  animation: jump 1s ease-in-out infinite;
-}
-
-/* CENTER — внешний контейнер (472 × 810) */
-.hero--second .center{
-  width: 32.78vw;      /* 472px */
-  height: 56.25vw;     /* 810px */
-  display: flex;
-  background: #bbb8cd;
-}
-
-/* левая колонка (239px) */
-.hero--second .center__left{
-  width: 16.60vw;      /* 239px */
-  display: flex;
-  flex-direction: column;
-  background: #6552D0;
-}
-
-/* правая колонка (233px) */
-.hero--second .center__right{
-  width: 16.60vw;      /* 233px */
-  background: #42494f;
-}
-/* нижний блок слева (силуэты + текст) */
-.hero--second .bird-center2{
-  width: 16.60vw;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: #6552D0;
-  overflow: hidden;
-}
-
-/* верхняя часть (260px) */
-.hero--second .center2-top{
-  height: 18.06vw;     /* 260px */
-  background: #505344;
-  position: relative;
-  overflow: hidden;
-}
-
-/* нижняя часть */
-.hero--second .center2-bottom{
-  flex: 1;
-  background: #6552D0;
+.logo-box{
+  width: 35vw;
+  height: 12vw;
+  background: var(--lime);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* текст */
-.hero--second .text1{
-  color: #D9F25A;
-  font-size: 2.08vw;   /* 30px */
-  line-height: 1.008;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* покадровая птица */
-.hero--second .flipbird{
-  position: absolute;
-  inset: 0;
-}
-
-.hero--second .flipbird__frame{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-
-.hero--second .center__right{
-  width: 16.18vw;        /* 233px (правильное значение) */
-  height: 56.25vw;       /* 810px */
-  position: relative;
-  overflow: hidden;
-  background: #42494f;
-}
-
-/* фон со стрелками */
-.hero--second .center__right .right-bg{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* важно */
-  display: block;
-  z-index: 1;
-}
-
-.hero--second .center__right .right-bird{
-  position: absolute;
-  z-index: 2;
-  left: 4.5vw;           /* стартовая точка */
-  top: 20vw;
-  cursor: pointer;
-
-  animation: birdFly 6s linear infinite;
-  will-change: transform;
-}
-
-.hero--second .right{
-  position: relative;
-  width: 16.53vw;     /* 238px */
-  height: 56.25vw;    /* 810px */
-  background: #D9EE61;
-  overflow: hidden;
-}
-
-.hero--second .right .fall{
-  position: absolute;
-  top: -1vw;                 /* старт выше экрана */
-}
-
-
-.screen.screen--chik{
-  display: flex;
-  flex-direction: row;
-  align-items: stretch; /* все колонки одной высоты */
-}
-
-.bird.bird-big{
-  width: 25.21vw;   /* 363px @1440 */
-  height: auto;
-}
-.bird.bird-small{
-  width: 21.94vw;   /* 316px @1440 */
-  height: auto;
-}
-.sparkle.star1-2{
-  width: 11.41vw;   /* 164.36px @1440 */
-  height: auto;
-}
-.sparkle.star1-3{
-  width: 4.65vw;   /* 66.93px @1440 */
-  height: auto;
-}
-.sparkle.star1-4{
-  width: 7.63vw;   /* 109.94px @1440 */
-  height: auto;
-}
-.sparkle.star1-5{
-  width: 7.65vw;   /* 110.15px @1440 */
-  height: auto;
-}
-.sparkle.star1-6{
-  width: 7.65vw;   /* 110.15px @1440 */
-  height: auto;
-}
-.bird-note{
-  width: 8.59vw;   /* 123.73px @1440 */
-  height: auto;
-}
-.right-bird{
-  width: 13.19vw;   /* 189.94px @1440 */
-  height: auto;
-}
-.fall.circle{
-  width: 5.96vw;   /* 85.81px @1440 */
-  height: auto;
-  display: block;
-}
-.fall.letter.C1{
-  width: 9.75vw;   /* 140.46px @1440 */
-  height: auto;
-}
-.fall.letter.h1{
-  width: 8.20vw;   /* 118.14px @1440 */
-  height: auto;
-}
-.fall.letter.i1{
-  width: 8.30vw;   /* 47.5px @1440 */
-  height: 11.43vw;
-
-}
-.fall.letter.k1{
-  width: 8.93vw;   /* 128.59px @1440 */
-  height: auto;
-  
-}
-/* левый верхний блок третьего экрана */
-.left__top{
-  width: 50vw;
-  height: 34vw;
-  position: relative;
-  overflow: hidden;      /* на всякий */
-}
-
-.left__top img{
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;     /* или contain, если нужно */
-}
-/* общие стили плашек */
-.tag{
-  position: absolute;
-  z-index: 2;
-
-  height: 4.86vw;        /* 70px */
-  padding: 0 2.2vw;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 0.69vw;
-  font-size: 2.08vw;      /* 30px */
-  line-height: 1;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* цвета */
-.tag--purple{
-  background: #6A5ACD;
-  color: #D9EE61;
-}
-
-.tag--black{
-  background: #0B0B0B;
-  color: #D9EE61;
-}
-/* фиолетовые слева */
-.t1{ top: 1vw;  left: 0vw; }
-.t2{ top: 12vw; left: 0vw; }
-.t3{ top: 23vw; left: 0vw; }
-
-/* чёрные справа */
-.t4{ top: 6.5vw;  left: 39vw; }
-.t5{ top: 17.3vw; left: 37vw; }
-.t6{ top: 28.7vw; left: 37vw; }
-
-
-.left__bottom{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start; /* или center */
-}
-/* левый левый нижний блок третьего экрана */
-/* контейнер */
-.left__bottom-a{
-  width: 25vw;   /* 366px @1440 */
-  height: 22.22vw;  /* 320px @1440 */
-  position: relative;
-  overflow: hidden;
-}
-
-/* все кадры */
-.left__bottom-a .frame{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-
-  opacity: 0;
-  animation: frameStep 1s steps(1, end) infinite;
-}
-
-.left__bottom-b{
-  width: 25vw;   /* 365px @1440 */
-  height: 22.22vw;  /* 320px @1440 */
-  position: relative;
-  overflow: hidden;
-}
-
-/* кадры */
-.left__bottom-b .frame{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-
-  opacity: 0;
-  animation: frameStepB 0.6s steps(1, end) infinite;
-}
-.left__bottom-a, .left__bottom-b{ margin: 0; }
-
-
-/* ноты */
-
-/* контейнер центра */
-.screen__center{
-  display: flex;
-  justify-content: center;
-}
-
-/* сам вертикальный блок */
-.center__only{
-  width: 16.6vw;    /* 239px @1440 */
-  height: 56.25vw;  /* 810px @1440 */
-  position: relative;
-  overflow: hidden; 
-}
-.center__only{ background:#0E0E0E; }
-/* базовые настройки каждой ноты */
-
-  .center__only.notes-fall .note{
-  position: absolute;
-  top: -12vw;
-  left: 50%;
-  width: 60%;          /* меняется тут */
-  height: auto;
-  display: block;
-
-  animation: noteFall linear infinite;
-  will-change: transform;
-}
-
-
-.screen__right{
-  width: 32.64vw;   /* 467px @1440 */
-  height: 56.39vw;  /* 812px @1440 */
-  position: relative;
-  overflow: hidden;
-  background-color: #D9EE61;
-}
-
-/* птица — фон */
-.screen__right .bird{
-  position: absolute;
-  inset: 0;
-  width: 32.43vw;
-  height: 56.39vw ;
-  object-fit: contain;
-  z-index: 1;
-
-
-  animation: birdPulse 2s ease-in-out infinite;
-  transform-origin: center center;
-}
-
-/* звезды */
-.screen__right .star{
-  position: absolute;
-  height: auto;
-  z-index: 2;
-}
-.screen__right .s1{ top: 13vw;  left: 3vw;  width: 5vw; }
-.screen__right .s2{ top: 1vw; left: 15vw; width: 6vw; }
-.screen__right .s3{ top: 20vw; left: 23vw;  width: 5vw; }
-.screen__right .s4{ top: 34vw; left: 24vw; width: 7vw; }
-.screen__right .s5{ top: 44vw; left: 5vw; width: 7vw; }
-.screen__right .s6{ top: 50vw; left: 27vw; width: 3.8vw; }
-
-
-
-.credits{
-  width: 100vw;
-  height: 24.44vw;           /* 352px @1440 */
-  position: relative;
-  overflow: hidden;
-  background: #0B0B0B;
-}
-
-/* контент */
-.credits__inner{
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 6vw;                  /* расстояние между колонками */
-  padding: 4.2vw 6vw 0 6vw;
-  box-sizing: border-box;
-}
-
-.credits__col{
-  min-width: 22vw;
-}
-
-/* текст */
-.credits__label{
-  font-size: 1.39vw;         /* 20px @1440 */
-  line-height: 1.2;
-  color: #D9EE61;
-  font-weight: 500;          /* Medium */
-}
-
-.credits__big{
-  font-size: 2.36vw;         /* 34px @1440 */
-  line-height: 1.15;
-  color: #D9EE61;
-  margin-top: 0.9vw;
-  font-weight: 600;          /* SemiBold */
-}
-
-.credits__spacer{
-  height: 2.4vw;
-}
-
-/* фоновые svg */
-.credits__bg{
-  position: absolute;
-  bottom: -2vw;
-  height: auto;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* звезда слева: “настоящий” размер 478×311 → во vw */
-.credits__bg--left{
-  left: -3vw;
-  width: 33.19vw;            /* 478px @1440 */
-}
-
-/* звезда справа: “настоящий” размер 573×262 → во vw */
-.credits__bg--right{
-  right: -3vw;
-  width: 39.79vw;            /* 573px @1440 */
-}
-
-.screen.screen--chik{
-  display: flex;
-  align-items: stretch;
-}
-
-.screen__left{
-  flex: 0 0 50vw;      /* левая колонка */
-}
-
-.screen__center{
-  flex: 0 0 16.6vw;    /* колонка с нотами (239px @1440) */
-  display: flex;
-  justify-content: center;
-}
-
-.screen__right{
-  flex: 0 0 32.64vw;   /* правая колонка (470px @1440) */
-}

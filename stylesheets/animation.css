@@ -11,443 +11,62 @@
 @media (prefers-reduced-motion: reduce){
   .marquee__track{ animation: none; }
 }
-
-/*  ФИОЛЕТОВАЯ ПЛАШКА С КРУГАМИ  */
-.moon-tile__track{
-  display: flex;
-  align-items: center;
-  will-change: transform;
-
-  animation: moons-loop 8s linear infinite;
+/* КРУГИ */
+.circle-wrap:not(:first-child){
+  margin-left: -7vw;
+  animation: circlesOffset 1s ease-in-out infinite alternate;
 }
-
-/* ПЛАВНЫЙ, БЕСШОВНЫЙ LOOP */
-@keyframes moons-loop{
+@keyframes circlesOffset{
   from{
-    transform: translateX(0);
+    margin-left: -7vw;
   }
   to{
-    transform: translateX(-50%);
+    margin-left: -5.8vw;
   }
 }
-
-/* accessibility */
-@media (prefers-reduced-motion: reduce){
-  .moon-tile__track{
-    animation: none;
-  }
-}
-/* FRAME TILE (364x164) */
-.frame-tile__frame{
-  opacity: 0;
-  animation: frameSwap 1s steps(1, end) infinite;
-  will-change: opacity;
-}
-
-/* 1-й кадр виден в первой половине */
-.frame-1{
-  animation-delay: 0s;
-}
-
-/* 2-й кадр смещаем на половину времени */
-.frame-2{
-  animation-delay: -0.5s; /* -(duration/2) */
-}
-
-@keyframes frameSwap{
-  0%{ opacity: 1; }
-  50%{ opacity: 1; }
-  50.001%{ opacity: 0; }
-  100%{ opacity: 0; }
-}
-
-/* ===== INNER FRAME: 507x160 (pulse 5px -> 20px -> 5px) ===== */
-.logo-block__frame{
-  width: 35.2083vw;   /* 507/1440 */
-  height: 11.1111vw;  /* 160/1440 */
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  outline: 0.3472vw solid #D9EE61; /* 5px */
-  outline-offset: 0;
-
-  animation: logoFramePulse 1s ease-in-out infinite;
-  will-change: outline-width;
-  pointer-events: none;
-}
-
-@keyframes logoFramePulse{
-  0%   { outline-width: 0.3472vw; }  /* 5px */
-  50%  { outline-width: 1.3889vw; }  /* 20px */
-  100% { outline-width: 0.3472vw; }  /* 5px */
-}
-/* ===== SCRIBBLE HOVER MOVE (NO JS) ===== */
-.scribble-tile:hover .scribble-image{
-  transform:
-    translate3d(1.1vw, -0.8vw, 0);
-}
-
-/* доступность */
-@media (prefers-reduced-motion: reduce){
-  .scribble-image{
-    transition: none;
-  }
-}
-.icon-marquee__track{
-  will-change: transform;
-  animation: iconRun 4s linear infinite;
-}
-
-@keyframes iconRun{
-  from{ transform: translateX(0); }
-  to{ transform: translateX(-50%); }
-}
-
-.icon-marquee:hover .icon-marquee__track{
+.left-top-circle-1:hover .circle-wrap:not(:first-child){
   animation-play-state: paused;
 }
+/* НОТКИ */
 
-@media (prefers-reduced-motion: reduce){
-  .icon-marquee__track{ animation: none; }
+/* кадр 1 */
+.note-1{
+  animation: frame1 1s steps(1) infinite;
+}
+/* кадр 2 */
+.note-2{
+  animation: frame2 1s steps(1) infinite;
 }
 
-
-@keyframes star-swing {
-  0% {
-    transform: rotate(-12deg);
-  }
-  50% {
-    transform: rotate(12deg);
-  }
-  100% {
-    transform: rotate(-12deg);
-  }
-}
-.star{
-  animation: star-swing 1s ease-in-out infinite;
-  transform-origin: 50% 50%; /* вращение из центра */
-}
-@keyframes sparkle-pulse{
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.12); }
-}
-
-.sparkle{
-  animation: sparkle-pulse 0.6s ease-in-out infinite;
-  transform-origin: 50% 50%;
-}
-
-/* задержки */
-.star1{ animation-delay: 0s; }
-.star2{ animation-delay: .2s; }
-.star3{ animation-delay: .45s; }
-.star4{ animation-delay: .65s; }
-.star5{ animation-delay: .9s; }
-.star6{ animation-delay: 1.15s; }
-.star7{ animation-delay: 1.35s; }
-.star8{ animation-delay: 1.6s; }
-
-/* подпрыгивающие при наведении птицы */
-
-.hero--second .bird{
-  transition: transform 0.45s cubic-bezier(.25,1.6,.5,1);
-  will-change: transform;
-  cursor: pointer;
-}
-
-.hero--second .bird-big:hover{
-  transform: translateY(-2.2vw);
-}
-
-.hero--second .bird-small:hover{
-  transform: translateY(-1.4vw);
-}
-.hero--second .bird-big:hover{
-  transform: translateY(-2.2vw) rotate(-1.2deg);
-}
-
-.hero--second .bird-small:hover{
-  transform: translateY(-1.4vw) rotate(1deg);
-}
-
-/* прыгающие ноты-птички */
-@keyframes jump {
-  0%   { transform: translateY(0) scaleY(1); }
-  10%  { transform: translateY(0) scaleY(0.95); }
-  30%  { transform: translateY(-2.2vw) scaleY(1.02); }
-  50%  { transform: translateY(0) scaleY(0.98); }
-  65%  { transform: translateY(-0.8vw) scaleY(1.01); }
-  100% { transform: translateY(0) scaleY(1); }
-}
-
-/* СТАТИЧНОЕ СОСТОЯНИЕ */
-.flipbird .f1{ opacity: 1; }
-.flipbird .f2{ opacity: 0; }
-
-/* АНИМАЦИЯ ТОЛЬКО ПРИ НАВЕДЕНИИ */
-.flipbird:hover .f1{
-  animation: frame1 0.28s steps(1) infinite;
-}
-
-.flipbird:hover .f2{
-  animation: frame2 0.28s steps(1) infinite;
-}
-
-/* ключевые кадры */
 @keyframes frame1{
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes frame2{
-  0%   { opacity: 0; }
-  50%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-
-
-
-
-.center2-bottom{
-  animation: invertBg 0.5s ease-in-out infinite;
-}
-
-/* текст */
-.text1{
-  animation: invertText 0.5s ease-in-out infinite;
-}
-
-/*  ПАУЗА ПРИ НАВЕДЕНИИ */
-.center2-bottom:hover{
-  animation-play-state: paused;
-}
-
-.center2-bottom:hover .text1{
-  animation-play-state: paused;
-}
-@keyframes invertBg{
-  0%,100%{
-    background:#6552D0;
-  }
-  50%{
-    background:#D9F25A;
-  }
-}
-
-@keyframes invertText{
-  0%,100%{
-    color:#D9F25A;
-  }
-  50%{
-    color:#6552D0;
-  }
-}
-
-/* птица летит по траектории */
-
-.hero--second .center__right .right-bird{
-  animation: birdFly 6s linear infinite;
-  animation-direction: alternate;
-}
-
-/* стоп при наведении */
-.hero--second .center__right .right-bird:hover{
-  animation-play-state: paused;
-}
-
-/* траектория (можно подправлять точки) */
-@keyframes birdFly{
-  0%   { transform: translate(-6vw, 0vw)   rotate(-10deg); }
-  16%  { transform: translate( 6vw, 3.5vw) rotate(10deg); }
-  32%  { transform: translate(-6vw, 7vw)   rotate(-8deg); }
-  48%  { transform: translate( 6vw, 13.5vw)rotate(10deg); }
-  64%  { transform: translate(-6vw, 14vw)  rotate(-8deg); }
-  80%  { transform: translate( 6vw, 17.5vw)rotate(10deg); }
-  100% { transform: translate(-6vw, 21vw)  rotate(-8deg); }
-}
-
-@keyframes fallDown{
-  0%{
-    transform: translateY(0) rotate(-8deg);
-    opacity: 0;
-  }
-  20%{
-    opacity: 1;
-  }
-  80%{
-    transform: translateY(48vw) rotate(6deg);
-  }
-  100%{
-    transform: translateY(52vw) rotate(0deg);
-  }
-}
-
-
-@keyframes drop{
-  0%{
-    transform: translate(var(--x), -25vw) rotate(var(--r));
-    opacity: 0;
-  }
-  15%{ opacity: 1; }
-  100%{
-    transform: translate(var(--x), var(--y)) rotate(var(--r));
-    opacity: 1;
-  }
-}
-
-.hero--second .right .fall{
-  /* стартовые значения по умолчанию */
-  --x: 0vw;
-  --y: 40vw;
-  --r: 0deg;
-
-  opacity: 0;
-  animation: drop 0.9s cubic-bezier(.2,.9,.2,1) forwards;
-  will-change: transform, opacity;
-}
-
-
-/* БУКВЫ: базовая диагональ */
-.hero--second .right .i1{ --x: 1vw; --y: 46vw; }
-.hero--second .right .k1{ --x:  0.2vw; --y: 43vw; }
-.hero--second .right .h1{ --x:  2vw; --y: 34vw; }
-.hero--second .right .C1{ --x: -1vw; --y: 26vw; --r: 18deg; }
-
-/* КРУГИ: как на макете — поверх букв */
-.hero--second .right .c1{ --x:  5vw; --y: 51vw; }
-.hero--second .right .c2{ --x: -5vw; --y: 51vw; }
-.hero--second .right .c3{ --x:  -3.5vw; --y: 38.0vw; }
-.hero--second .right .c4{ --x: 5vw; --y: 26vw; }
-.hero--second .right .c5{ --x:  -5vw; --y: 30vw; }
-
-/* ---------- ЗАДЕРЖКИ: ПАДАЮТ СТРОГО ПО ОЧЕРЕДИ ---------- */
-.hero--second .right .c1{ animation-delay: 1s; }
-.hero--second .right .i1{ animation-delay: 2s; }
-
-.hero--second .right .c2{ animation-delay: 3s; }
-.hero--second .right .k1{ animation-delay: 4s; }
-
-.hero--second .right .c3{ animation-delay: 5s; }
-.hero--second .right .h1{ animation-delay: 6s; }
-
-.hero--second .right .c4{ animation-delay: 7s; }
-.hero--second .right .C1{ animation-delay: 8s; }
-
-.hero--second .right .c5{ animation-delay: 9s; }
-
-
-/* тайминги кадров */
-.left__bottom-a .frame--1{ animation-delay: 0s; }
-.left__bottom-a .frame--2{ animation-delay: 0.25s; }
-.left__bottom-a .frame--3{ animation-delay: 0.5s; }
-.left__bottom-a .frame--4{ animation-delay: 0.75s; }
-
-/* кадры включаются жёстко, без плавности */
-@keyframes frameStep{
-  0%   { opacity: 1; }
-  24%  { opacity: 1; }
-  25%  { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-/* задержки кадров */
-.left__bottom-b .frame--1{ animation-delay: 0s; }
-.left__bottom-b .frame--2{ animation-delay: 0.3s; }
-
-/* ⏸ стоп анимации при наведении */
-.left__bottom-b:hover .frame{
-  animation-play-state: paused;
-}
-
-/* покадровый ключ */
-@keyframes frameStepB{
   0%   { opacity: 1; }
   49%  { opacity: 1; }
   50%  { opacity: 0; }
   100% { opacity: 0; }
 }
 
-
-/* анимация: падаем вниз + легкий поворот */
-@keyframes noteFall{
-  0%   { transform: translate(-50%, -12vw) rotate(0deg); opacity: 0; }
-  8%   { opacity: 1; }
-  100% { transform: translate(calc(-50% + var(--drift, 0%)), 62vw) rotate(180deg); opacity: 1; }
+@keyframes frame2{
+  0%   { opacity: 0; }
+  49%  { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 1; }
 }
-
-/* меньше наложений: дорожки + разные задержки */
-.center__only.notes-fall .n1{ left: 15%; animation-duration: 6.0s; animation-delay: 0s;   --drift: -6%; }
-.center__only.notes-fall .n2{ left: 35%; animation-duration: 5.2s; animation-delay: 0.8s; --drift:  4%; }
-.center__only.notes-fall .n3{ left: 55%; animation-duration: 6.6s; animation-delay: 1.6s; --drift: -3%; }
-.center__only.notes-fall .n4{ left: 75%; animation-duration: 5.6s; animation-delay: 2.4s; --drift:  6%; }
-.center__only.notes-fall .n5{ left: 25%; animation-duration: 7.0s; animation-delay: 3.2s; --drift: -5%; }
-.center__only.notes-fall .n6{ left: 45%; animation-duration: 5.9s; animation-delay: 4.0s; --drift:  3%; }
-.center__only.notes-fall .n7{ left: 65%; animation-duration: 6.3s; animation-delay: 4.8s; --drift: -4%; }
-.center__only.notes-fall .note:hover{
+.left-top-note-1:hover .note-1,
+.left-top-note-1:hover .note-2{
   animation-play-state: paused;
 }
+/* ЛОГОТИП */
+.logo-box{
+  animation: logoPulse 0.8s ease-in-out infinite alternate;
+}
 
-
-/* цикличное уменьшение → обратно */
-@keyframes birdPulse{
-  0%{
-    transform: scale(1);
+@keyframes logoPulse{
+  from{
+    width: 35vw;
+    height: 12vw;
   }
-  50%{
-    transform: scale(0.9); /* степень уменьшения */
+  to{
+    width: 36vw;
+    height: 13vw;
   }
-  100%{
-    transform: scale(1);
-  }
-}
-
-
-
-/* базовое */
-.tag{
-  position: absolute;
-  will-change: transform;
-  cursor: pointer;
-}
-
-/* фиолетовые — едут вправо и обратно */
-.tag--purple{
-  animation: moveRight 3.2s ease-in-out infinite;
-}
-
-/* чёрные — едут влево и обратно */
-.tag--black{
-  animation: moveLeft 3.2s ease-in-out infinite;
-}
-
-/* небольшие сдвиги фаз */
-.t1{ animation-delay: 0s; }
-.t2{ animation-delay: .25s; }
-.t3{ animation-delay: .5s; }
-
-.t4{ animation-delay: 0s; }
-.t5{ animation-delay: .3s; }
-.t6{ animation-delay: .6s; }
-
-/* анимации движения */
-@keyframes moveRight{
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(35vw); }
-  100% { transform: translateX(0); }
-}
-
-@keyframes moveLeft{
-  0%   { transform: translateX(0); }
-  50%  { transform: translateX(-39vw); }
-  100% { transform: translateX(0); }
-}
-
-/*при наведении — просто стоп */
-.tag:hover{
-  animation-play-state: paused;
 }
