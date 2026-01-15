@@ -1,0 +1,74 @@
+@media (max-width: 1023px){
+
+  /* ЭКРАН 1 */
+  .screen-1{
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  .left-1, .right-1{
+    width: 100vw;
+    height: auto;
+  }
+  .right-1{
+    height: 100vw;
+  }
+  .parrot{
+    width: 35vw;
+    height: auto;
+  }
+  .star{
+    width: 65vw;
+    height: auto;
+  }
+  .star1{  
+  left: 22%;
+  width: 6vw; 
+}
+.star2{  
+  top:  40%;
+  left: 5%;
+  width: 24vw; 
+}
+  /* левая верхняя */
+  .left-top-1{
+    width: 100vw;
+    height: auto;
+  }
+  .left-top-circle-1,
+  .left-top-note-1{
+    width: 50vw;              
+    height: 24vw;
+    overflow: hidden;
+  }
+  .left-top-circle-1 img{
+    width: 13vw;              
+    height: 13vw;
+  }
+  /* лого-середина */
+  .left-center-1{
+    width: 100vw;
+    height: 44vw;
+  }
+  .logo-1{ 
+    width: 70vw; 
+  }
+  /* нижний левый блок*/
+  .left-bottom-1{
+    width: 100vw;
+    height: 30vw;
+  }
+  .left-bottom-lines-1,
+  .microphone-1{
+    width: 50vw;            
+    height: 30vw;       
+  }
+  .left-bottom-lines-1 img{
+    width: 50vw;
+    height: auto;
+  }
+  /* микрофоны */
+  .microphone-1 img{
+    width: 18vw; 
+    height: auto;
+  }
+}

@@ -28,12 +28,9 @@
   animation-play-state: paused;
 }
 /* НОТКИ */
-
-/* кадр 1 */
 .note-1{
   animation: frame1 1s steps(1) infinite;
 }
-/* кадр 2 */
 .note-2{
   animation: frame2 1s steps(1) infinite;
 }
@@ -56,17 +53,84 @@
   animation-play-state: paused;
 }
 /* ЛОГОТИП */
-.logo-box{
-  animation: logoPulse 0.8s ease-in-out infinite alternate;
+.rectangle{
+  animation: rectangle-breath 1s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes rectangle-breath {
+  0%{
+    width: 40vw;
+    height: 15vw;
+  }
+
+  50%{
+    width: 38vw;
+    height: 13vw;
+  }
+
+  100%{
+    width: 40vw;
+    height: 15vw;
+  }
+}
+/* линии */
+.left-bottom-1:hover .left-bottom-lines-1 img{
+  animation: lines-jitter 0.3s ease-in-out infinite alternate;
 }
 
-@keyframes logoPulse{
-  from{
-    width: 35vw;
-    height: 12vw;
+@keyframes lines-jitter{
+  0%{
+    transform: translate(0, 0);
   }
-  to{
-    width: 36vw;
-    height: 13vw;
+  100%{
+    transform: translate(0.5vw, -0.3vw);
+  }
+}
+/* микрофоны */
+.microphone-track{
+  animation: mic-marquee 3s linear infinite;
+  will-change: transform;
+}
+@keyframes mic-marquee{
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-50%);
+  }
+}
+.microphone-1:hover .microphone-track{
+  animation-play-state: paused;
+}
+
+/* большая звезда */
+.star{
+animation: star-sway 0.8s ease-in-out infinite;
+}
+@keyframes star-sway{
+  0%{
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50%{
+    transform: translate(-50%, -50%) rotate(3deg);
+  }
+  100%{
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+/* Маленькие звезды */
+.sparkle{
+  animation: sparkle-pulse 1s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes sparkle-pulse{
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
   }
 }
