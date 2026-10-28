@@ -439,20 +439,6 @@ if (!noMotion) {
   birdsObserver.observe(left2);
 }
 
-// по клику из клюва вылетают лишние кольца
-left2.addEventListener('click', function (e) {
-  const r = left2.getBoundingClientRect();
-  const y = (e.clientY - r.top) / r.height;
-  const sound = left2.querySelector(y < 0.55 ? '.sound-big' : '.sound-small');
-  for (let i = 0; i < 3; i++) {
-    const ring = document.createElement('span');
-    ring.className = 'ring-extra';
-    ring.style.animationDelay = (i * 0.12) + 's';
-    ring.addEventListener('animationend', function () { ring.remove(); });
-    sound.appendChild(ring);
-  }
-});
-
 // крачки отлетают от курсора
 const right3 = document.querySelector('.right-3');
 const terns = right3.querySelectorAll('.tern');
@@ -480,17 +466,19 @@ right3.addEventListener('mouseleave', function () {
   terns.forEach(function (tern) { tern.style.translate = '0 0'; });
 });
 
-// перья при клике на любую птицу
+// фирменные нотки разлетаются при клике на любую птицу
+const brandNotes = ['note-1', 'note-2', 'note-3', 'note-4', 'note-5', 'note-6', 'note-7'];
+
 function dropFeathers(x, y) {
   if (noMotion) return;
   for (let i = 0; i < 8; i++) {
     const f = document.createElement('img');
-    f.src = '../chik/images/feather.svg';
+    f.src = '../chik/images/' + brandNotes[Math.floor(Math.random() * brandNotes.length)] + '.svg';
     f.className = 'feather';
     f.alt = '';
     f.style.left = x + 'px';
     f.style.top = y + 'px';
-    f.style.width = (1 + Math.random() * 1.4) + 'vw';
+    f.style.width = (2 + Math.random() * 2) + 'vw';
     f.style.setProperty('--fx', (Math.random() * 16 - 8) + 'vw');
     f.style.setProperty('--fy', (Math.random() * -8) + 'vw');
     f.style.setProperty('--fr', (Math.random() * 360) + 'deg');
