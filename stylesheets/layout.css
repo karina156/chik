@@ -1,6 +1,8 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background:#0A0A0A;
+  /* чтобы блоки, которые выезжают сбоку, не давали горизонтальный скролл */
+  overflow-x: hidden;
 }
 
 :root{
@@ -134,7 +136,13 @@ body {
 .logo-1{
   position: relative;
   width: 36vw;
+  height: auto;
   z-index: 2;
+  overflow: visible;
+}
+.logo-part{
+  transform-box: fill-box;
+  transform-origin: center;
 }
 .rectangle{
   position: absolute;
@@ -202,7 +210,9 @@ height: 14vw;
   height: 37vw;
   top: 40%;
   left: 53%;
-  transform: translate(-50%, -50%);
+  /* центрируем через margin, чтобы rotate крутил звезду вокруг ее центра */
+  margin-left: -22vw;
+  margin-top: -18.5vw;
 }
 .parrot{
   position: absolute;
@@ -724,19 +734,46 @@ height: 14vw;
   overflow: hidden;
   background: var(--black);
 }
+/* обертка размером как старая обрезанная звезда, внутри звезда целиком */
 .footer-star-1{
   position: absolute;
   bottom: 0;
   left: 0;
   width: 34%;
-  height: auto;
 }
 .footer-star-2{
   position: absolute;
   bottom: 0;
   right: 0;
   width: 39.8%;
+}
+.footer-star-1::before,
+.footer-star-2::before{
+  content: "";
+  display: block;
+}
+.footer-star-1::before{
+  padding-top: 63.34%;
+}
+.footer-star-2::before{
+  padding-top: 45.72%;
+}
+.footer-star-img{
+  position: absolute;
   height: auto;
+}
+.footer-star-1 .footer-star-img{
+  left: -65.38%;
+  top: -1.61%;
+  width: 166.4%;
+}
+.footer-star-2 .footer-star-img{
+  left: -1.05%;
+  top: -1.91%;
+  width: 143.63%;
+}
+#footer-name{
+  min-height: 1.2em;
 }
 .footer-text{
   position: absolute;

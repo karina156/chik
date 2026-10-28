@@ -19,6 +19,8 @@
   .star{
     width: 65vw;
     height: auto;
+    margin-left: -32.5vw;
+    margin-top: -31.5vw;
   }
   .star1{  
   left: 22%;
@@ -91,6 +93,10 @@
   }
   .slogan{
     font-size: 4.16vw;
+  }
+  .left-top-circle-1:hover .circle-wrap img{
+    width: 8vw;
+    height: 8vw;
   }
   @keyframes note-jump{
     0%{ transform: translateY(0); }

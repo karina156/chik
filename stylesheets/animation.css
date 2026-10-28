@@ -1,7 +1,24 @@
 /* БЕГУЩАЯ СТРОКА */
+/* двигается из script.js: тормозит при наведении, ускоряется от скролла */
 .marquee__track{
   will-change: transform;
-  animation: marquee 6.76s linear infinite;
+}
+/* буквы подпрыгивают волной при наведении */
+.ltr{
+  display: inline-block;
+  white-space: pre;
+}
+.marquee:hover .ltr{
+  animation: ltr-jump 0.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.025s);
+}
+@keyframes ltr-jump{
+  0%, 50%, 100%{
+    transform: translateY(0);
+  }
+  25%{
+    transform: translateY(-30%);
+  }
 }
 
 @keyframes marquee{
@@ -24,8 +41,21 @@
     margin-left: -5.8vw;
   }
 }
+/* при наведении раскатываются в линию как бусины */
+.circle-wrap{
+  transition: margin-left 0.4s;
+}
+.circle-wrap img{
+  transition: width 0.4s, height 0.4s, transform 0.6s;
+}
 .left-top-circle-1:hover .circle-wrap:not(:first-child){
-  animation-play-state: paused;
+  animation: none;
+  margin-left: 0;
+}
+.left-top-circle-1:hover .circle-wrap img{
+  width: 4vw;
+  height: 4vw;
+  transform: rotate(360deg);
 }
 /* НОТКИ */
 .note-1{
@@ -73,6 +103,41 @@
     height: 15vw;
   }
 }
+/* логотип chik дышит */
+.logo-1{
+  animation: logo-breathe 0.9s ease-in-out infinite;
+}
+@keyframes logo-breathe{
+  0%, 100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.05);
+  }
+}
+/* при наведении буквы разлетаются и собираются */
+.logo-icon{ --sx: -70px; --sy: 20px; --sr: -30deg; }
+.logo-c{ --sx: -40px; --sy: -50px; --sr: -25deg; }
+.logo-h{ --sx: -10px; --sy: 60px; --sr: 15deg; }
+.logo-i{ --sx: 20px; --sy: -60px; --sr: 30deg; }
+.logo-k{ --sx: 60px; --sy: 40px; --sr: -20deg; }
+.left-center-1:hover .logo-part{
+  animation: logo-scatter 0.9s ease-in-out;
+}
+@keyframes logo-scatter{
+  0%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+  40%{
+    transform: translate(var(--sx), var(--sy)) rotate(var(--sr));
+  }
+  70%{
+    transform: translate(calc(var(--sx) * -0.15), calc(var(--sy) * -0.15)) rotate(0deg);
+  }
+  100%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
 /* линии */
 .left-bottom-1:hover .left-bottom-lines-1 img{
   animation: lines-jitter 0.13s ease-in-out infinite alternate;
@@ -102,6 +167,26 @@
 .microphone-1:hover .microphone-track{
   animation-play-state: paused;
 }
+/* микрофоны покачиваются в такт */
+.microphone-1 img{
+  animation: mic-sing 0.25s ease-in-out infinite alternate;
+  transform-origin: 50% 0;
+  transition: scale 0.25s;
+}
+.microphone-1 img:nth-child(even){
+  animation-delay: -0.25s;
+}
+@keyframes mic-sing{
+  0%{
+    transform: rotate(-10deg);
+  }
+  100%{
+    transform: rotate(10deg);
+  }
+}
+.microphone-1 img:hover{
+  scale: 1.2;
+}
 
 /* большая звезда */
 .star{
@@ -109,13 +194,51 @@ animation: star-sway 0.34s ease-in-out infinite;
 }
 @keyframes star-sway{
   0%{
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
   }
   50%{
-    transform: translate(-50%, -50%) rotate(3deg);
+    transform: rotate(3deg);
   }
   100%{
-    transform: translate(-50%, -50%) rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+/* попугай чирикает по клику */
+.parrot{
+  cursor: pointer;
+}
+.parrot.chirp{
+  animation: parrot-hop 0.35s ease-out;
+}
+@keyframes parrot-hop{
+  0%, 100%{
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  40%{
+    transform: translateX(-50%) translateY(-4%) rotate(-3deg);
+  }
+  70%{
+    transform: translateX(-50%) translateY(-1%) rotate(1deg);
+  }
+}
+/* нотки из клюва */
+.beak-note{
+  position: absolute;
+  z-index: 4;
+  width: 3vw;
+  height: auto;
+  pointer-events: none;
+  translate: -50% -50%;
+  animation: beak-note-fly 1s ease-out both;
+}
+@keyframes beak-note-fly{
+  0%{
+    opacity: 1;
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+  }
+  100%{
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.2) rotate(var(--rot));
   }
 }
 /* Маленькие звезды */
@@ -173,8 +296,35 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(0deg) scale(1);
   }
 }
-.left-2:hover .bird{
-  animation-play-state: paused;
+/* волны едут влево-вправо в разные стороны */
+.wave{
+  transform-origin: 50% 100%;
+  animation: wave-move 1.4s ease-in-out infinite alternate;
+}
+.wave-2{
+  animation-duration: 1.1s;
+  animation-direction: alternate-reverse;
+}
+.wave-3{
+  animation-duration: 1.7s;
+}
+.wave-4{
+  animation-duration: 1.2s;
+  animation-direction: alternate-reverse;
+}
+@keyframes wave-move{
+  0%{
+    translate: 0 0;
+  }
+  100%{
+    translate: -4% 0;
+  }
+}
+.wave, .left-2 .sparkle{
+  pointer-events: none;
+}
+.left-2{
+  cursor: pointer;
 }
 /* курсор у текста который печатается */
 .slogan::after{
@@ -200,18 +350,53 @@ animation: star-sway 0.34s ease-in-out infinite;
   animation-delay: 0.25s;
 }
 @keyframes note-jump{
-  0%{
+  0%, 35%, 100%{
     transform: translateY(0);
   }
-  50%{
+  12%{
     transform: translateY(-1.2vw);
   }
-  100%{
-    transform: translateY(0);
+}
+/* хор: по очереди открывают клюв */
+.note-bird{
+  animation: note-jump 1.2s ease-in-out infinite;
+}
+.note-bird-1{
+  animation-delay: 0s;
+}
+.note-bird-2{
+  animation-delay: 0.4s;
+}
+.note-bird-3{
+  animation-delay: 0.8s;
+}
+.nb-beak{
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  animation: beak-sing 1.2s ease-in-out infinite;
+}
+.note-bird-2 .nb-beak{
+  animation-delay: 0.4s;
+}
+.note-bird-3 .nb-beak{
+  animation-delay: 0.8s;
+}
+@keyframes beak-sing{
+  0%, 35%, 100%{
+    transform: rotate(0deg);
+  }
+  10%{
+    transform: rotate(-40deg) translate(10%, -10%);
+  }
+  22%{
+    transform: rotate(-25deg);
   }
 }
-.notes-2:hover .note-bird{
-  animation-play-state: paused;
+/* при наведении поют все сразу */
+.notes-2:hover .note-bird,
+.notes-2:hover .nb-beak{
+  animation-duration: 0.4s;
+  animation-delay: 0s;
 }
 /* головы птиц переворачиваются по вертикали */
 .heads{
@@ -415,8 +600,36 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(0deg);
   }
 }
+/* при наведении звенит как колокольчик */
 .logo-note-box:hover .logo-note{
-  animation-play-state: paused;
+  transform-origin: 50% 0;
+  animation: bell-ring 1.4s ease-out;
+}
+@keyframes bell-ring{
+  0%{
+    transform: rotate(0deg);
+  }
+  10%{
+    transform: rotate(22deg);
+  }
+  25%{
+    transform: rotate(-18deg);
+  }
+  40%{
+    transform: rotate(12deg);
+  }
+  55%{
+    transform: rotate(-8deg);
+  }
+  70%{
+    transform: rotate(4deg);
+  }
+  85%{
+    transform: rotate(-2deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
 }
 /* нотки покачиваются пока падают */
 .fall-note{
@@ -521,6 +734,71 @@ animation: star-sway 0.34s ease-in-out infinite;
   color: var(--purple);
 }
 
+/* звезды в подвале крутятся в разные стороны */
+.footer-star-img{
+  animation: star-spin 14s linear infinite;
+}
+.footer-star-2 .footer-star-img{
+  animation-direction: reverse;
+}
+@keyframes star-spin{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+/* курсор пока печатается имя */
+.typing::after{
+  content: "|";
+  animation: cursor-blink 0.29s steps(1) infinite;
+}
+
+/* ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ */
+.reveal{
+  opacity: 0;
+  transition: opacity 0.6s ease-out, translate 0.6s ease-out;
+}
+.reveal-left{
+  translate: -15vw 0;
+}
+.reveal-right{
+  translate: 15vw 0;
+  transition-delay: 0.15s;
+}
+.reveal-up{
+  translate: 0 8vw;
+}
+.reveal.shown{
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* КУРСОР-НОТКА */
+html, html *{
+  cursor: url('../images/cursor-note.svg') 13 3, auto !important;
+}
+.trail-note{
+  position: fixed;
+  z-index: 9999;
+  width: 14px;
+  height: auto;
+  pointer-events: none;
+  translate: -50% -50%;
+  animation: trail-fade 0.7s ease-out forwards;
+}
+@keyframes trail-fade{
+  0%{
+    opacity: 0.9;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(18px) rotate(var(--r)) scale(0.5);
+  }
+}
+
 /* если пользователь отключил анимации */
 @media (prefers-reduced-motion: reduce){
   *{
@@ -534,5 +812,9 @@ animation: star-sway 0.34s ease-in-out infinite;
   }
   .chik-lime{
     transform: none;
+  }
+  .reveal{
+    opacity: 1;
+    translate: none;
   }
 }
