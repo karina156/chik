@@ -68,3 +68,77 @@ const chikObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.3 });
 
 chikObserver.observe(chikCol);
+
+// падающие нотки
+const notesBox = document.getElementById('notes-fall');
+const notes = [];
+
+document.querySelectorAll('.fall-note').forEach(function (el) {
+  const note = {
+    el: el,
+    y: Number(el.dataset.top),          // где нотка сейчас, в % от высоты блока
+    speed: 0.12 + Math.random() * 0.1,  // скорость, % за кадр
+    caught: false
+  };
+  // ловим мышкой
+  el.addEventListener('mouseenter', function () {
+    note.caught = true;
+    el.classList.add('caught');
+  });
+  el.addEventListener('mouseleave', function () {
+    note.caught = false;
+    el.classList.remove('caught');
+  });
+  notes.push(note);
+});
+
+// пересекаются ли нотки по горизонтали
+// у svg нет offsetLeft, поэтому берем getBoundingClientRect
+function sameColumn(a, b) {
+  const ra = a.el.getBoundingClientRect();
+  const rb = b.el.getBoundingClientRect();
+  return ra.left < rb.right && rb.left < ra.right;
+}
+
+function fall() {
+  const boxH = notesBox.offsetHeight;
+
+  // сначала двигаем нижние, чтобы верхние упирались в них
+  notes.sort(function (a, b) { return b.y - a.y; });
+
+  notes.forEach(function (note) {
+    if (note.caught) return; // пойманная стоит
+
+    const h = note.el.getBoundingClientRect().height / boxH * 100;
+    let newY = note.y + note.speed;
+
+    // проверяем, не упираемся ли в нотку под нами
+    notes.forEach(function (other) {
+      if (other === note || other.y < note.y) return;
+      if (!sameColumn(note, other)) return;
+      // нотка снизу стоит (поймана или сама уперлась) - не проходим сквозь нее
+      if (other.caught || other.stuck) {
+        if (newY + h > other.y) {
+          newY = Math.min(newY, other.y - h);
+        }
+      }
+    });
+
+    note.stuck = newY < note.y + note.speed;
+    note.y = newY;
+
+    // упала за низ - начинаем сверху
+    if (note.y > 100) {
+      note.y = -h - Math.random() * 20;
+      note.stuck = false;
+    }
+    note.el.style.top = note.y + '%';
+  });
+
+  requestAnimationFrame(fall);
+}
+
+// если человек выключил анимации - нотки просто стоят
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  requestAnimationFrame(fall);
+}

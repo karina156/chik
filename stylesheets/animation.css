@@ -367,12 +367,32 @@ animation: star-sway 0.8s ease-in-out infinite;
     transform: translate(0.6vw, -0.6vw);
   }
 }
-/* chik увеличивается */
-.chik-box:hover .chik-lime{
-  transform: scale(1.1);
-}
+/* chik из маленькой резко становится нормальной */
 .chik-lime{
-  transition: transform 0.3s;
+  animation: chik-pop 3s ease-out infinite;
+}
+@keyframes chik-pop{
+  0%{
+    transform: scale(0.1);
+  }
+  40%{
+    transform: scale(0.1);
+  }
+  46%{
+    transform: scale(1.15);
+  }
+  52%{
+    transform: scale(0.95);
+  }
+  58%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+.chik-box:hover .chik-lime{
+  animation-play-state: paused;
 }
 /* большая нотка качается */
 .logo-note{
@@ -393,31 +413,28 @@ animation: star-sway 0.8s ease-in-out infinite;
 .logo-note-box:hover .logo-note{
   animation-play-state: paused;
 }
-/* нотки танцуют */
-.note{
-  animation: note-dance 1.4s ease-in-out infinite;
+/* нотки покачиваются пока падают */
+.fall-note{
+  animation: note-sway 1.4s ease-in-out infinite alternate;
 }
-.note-3-2, .note-3-5{
+.fall-note-2, .fall-note-5{
   animation-delay: 0.35s;
 }
-.note-3-3, .note-3-6{
+.fall-note-3, .fall-note-6{
   animation-delay: 0.7s;
 }
-.note-3-4{
+.fall-note-4{
   animation-delay: 1s;
 }
-@keyframes note-dance{
+@keyframes note-sway{
   0%{
-    transform: translateY(0) rotate(0deg);
-  }
-  50%{
-    transform: translateY(-0.8vw) rotate(10deg);
+    transform: rotate(-8deg);
   }
   100%{
-    transform: translateY(0) rotate(0deg);
+    transform: rotate(8deg);
   }
 }
-.note:hover{
+.fall-note.caught{
   animation-play-state: paused;
 }
 
