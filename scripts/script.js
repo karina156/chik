@@ -155,3 +155,30 @@ const chikBoxObserver = new IntersectionObserver(function (entries) {
 }, { threshold: 0.5 });
 
 chikBoxObserver.observe(chikBox);
+
+// звездочки справа двигаются за курсором
+const rightBlock = document.querySelector('.right-3');
+const rightStars = rightBlock.querySelectorAll('.sparkle');
+
+rightBlock.addEventListener('mousemove', function (e) {
+  const rect = rightBlock.getBoundingClientRect();
+  // где курсор относительно центра блока, от -1 до 1
+  const mx = (e.clientX - rect.left) / rect.width * 2 - 1;
+  const my = (e.clientY - rect.top) / rect.height * 2 - 1;
+
+  rightStars.forEach(function (star, i) {
+    // у каждой звезды своя сила, четные бегут от курсора, нечетные к нему
+    const power = (i + 2) * 0.8;
+    const side = i % 2 === 0 ? -1 : 1;
+    const x = mx * power * side;
+    const y = my * power * side;
+    // translate отдельно от transform, чтобы не ломать флип
+    star.style.translate = x + 'vw ' + y + 'vw';
+  });
+});
+
+rightBlock.addEventListener('mouseleave', function () {
+  rightStars.forEach(function (star) {
+    star.style.translate = '0 0';
+  });
+});

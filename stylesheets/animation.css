@@ -485,6 +485,10 @@ animation: star-sway 0.34s ease-in-out infinite;
 .right-3:hover .birds-terns{
   animation-play-state: paused;
 }
+/* звезды плавно едут за курсором */
+.right-3 .sparkle{
+  transition: translate 0.3s ease-out;
+}
 
 /* ПОДВАЛ */
 .footer-big{
