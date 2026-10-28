@@ -777,7 +777,7 @@ animation: star-sway 0.34s ease-in-out infinite;
 
 /* КУРСОР-НОТКА */
 html, html *{
-  cursor: url('../images/cursor-note.svg') 4 6, auto !important;
+  cursor: url('../images/cursor-note.png') 4 6, url('../images/cursor-note.svg') 4 6, auto !important;
 }
 .trail-note{
   position: fixed;

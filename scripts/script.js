@@ -393,7 +393,7 @@ if (!noMotion && window.matchMedia('(pointer: fine)').matches) {
     trailX = e.clientX;
     trailY = e.clientY;
     const t = document.createElement('img');
-    t.src = '../chik/images/cursor-note.svg';
+    t.src = '../chik/images/cursor-note.png';
     t.className = 'trail-note';
     t.alt = '';
     t.style.left = e.clientX + 'px';
