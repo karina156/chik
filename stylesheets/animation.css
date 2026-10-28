@@ -367,32 +367,37 @@ animation: star-sway 0.8s ease-in-out infinite;
     transform: translate(0.6vw, -0.6vw);
   }
 }
-/* chik из маленькой резко становится нормальной */
+/* chik сначала маленькая и резко становится нормальной */
 .chik-lime{
-  animation: chik-pop 3s ease-out infinite;
+  transform: scale(0.1);
+  /* обратно в нормальный размер - резко, с пружинкой */
+  transition: transform 0.25s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.popped .chik-lime{
+  transform: scale(1);
+  animation: chik-pop 1.4s ease-out;
 }
 @keyframes chik-pop{
   0%{
     transform: scale(0.1);
   }
-  40%{
+  60%{
     transform: scale(0.1);
   }
-  46%{
+  72%{
     transform: scale(1.15);
   }
-  52%{
+  84%{
     transform: scale(0.95);
-  }
-  58%{
-    transform: scale(1);
   }
   100%{
     transform: scale(1);
   }
 }
-.chik-box:hover .chik-lime{
-  animation-play-state: paused;
+/* уменьшается только при наведении */
+.popped:hover .chik-lime{
+  transform: scale(0.1);
+  transition: transform 0.6s ease-in-out;
 }
 /* большая нотка качается */
 .logo-note{
@@ -438,6 +443,49 @@ animation: star-sway 0.8s ease-in-out infinite;
   animation-play-state: paused;
 }
 
+/* птицы и звезды переворачиваются: по горизонтали, потом по вертикали */
+.birds-terns{
+  animation: flip-hv 6s ease-in-out infinite;
+}
+.right-3 .sparkle{
+  animation: flip-hv 6s ease-in-out infinite;
+}
+.sparkle-3-2, .sparkle-3-5{
+  animation-delay: 0.3s;
+}
+.sparkle-3-3, .sparkle-3-6{
+  animation-delay: 0.6s;
+}
+@keyframes flip-hv{
+  0%{
+    transform: scale(1, 1);
+  }
+  20%{
+    transform: scale(1, 1);
+  }
+  30%{
+    transform: scale(-1, 1);
+  }
+  50%{
+    transform: scale(-1, 1);
+  }
+  60%{
+    transform: scale(-1, -1);
+  }
+  80%{
+    transform: scale(-1, -1);
+  }
+  90%{
+    transform: scale(1, 1);
+  }
+  100%{
+    transform: scale(1, 1);
+  }
+}
+.right-3:hover .birds-terns{
+  animation-play-state: paused;
+}
+
 /* ПОДВАЛ */
 .footer-big{
   transition: color 0.3s;
@@ -455,6 +503,9 @@ animation: star-sway 0.8s ease-in-out infinite;
     stroke-dashoffset: 0;
   }
   .drop{
+    transform: none;
+  }
+  .chik-lime{
     transform: none;
   }
 }

@@ -660,6 +660,23 @@ height: 14vw;
   left: 53.5%;
   width: 33%;
 }
+/* птицы без звезд, чтобы их можно было переворачивать отдельно */
+.birds-box{
+  position: absolute;
+  top: 0;
+  left: 34.2%;
+  width: 65.8%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+.birds-terns{
+  position: absolute;
+  top: 0;
+  left: -17.5%;
+  width: 117.5%;
+  height: 100%;
+}
 .birds-flying{
   position: absolute;
   top: 0;

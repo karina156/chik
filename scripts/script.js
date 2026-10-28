@@ -111,20 +111,21 @@ function fall() {
 
     const h = note.el.getBoundingClientRect().height / boxH * 100;
     let newY = note.y + note.speed;
+    let blocked = false;
 
-    // проверяем, не упираемся ли в нотку под нами
+    // упираемся только в пойманную нотку или в ту, что уже на ней стоит
     notes.forEach(function (other) {
-      if (other === note || other.y < note.y) return;
+      if (other === note) return;
+      if (!other.caught && !other.stuck) return;
       if (!sameColumn(note, other)) return;
-      // нотка снизу стоит (поймана или сама уперлась) - не проходим сквозь нее
-      if (other.caught || other.stuck) {
-        if (newY + h > other.y) {
-          newY = Math.min(newY, other.y - h);
-        }
+      // нотка должна быть над другой, а не уже внутри нее
+      if (note.y + h <= other.y + 0.5 && newY + h > other.y) {
+        newY = other.y - h;
+        blocked = true;
       }
     });
 
-    note.stuck = newY < note.y + note.speed;
+    note.stuck = blocked;
     note.y = newY;
 
     // упала за низ - начинаем сверху
@@ -142,3 +143,15 @@ function fall() {
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   requestAnimationFrame(fall);
 }
+
+// надпись chik резко появляется из маленькой
+const chikBox = document.querySelector('.chik-box');
+
+const chikBoxObserver = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting) {
+    chikBox.classList.add('popped');
+    chikBoxObserver.disconnect();
+  }
+}, { threshold: 0.5 });
+
+chikBoxObserver.observe(chikBox);
