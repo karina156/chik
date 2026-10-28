@@ -522,7 +522,7 @@ height: 14vw;
   font-size: 1.875vw;
   color: var(--lime);
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.2s, color 0.2s;
 }
 .tag-purple{
   background: var(--purple);
@@ -620,7 +620,7 @@ height: 14vw;
   height: auto;
   color: var(--purple);
   cursor: pointer;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 .fall-note.caught{
   color: var(--lime);
