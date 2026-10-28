@@ -146,6 +146,49 @@ animation: star-sway 0.8s ease-in-out infinite;
 .right-3:hover .sparkle{
   animation-play-state: paused;
 }
+/* птицы кричат */
+.bird-big{
+  animation: bird-scream 0.8s ease-in-out infinite;
+  transform-origin: 20% 70%;
+}
+.bird-small{
+  animation: bird-scream 0.8s ease-in-out infinite;
+  animation-delay: 0.4s;
+  transform-origin: 30% 90%;
+}
+@keyframes bird-scream{
+  0%{
+    transform: rotate(0deg) scale(1);
+  }
+  20%{
+    transform: rotate(-4deg) scale(1.03);
+  }
+  35%{
+    transform: rotate(-2deg) scale(1.02);
+  }
+  50%{
+    transform: rotate(-5deg) scale(1.04);
+  }
+  100%{
+    transform: rotate(0deg) scale(1);
+  }
+}
+.left-2:hover .bird{
+  animation-play-state: paused;
+}
+/* курсор у текста который печатается */
+.slogan::after{
+  content: "|";
+  animation: cursor-blink 0.7s steps(1) infinite;
+}
+@keyframes cursor-blink{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0;
+  }
+}
 /* нотки-птички прыгают */
 .note-bird{
   animation: note-jump 0.9s ease-in-out infinite;
