@@ -323,48 +323,29 @@ animation: star-sway 0.8s ease-in-out infinite;
 }
 
 /* ЭКРАН 3 */
-/* плашки слева едут вправо, справа влево, отталкиваются и возвращаются */
-.tag-purple{
-  animation: tag-run-right 3s ease-in-out infinite;
+/* плашки слева едут вправо, справа влево, бьются о стенку и возвращаются */
+/* --run это расстояние до стенки в процентах от ширины плашки */
+.tag{
+  animation: tag-run 4s ease-in-out infinite;
 }
-.tag-black{
-  animation: tag-run-left 3s ease-in-out infinite;
-}
-.tag-2, .tag-5{
-  animation-delay: 0.5s;
-}
-.tag-3, .tag-6{
-  animation-delay: 1s;
-}
-@keyframes tag-run-right{
+.tag-1{ --run: 145%; --tilt: -4deg; }
+.tag-2{ --run: 145%; --tilt: -4deg; animation-delay: 0.6s; }
+.tag-3{ --run: 169%; --tilt: -4deg; animation-delay: 1.2s; }
+.tag-4{ --run: -197%; --tilt: 4deg; }
+.tag-5{ --run: -164%; --tilt: 4deg; animation-delay: 0.6s; }
+.tag-6{ --run: -163%; --tilt: 4deg; animation-delay: 1.2s; }
+@keyframes tag-run{
   0%{
-    transform: translateX(0);
-  }
-  40%{
-    transform: translateX(45%);
-  }
-  48%{
-    transform: translateX(32%) rotate(-3deg);
-  }
-  56%{
-    transform: translateX(40%) rotate(1deg);
-  }
-  100%{
     transform: translateX(0) rotate(0deg);
   }
-}
-@keyframes tag-run-left{
-  0%{
-    transform: translateX(0);
-  }
   40%{
-    transform: translateX(-45%);
+    transform: translateX(var(--run)) rotate(0deg);
   }
   48%{
-    transform: translateX(-32%) rotate(3deg);
+    transform: translateX(calc(var(--run) * 0.85)) rotate(var(--tilt));
   }
   56%{
-    transform: translateX(-40%) rotate(-1deg);
+    transform: translateX(calc(var(--run) * 0.95)) rotate(0deg);
   }
   100%{
     transform: translateX(0) rotate(0deg);
