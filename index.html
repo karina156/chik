@@ -138,8 +138,19 @@
       <img class="note-bird note-bird-3" src="../chik/images/note-bird.svg" alt="нотка-птичка">
     </div>
     <img class="heads" src="../chik/images/heads.svg" alt="головы птиц">
-    <img class="dashes-lime" src="../chik/images/dashes-lime.svg" alt="пунктир">
-    <img class="swallow" src="../chik/images/swallow.png" alt="ласточка">
+    <!-- пунктир рисуется, потом по нему летит ласточка -->
+    <svg class="dashes-lime" id="flight" viewBox="0 0 195 503" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <mask id="draw-mask" maskUnits="userSpaceOnUse" x="-20" y="-20" width="235" height="543">
+          <path class="draw-line" pathLength="1" d="M18.9595 6.00049L179.929 118.635L18.9595 203.931L179.929 287.041L13.9292 349.919L179.929 446.151L18.9595 497" stroke="white" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        </mask>
+      </defs>
+      <path mask="url(#draw-mask)" d="M18.9595 6.00049L179.929 118.635L18.9595 203.931L179.929 287.041L13.9292 349.919L179.929 446.151L18.9595 497" stroke="#D9EE61" stroke-width="12" stroke-linecap="round" stroke-dasharray="41 41"/>
+      <!-- ласточка -->
+      <image class="swallow" href="../chik/images/swallow.png" x="-90" y="-90" width="180" height="180">
+        <animateMotion id="swallow-move" begin="indefinite" dur="8s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear" path="M18.9595 6.00049L179.929 118.635L18.9595 203.931L179.929 287.041L13.9292 349.919L179.929 446.151L18.9595 497"/>
+      </image>
+    </svg>
     <p class="slogan" id="slogan">Мы — птицы, <br>и мы будем<br>чирикать</p>
     <img class="chik-vertical" src="../chik/images/chik-vertical.png" alt="надпись chik">
   </div>

@@ -36,3 +36,23 @@ function typing() {
 
 slogan.innerHTML = '';
 typing();
+
+// пунктир и ласточка
+const flight = document.getElementById('flight');
+const swallowMove = document.getElementById('swallow-move');
+let started = false;
+
+// запускаем, когда блок появился на экране
+const observer = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting && !started) {
+    started = true;
+    flight.classList.add('drawing');
+    // когда линия дорисовалась, ласточка летит
+    setTimeout(function () {
+      flight.classList.add('flying');
+      swallowMove.beginElement();
+    }, 2500);
+  }
+}, { threshold: 0.4 });
+
+observer.observe(flight);

@@ -213,56 +213,45 @@ animation: star-sway 0.8s ease-in-out infinite;
 .notes-2:hover .note-bird{
   animation-play-state: paused;
 }
-/* головы птиц клюют при наведении */
+/* головы птиц переворачиваются по вертикали */
+.heads{
+  animation: heads-flip 3s ease-in-out infinite;
+}
+@keyframes heads-flip{
+  0%{
+    transform: perspective(60vw) rotateX(0deg);
+  }
+  35%{
+    transform: perspective(60vw) rotateX(0deg);
+  }
+  50%{
+    transform: perspective(60vw) rotateX(180deg);
+  }
+  85%{
+    transform: perspective(60vw) rotateX(180deg);
+  }
+  100%{
+    transform: perspective(60vw) rotateX(360deg);
+  }
+}
 .heads:hover{
-  animation: heads-peck 0.4s ease-in-out infinite alternate;
-}
-@keyframes heads-peck{
-  0%{
-    transform: scale(1);
-  }
-  100%{
-    transform: scale(1.05);
-  }
-}
-/* пунктир мигает */
-.dashes-lime{
-  animation: dashes-blink 1.2s steps(1) infinite;
-}
-@keyframes dashes-blink{
-  0%{
-    opacity: 1;
-  }
-  50%{
-    opacity: 0.4;
-  }
-  100%{
-    opacity: 1;
-  }
-}
-/* ласточка летает */
-.swallow{
-  animation: swallow-fly 3s ease-in-out infinite;
-}
-@keyframes swallow-fly{
-  0%{
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25%{
-    transform: translate(1vw, -2vw) rotate(-5deg);
-  }
-  50%{
-    transform: translate(0, -3vw) rotate(0deg);
-  }
-  75%{
-    transform: translate(-1vw, -1vw) rotate(5deg);
-  }
-  100%{
-    transform: translate(0, 0) rotate(0deg);
-  }
-}
-.swallow:hover{
   animation-play-state: paused;
+}
+/* пунктир прорисовывается */
+.draw-line{
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.drawing .draw-line{
+  animation: line-draw 2.5s linear forwards;
+}
+@keyframes line-draw{
+  0%{
+    stroke-dashoffset: 1;
+  }
+  100%{
+    stroke-dashoffset: 0;
+  }
 }
 /* надпись chik трясется при наведении */
 .chik-vertical:hover{
@@ -389,5 +378,8 @@ animation: star-sway 0.8s ease-in-out infinite;
 @media (prefers-reduced-motion: reduce){
   *{
     animation: none !important;
+  }
+  .draw-line{
+    stroke-dashoffset: 0;
   }
 }

@@ -393,18 +393,18 @@ height: 14vw;
 }
 .dashes-lime{
   position: absolute;
+  z-index: 2;
   top: 36.2%;
   left: 35.2%;
   width: 27.4%;
   height: auto;
+  overflow: visible;
 }
 .swallow{
-  position: absolute;
-  z-index: 2;
-  top: 47.5%;
-  left: 28.2%;
-  width: 37.3%;
-  height: auto;
+  opacity: 0;
+}
+.flying .swallow{
+  opacity: 1;
 }
 .slogan{
   position: absolute;
