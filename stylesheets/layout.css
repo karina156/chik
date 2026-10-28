@@ -231,3 +231,393 @@ height: 14vw;
   width: 12vw; 
   height: auto;
 }
+.star3{
+  top: 48%;
+  left: 77%;
+  width: 9.8vw;
+  height: auto;
+}
+.star4{
+  top: 68%;
+  left: 26%;
+  width: 3vw;
+  height: auto;
+}
+.star5{
+  top: 87%;
+  left: 26%;
+  width: 3vw;
+  height: auto;
+}
+.star6{
+  top: 89%;
+  left: 74%;
+  width: 2.8vw;
+  height: auto;
+}
+.star7{
+  top: 79%;
+  left: 82%;
+  width: 2.7vw;
+  height: auto;
+}
+.star8{
+  top: 74%;
+  left: 11%;
+  width: 4vw;
+  height: auto;
+}
+
+/* ЭКРАН 2 */
+.screen-2{
+  width: 100%;
+  height: 56.25vw;
+  display: flex;
+  flex-direction: row;
+}
+.left-2, .right-2{
+  width: 50vw;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+/* левая сторона - птицы и волны */
+.left-2{
+  background: var(--black);
+}
+.birds-waves{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.sparkle-2-1{
+  top: 13.5%;
+  left: 1.6%;
+  width: 21.5%;
+}
+.sparkle-2-2{
+  top: 15.3%;
+  left: 55.8%;
+  width: 15.8%;
+}
+.sparkle-2-3{
+  top: 4.3%;
+  left: 28.4%;
+  width: 10%;
+}
+.sparkle-2-4{
+  top: 77%;
+  left: 57.3%;
+  width: 16%;
+}
+.sparkle-2-5{
+  top: 75.3%;
+  left: 3%;
+  width: 15.1%;
+}
+/* правая сторона */
+.right-2{
+  background: var(--purple);
+}
+.note-bird{
+  position: absolute;
+  width: 17.4%;
+  height: auto;
+}
+.note-bird-1{
+  top: 3.7%;
+  left: 2.7%;
+}
+.note-bird-2{
+  top: 3.7%;
+  left: 23.2%;
+}
+.note-bird-3{
+  top: 4.3%;
+  left: 43.7%;
+}
+.heads{
+  position: absolute;
+  top: 35.9%;
+  left: 0;
+  width: 33.7%;
+  height: auto;
+}
+.dashes-lime{
+  position: absolute;
+  top: 36.2%;
+  left: 35.2%;
+  width: 27.4%;
+  height: auto;
+}
+.swallow{
+  position: absolute;
+  z-index: 2;
+  top: 47.5%;
+  left: 28.2%;
+  width: 37.3%;
+  height: auto;
+}
+.slogan{
+  position: absolute;
+  top: 80.7%;
+  left: 1.9%;
+  width: 29.1%;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 2.08vw;
+  line-height: 1;
+  text-align: center;
+  color: var(--lime);
+}
+.chik-vertical{
+  position: absolute;
+  top: 0;
+  left: 66.5%;
+  width: 33.5%;
+  height: 100%;
+}
+
+/* ЭКРАН 3 */
+.screen-3{
+  width: 100%;
+  height: 56.25vw;
+  display: flex;
+  flex-direction: row;
+}
+.left-3, .right-3{
+  width: 50vw;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--lime);
+}
+.dashes-purple{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99.2%;
+  height: auto;
+}
+/* плашки */
+.tag{
+  position: absolute;
+  z-index: 2;
+  height: 8.6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.6vw;
+  font-weight: 500;
+  font-size: 1.875vw;
+  color: var(--lime);
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.tag-purple{
+  background: var(--purple);
+}
+.tag-black{
+  background: var(--black);
+}
+.tag-1{
+  top: 1.5%;
+  left: 2.3%;
+  width: 39.5%;
+}
+.tag-2{
+  top: 21.1%;
+  left: 2.3%;
+  width: 39.5%;
+}
+.tag-3{
+  top: 40.7%;
+  left: 4.5%;
+  width: 35.1%;
+}
+.tag-4{
+  top: 11%;
+  left: 63.2%;
+  width: 31.5%;
+}
+.tag-5{
+  top: 30.6%;
+  left: 60.7%;
+  width: 36.3%;
+}
+.tag-6{
+  top: 50.2%;
+  left: 60.5%;
+  width: 36.6%;
+}
+.tag-purple:hover{
+  background: var(--black);
+}
+.tag-black:hover{
+  background: var(--purple);
+}
+/* нижний блок */
+.chik-box{
+  position: absolute;
+  top: 60.5%;
+  left: 0;
+  width: 50.1%;
+  height: 39.5%;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chik-lime{
+  width: 80%;
+  height: auto;
+}
+.logo-note-box{
+  position: absolute;
+  top: 60.5%;
+  left: 50.1%;
+  width: 50%;
+  height: 39.5%;
+  overflow: hidden;
+  background: var(--purple);
+}
+.logo-note{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* правая сторона */
+.notes-column{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34.2%;
+  height: 100%;
+  background: var(--black);
+}
+.note{
+  position: absolute;
+  z-index: 2;
+  height: auto;
+}
+.note-3-1{
+  top: 73%;
+  left: 14.9%;
+  width: 17.3%;
+}
+.note-3-2{
+  top: 59.4%;
+  left: 20.4%;
+  width: 9.7%;
+}
+.note-3-3{
+  top: 63.1%;
+  left: 0;
+  width: 16.7%;
+}
+.note-3-4{
+  top: 39.8%;
+  left: 2.3%;
+  width: 21.1%;
+}
+.note-3-5{
+  top: 15.8%;
+  left: 3.2%;
+  width: 11.3%;
+}
+.note-3-6{
+  top: 24.6%;
+  left: 13.4%;
+  width: 18.5%;
+}
+.note-3-7{
+  top: 5.8%;
+  left: 18.3%;
+  width: 11.3%;
+}
+.birds-flying{
+  position: absolute;
+  top: 0;
+  left: 34.2%;
+  width: 65.8%;
+  height: 100%;
+  object-fit: cover;
+}
+.sparkle-3-1{
+  top: 74.7%;
+  left: 37.6%;
+  width: 16.4%;
+}
+.sparkle-3-2{
+  top: 54.8%;
+  left: 83.1%;
+  width: 15.6%;
+}
+.sparkle-3-3{
+  top: 32.9%;
+  left: 79.2%;
+  width: 12.5%;
+}
+.sparkle-3-4{
+  top: 22.7%;
+  left: 35.8%;
+  width: 12.3%;
+}
+.sparkle-3-5{
+  top: 3.6%;
+  left: 64.3%;
+  width: 12.9%;
+}
+.sparkle-3-6{
+  top: 86.3%;
+  left: 86.6%;
+  width: 8.8%;
+}
+
+/* ПОДВАЛ */
+.footer{
+  position: relative;
+  width: 100%;
+  height: 24.4vw;
+  overflow: hidden;
+  background: var(--black);
+}
+.footer-star-1{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 34%;
+  height: auto;
+}
+.footer-star-2{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 39.8%;
+  height: auto;
+}
+.footer-text{
+  position: absolute;
+  z-index: 2;
+  top: 31.5%;
+  color: var(--lime);
+  font-weight: 500;
+}
+.footer-student{
+  left: 26.4%;
+}
+.footer-curators{
+  left: 50.8%;
+}
+.footer-small{
+  font-size: 1.39vw;
+  margin-bottom: 0.4vw;
+}
+.footer-big{
+  font-size: 2.36vw;
+  line-height: 1.2;
+}
+.footer-group{
+  margin-top: 1.6vw;
+}

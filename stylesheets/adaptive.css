@@ -72,3 +72,70 @@
     height: auto;
   }
 }
+@media (max-width: 1023px){
+  /* остальные звезды первого экрана */
+  .star3{ width: 19.6vw; }
+  .star4, .star5{ width: 6vw; }
+  .star6{ width: 5.6vw; }
+  .star7{ width: 5.4vw; }
+  .star8{ width: 8vw; }
+
+  /* ЭКРАН 2 */
+  .screen-2{
+    flex-direction: column;
+    height: auto;
+  }
+  .left-2, .right-2{
+    width: 100vw;
+    height: 112.5vw;
+  }
+  .slogan{
+    font-size: 4.16vw;
+  }
+  @keyframes note-jump{
+    0%{ transform: translateY(0); }
+    50%{ transform: translateY(-2.4vw); }
+    100%{ transform: translateY(0); }
+  }
+
+  /* ЭКРАН 3 */
+  .screen-3{
+    flex-direction: column;
+    height: auto;
+  }
+  .left-3, .right-3{
+    width: 100vw;
+    height: 112.5vw;
+  }
+  .tag{
+    font-size: 3.75vw;
+    border-radius: 1.2vw;
+  }
+
+  /* ПОДВАЛ */
+  .footer{
+    height: 48.8vw;
+  }
+  .footer-student{
+    left: 8%;
+  }
+  .footer-curators{
+    left: 52%;
+  }
+  .footer-small{
+    font-size: 2.8vw;
+    margin-bottom: 0.8vw;
+  }
+  .footer-big{
+    font-size: 4.4vw;
+  }
+  .footer-group{
+    margin-top: 3.2vw;
+  }
+  .footer-star-1{
+    width: 40%;
+  }
+  .footer-star-2{
+    width: 45%;
+  }
+}

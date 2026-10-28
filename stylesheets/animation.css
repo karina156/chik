@@ -134,3 +134,217 @@ animation: star-sway 0.8s ease-in-out infinite;
     transform: scale(1);
   }
 }
+/* ЭКРАН 2 */
+/* звезды мигают не одновременно */
+.sparkle-2-2, .sparkle-3-2, .sparkle-3-5{
+  animation-delay: 0.3s;
+}
+.sparkle-2-4, .sparkle-3-3, .sparkle-3-6{
+  animation-delay: 0.6s;
+}
+.left-2:hover .sparkle,
+.right-3:hover .sparkle{
+  animation-play-state: paused;
+}
+/* нотки-птички прыгают */
+.note-bird{
+  animation: note-jump 0.9s ease-in-out infinite;
+}
+.note-bird-2{
+  animation-delay: 0.3s;
+}
+.note-bird-3{
+  animation-delay: 0.6s;
+}
+@keyframes note-jump{
+  0%{
+    transform: translateY(0);
+  }
+  50%{
+    transform: translateY(-1.2vw);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+.notes-2:hover .note-bird{
+  animation-play-state: paused;
+}
+/* головы птиц клюют при наведении */
+.heads:hover{
+  animation: heads-peck 0.4s ease-in-out infinite alternate;
+}
+@keyframes heads-peck{
+  0%{
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(1.05);
+  }
+}
+/* пунктир мигает */
+.dashes-lime{
+  animation: dashes-blink 1.2s steps(1) infinite;
+}
+@keyframes dashes-blink{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    opacity: 0.4;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+/* ласточка летает */
+.swallow{
+  animation: swallow-fly 3s ease-in-out infinite;
+}
+@keyframes swallow-fly{
+  0%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25%{
+    transform: translate(1vw, -2vw) rotate(-5deg);
+  }
+  50%{
+    transform: translate(0, -3vw) rotate(0deg);
+  }
+  75%{
+    transform: translate(-1vw, -1vw) rotate(5deg);
+  }
+  100%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+.swallow:hover{
+  animation-play-state: paused;
+}
+/* надпись chik трясется при наведении */
+.chik-vertical:hover{
+  animation: chik-shake 0.2s linear infinite;
+}
+@keyframes chik-shake{
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(1deg);
+  }
+  75%{
+    transform: rotate(-1deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+/* ЭКРАН 3 */
+/* плашки качаются */
+.tag{
+  animation: tag-swing 2s ease-in-out infinite;
+}
+.tag-2, .tag-5{
+  animation-delay: 0.4s;
+}
+.tag-3, .tag-6{
+  animation-delay: 0.8s;
+}
+@keyframes tag-swing{
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(2deg);
+  }
+  75%{
+    transform: rotate(-2deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+.tag:hover{
+  animation-play-state: paused;
+}
+/* пунктир едет */
+.dashes-purple{
+  animation: dashes-move 1s linear infinite alternate;
+}
+@keyframes dashes-move{
+  0%{
+    transform: translate(0, 0);
+  }
+  100%{
+    transform: translate(0.6vw, -0.6vw);
+  }
+}
+/* chik увеличивается */
+.chik-box:hover .chik-lime{
+  transform: scale(1.1);
+}
+.chik-lime{
+  transition: transform 0.3s;
+}
+/* большая нотка качается */
+.logo-note{
+  animation: logo-note-dance 1.6s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+@keyframes logo-note-dance{
+  0%{
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(-6deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+.logo-note-box:hover .logo-note{
+  animation-play-state: paused;
+}
+/* нотки танцуют */
+.note{
+  animation: note-dance 1.4s ease-in-out infinite;
+}
+.note-3-2, .note-3-5{
+  animation-delay: 0.35s;
+}
+.note-3-3, .note-3-6{
+  animation-delay: 0.7s;
+}
+.note-3-4{
+  animation-delay: 1s;
+}
+@keyframes note-dance{
+  0%{
+    transform: translateY(0) rotate(0deg);
+  }
+  50%{
+    transform: translateY(-0.8vw) rotate(10deg);
+  }
+  100%{
+    transform: translateY(0) rotate(0deg);
+  }
+}
+.note:hover{
+  animation-play-state: paused;
+}
+
+/* ПОДВАЛ */
+.footer-big{
+  transition: color 0.3s;
+}
+.footer-big:hover{
+  color: var(--purple);
+}
+
+/* если пользователь отключил анимации */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation: none !important;
+  }
+}
