@@ -445,16 +445,16 @@ animation: star-sway 0.34s ease-in-out infinite;
 
 /* птицы и звезды переворачиваются: по горизонтали, потом по вертикали */
 .birds-terns{
-  animation: flip-hv 2.54s ease-in-out infinite;
+  animation: flip-hv 1.27s ease-in-out infinite;
 }
 .right-3 .sparkle{
-  animation: flip-hv 2.54s ease-in-out infinite;
+  animation: flip-hv 1.27s ease-in-out infinite;
 }
 .sparkle-3-2, .sparkle-3-5{
-  animation-delay: 0.13s;
+  animation-delay: 0.07s;
 }
 .sparkle-3-3, .sparkle-3-6{
-  animation-delay: 0.25s;
+  animation-delay: 0.13s;
 }
 @keyframes flip-hv{
   0%{
