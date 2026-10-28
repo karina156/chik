@@ -1,7 +1,7 @@
 /* БЕГУЩАЯ СТРОКА */
 .marquee__track{
   will-change: transform;
-  animation: marquee 10.4s linear infinite;
+  animation: marquee 6.76s linear infinite;
 }
 
 @keyframes marquee{
@@ -14,7 +14,7 @@
 /* КРУГИ */
 .circle-wrap:not(:first-child){
   margin-left: -7vw;
-  animation: circlesOffset 0.65s ease-in-out infinite alternate;
+  animation: circlesOffset 0.42s ease-in-out infinite alternate;
 }
 @keyframes circlesOffset{
   from{
@@ -29,10 +29,10 @@
 }
 /* НОТКИ */
 .note-1{
-  animation: frame1 0.65s steps(1) infinite;
+  animation: frame1 0.42s steps(1) infinite;
 }
 .note-2{
-  animation: frame2 0.65s steps(1) infinite;
+  animation: frame2 0.42s steps(1) infinite;
 }
 
 @keyframes frame1{
@@ -54,7 +54,7 @@
 }
 /* ЛОГОТИП */
 .rectangle{
-  animation: rectangle-breath 0.65s ease-in-out infinite;
+  animation: rectangle-breath 0.42s ease-in-out infinite;
   transform-origin: center;
 }
 @keyframes rectangle-breath {
@@ -75,7 +75,7 @@
 }
 /* линии */
 .left-bottom-1:hover .left-bottom-lines-1 img{
-  animation: lines-jitter 0.2s ease-in-out infinite alternate;
+  animation: lines-jitter 0.13s ease-in-out infinite alternate;
 }
 
 @keyframes lines-jitter{
@@ -88,7 +88,7 @@
 }
 /* микрофоны */
 .microphone-track{
-  animation: mic-marquee 1.95s linear infinite;
+  animation: mic-marquee 1.27s linear infinite;
   will-change: transform;
 }
 @keyframes mic-marquee{
@@ -105,7 +105,7 @@
 
 /* большая звезда */
 .star{
-animation: star-sway 0.52s ease-in-out infinite;
+animation: star-sway 0.34s ease-in-out infinite;
 }
 @keyframes star-sway{
   0%{
@@ -120,7 +120,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* Маленькие звезды */
 .sparkle{
-  animation: sparkle-pulse 0.65s ease-in-out infinite;
+  animation: sparkle-pulse 0.42s ease-in-out infinite;
   transform-origin: center;
 }
 @keyframes sparkle-pulse{
@@ -137,10 +137,10 @@ animation: star-sway 0.52s ease-in-out infinite;
 /* ЭКРАН 2 */
 /* звезды мигают не одновременно */
 .sparkle-2-2, .sparkle-3-2, .sparkle-3-5{
-  animation-delay: 0.2s;
+  animation-delay: 0.13s;
 }
 .sparkle-2-4, .sparkle-3-3, .sparkle-3-6{
-  animation-delay: 0.39s;
+  animation-delay: 0.25s;
 }
 .left-2:hover .sparkle,
 .right-3:hover .sparkle{
@@ -148,12 +148,12 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* птицы кричат */
 .bird-big{
-  animation: bird-scream 0.52s ease-in-out infinite;
+  animation: bird-scream 0.34s ease-in-out infinite;
   transform-origin: 20% 70%;
 }
 .bird-small{
-  animation: bird-scream 0.52s ease-in-out infinite;
-  animation-delay: 0.26s;
+  animation: bird-scream 0.34s ease-in-out infinite;
+  animation-delay: 0.17s;
   transform-origin: 30% 90%;
 }
 @keyframes bird-scream{
@@ -179,7 +179,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 /* курсор у текста который печатается */
 .slogan::after{
   content: "|";
-  animation: cursor-blink 0.45s steps(1) infinite;
+  animation: cursor-blink 0.29s steps(1) infinite;
 }
 @keyframes cursor-blink{
   0%{
@@ -191,13 +191,13 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* нотки-птички прыгают */
 .note-bird{
-  animation: note-jump 0.59s ease-in-out infinite;
+  animation: note-jump 0.38s ease-in-out infinite;
 }
 .note-bird-2{
-  animation-delay: 0.2s;
+  animation-delay: 0.13s;
 }
 .note-bird-3{
-  animation-delay: 0.39s;
+  animation-delay: 0.25s;
 }
 @keyframes note-jump{
   0%{
@@ -215,7 +215,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* головы птиц переворачиваются по вертикали */
 .heads{
-  animation: heads-flip 1.95s ease-in-out infinite;
+  animation: heads-flip 1.27s ease-in-out infinite;
 }
 @keyframes heads-flip{
   0%{
@@ -243,7 +243,7 @@ animation: star-sway 0.52s ease-in-out infinite;
   stroke-dashoffset: 1;
 }
 .drawing .draw-line{
-  animation: line-draw 1.62s linear forwards;
+  animation: line-draw 1.05s linear forwards;
 }
 @keyframes line-draw{
   0%{
@@ -258,18 +258,18 @@ animation: star-sway 0.52s ease-in-out infinite;
   transform: translateY(-120vw);
 }
 .falling .drop{
-  animation: drop-fall 0.65s ease-in forwards;
+  animation: drop-fall 0.42s ease-in forwards;
 }
 /* сначала падает то что внизу */
 .falling .drop-ball-4{ animation-delay: 0s; }
-.falling .drop-ball-3{ animation-delay: 0.13s; }
-.falling .drop-i{ animation-delay: 0.26s; }
-.falling .drop-k{ animation-delay: 0.39s; }
-.falling .drop-ball-5{ animation-delay: 0.52s; }
-.falling .drop-ball-1{ animation-delay: 0.65s; }
-.falling .drop-h{ animation-delay: 0.78s; }
-.falling .drop-ball-2{ animation-delay: 0.91s; }
-.falling .drop-c{ animation-delay: 1.04s; }
+.falling .drop-ball-3{ animation-delay: 0.08s; }
+.falling .drop-i{ animation-delay: 0.17s; }
+.falling .drop-k{ animation-delay: 0.25s; }
+.falling .drop-ball-5{ animation-delay: 0.34s; }
+.falling .drop-ball-1{ animation-delay: 0.42s; }
+.falling .drop-h{ animation-delay: 0.51s; }
+.falling .drop-ball-2{ animation-delay: 0.59s; }
+.falling .drop-c{ animation-delay: 0.68s; }
 @keyframes drop-fall{
   0%{
     transform: translateY(-120vw);
@@ -292,7 +292,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* при наведении сталкиваются */
 .hit{
-  transition: transform 0.33s cubic-bezier(0.3, 1.8, 0.5, 1);
+  transition: transform 0.21s cubic-bezier(0.3, 1.8, 0.5, 1);
 }
 .chik-col:hover .hit-c{
   transform: translate(8%, 12%) rotate(12deg);
@@ -326,14 +326,14 @@ animation: star-sway 0.52s ease-in-out infinite;
 /* плашки слева едут вправо, справа влево, бьются о стенку и возвращаются */
 /* --run это расстояние до стенки в процентах от ширины плашки */
 .tag{
-  animation: tag-run 2.6s ease-in-out infinite;
+  animation: tag-run 1.69s ease-in-out infinite;
 }
 .tag-1{ --run: 145%; --tilt: -4deg; }
-.tag-2{ --run: 145%; --tilt: -4deg; animation-delay: 0.39s; }
-.tag-3{ --run: 169%; --tilt: -4deg; animation-delay: 0.78s; }
+.tag-2{ --run: 145%; --tilt: -4deg; animation-delay: 0.25s; }
+.tag-3{ --run: 169%; --tilt: -4deg; animation-delay: 0.51s; }
 .tag-4{ --run: -197%; --tilt: 4deg; }
-.tag-5{ --run: -164%; --tilt: 4deg; animation-delay: 0.39s; }
-.tag-6{ --run: -163%; --tilt: 4deg; animation-delay: 0.78s; }
+.tag-5{ --run: -164%; --tilt: 4deg; animation-delay: 0.25s; }
+.tag-6{ --run: -163%; --tilt: 4deg; animation-delay: 0.51s; }
 @keyframes tag-run{
   0%{
     transform: translateX(0) rotate(0deg);
@@ -357,7 +357,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* пунктир едет */
 .dashes-purple{
-  animation: dashes-move 0.65s linear infinite alternate;
+  animation: dashes-move 0.42s linear infinite alternate;
 }
 @keyframes dashes-move{
   0%{
@@ -371,11 +371,11 @@ animation: star-sway 0.52s ease-in-out infinite;
 .chik-lime{
   transform: scale(0.1);
   /* обратно в нормальный размер - резко, с пружинкой */
-  transition: transform 0.16s cubic-bezier(0.3, 1.8, 0.5, 1);
+  transition: transform 0.1s cubic-bezier(0.3, 1.8, 0.5, 1);
 }
 .popped .chik-lime{
   transform: scale(1);
-  animation: chik-pop 0.91s ease-out;
+  animation: chik-pop 0.59s ease-out;
 }
 @keyframes chik-pop{
   0%{
@@ -397,11 +397,11 @@ animation: star-sway 0.52s ease-in-out infinite;
 /* уменьшается только при наведении */
 .popped:hover .chik-lime{
   transform: scale(0.1);
-  transition: transform 0.39s ease-in-out;
+  transition: transform 0.25s ease-in-out;
 }
 /* большая нотка качается */
 .logo-note{
-  animation: logo-note-dance 1.04s ease-in-out infinite;
+  animation: logo-note-dance 0.68s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
 @keyframes logo-note-dance{
@@ -420,16 +420,16 @@ animation: star-sway 0.52s ease-in-out infinite;
 }
 /* нотки покачиваются пока падают */
 .fall-note{
-  animation: note-sway 0.91s ease-in-out infinite alternate;
+  animation: note-sway 0.59s ease-in-out infinite alternate;
 }
 .fall-note-2, .fall-note-5{
-  animation-delay: 0.23s;
+  animation-delay: 0.15s;
 }
 .fall-note-3, .fall-note-6{
-  animation-delay: 0.45s;
+  animation-delay: 0.29s;
 }
 .fall-note-4{
-  animation-delay: 0.65s;
+  animation-delay: 0.42s;
 }
 @keyframes note-sway{
   0%{
@@ -445,16 +445,16 @@ animation: star-sway 0.52s ease-in-out infinite;
 
 /* птицы и звезды переворачиваются: по горизонтали, потом по вертикали */
 .birds-terns{
-  animation: flip-hv 3.9s ease-in-out infinite;
+  animation: flip-hv 2.54s ease-in-out infinite;
 }
 .right-3 .sparkle{
-  animation: flip-hv 3.9s ease-in-out infinite;
+  animation: flip-hv 2.54s ease-in-out infinite;
 }
 .sparkle-3-2, .sparkle-3-5{
-  animation-delay: 0.2s;
+  animation-delay: 0.13s;
 }
 .sparkle-3-3, .sparkle-3-6{
-  animation-delay: 0.39s;
+  animation-delay: 0.25s;
 }
 @keyframes flip-hv{
   0%{
@@ -488,7 +488,7 @@ animation: star-sway 0.52s ease-in-out infinite;
 
 /* ПОДВАЛ */
 .footer-big{
-  transition: color 0.2s;
+  transition: color 0.13s;
 }
 .footer-big:hover{
   color: var(--purple);

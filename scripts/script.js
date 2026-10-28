@@ -17,20 +17,20 @@ function typing() {
   if (!deleting && i === text.length) {
     // напечатали всё, ждём и стираем
     deleting = true;
-    setTimeout(typing, 1600);
+    setTimeout(typing, 1000);
     return;
   }
   if (deleting && i === 0) {
     // стерли, печатаем заново
     deleting = false;
-    setTimeout(typing, 400);
+    setTimeout(typing, 260);
     return;
   }
 
   if (deleting) {
-    setTimeout(typing, 25);
+    setTimeout(typing, 16);
   } else {
-    setTimeout(typing, 70);
+    setTimeout(typing, 45);
   }
 }
 
@@ -51,7 +51,7 @@ const observer = new IntersectionObserver(function (entries) {
     setTimeout(function () {
       flight.classList.add('flying');
       swallowMove.beginElement();
-    }, 1625);
+    }, 1055);
   }
 }, { threshold: 0.4 });
 
@@ -77,7 +77,7 @@ document.querySelectorAll('.fall-note').forEach(function (el) {
   const note = {
     el: el,
     y: Number(el.dataset.top),          // где нотка сейчас, в % от высоты блока
-    speed: 0.18 + Math.random() * 0.15,  // скорость, % за кадр
+    speed: 0.28 + Math.random() * 0.22,  // скорость, % за кадр
     caught: false
   };
   // ловим мышкой
