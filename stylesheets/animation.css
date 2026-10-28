@@ -814,8 +814,9 @@ animation: star-sway 0.34s ease-in-out infinite;
   }
 }
 /* фото обычно чуть приглушены, при наведении оживают */
+/* в обычном состоянии фото как в макете */
 .bird, .tern, .parrot{
-  filter: saturate(0.4) brightness(0.7);
+  filter: none;
 }
 /* пружинка, чтобы птица как будто выпрыгивала из плаката */
 .bird{
