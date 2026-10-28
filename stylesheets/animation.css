@@ -323,30 +323,54 @@ animation: star-sway 0.8s ease-in-out infinite;
 }
 
 /* ЭКРАН 3 */
-/* плашки качаются */
-.tag{
-  animation: tag-swing 2s ease-in-out infinite;
+/* плашки слева едут вправо, справа влево, отталкиваются и возвращаются */
+.tag-purple{
+  animation: tag-run-right 3s ease-in-out infinite;
+}
+.tag-black{
+  animation: tag-run-left 3s ease-in-out infinite;
 }
 .tag-2, .tag-5{
-  animation-delay: 0.4s;
+  animation-delay: 0.5s;
 }
 .tag-3, .tag-6{
-  animation-delay: 0.8s;
+  animation-delay: 1s;
 }
-@keyframes tag-swing{
+@keyframes tag-run-right{
   0%{
-    transform: rotate(0deg);
+    transform: translateX(0);
   }
-  25%{
-    transform: rotate(2deg);
+  40%{
+    transform: translateX(45%);
   }
-  75%{
-    transform: rotate(-2deg);
+  48%{
+    transform: translateX(32%) rotate(-3deg);
+  }
+  56%{
+    transform: translateX(40%) rotate(1deg);
   }
   100%{
-    transform: rotate(0deg);
+    transform: translateX(0) rotate(0deg);
   }
 }
+@keyframes tag-run-left{
+  0%{
+    transform: translateX(0);
+  }
+  40%{
+    transform: translateX(-45%);
+  }
+  48%{
+    transform: translateX(-32%) rotate(3deg);
+  }
+  56%{
+    transform: translateX(-40%) rotate(-1deg);
+  }
+  100%{
+    transform: translateX(0) rotate(0deg);
+  }
+}
+/* поймал мышкой - остановилась */
 .tag:hover{
   animation-play-state: paused;
 }
