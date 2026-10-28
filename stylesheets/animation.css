@@ -443,48 +443,71 @@ animation: star-sway 0.34s ease-in-out infinite;
   animation-play-state: paused;
 }
 
-/* птицы и звезды переворачиваются: по горизонтали, потом по вертикали */
-.birds-terns{
-  animation: flip-hv 0.64s ease-in-out infinite;
+/* птицы спорят: по очереди бросаются друг на друга */
+.tern-top{
+  animation: tern-top-attack 1.6s ease-in-out infinite;
+  transform-origin: 45% 34%;
 }
+.tern-bottom{
+  animation: tern-bottom-attack 1.6s ease-in-out infinite;
+  transform-origin: 61% 71%;
+}
+@keyframes tern-top-attack{
+  0%, 15%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25%{
+    transform: translate(3%, 5%) rotate(7deg);
+  }
+  32%{
+    transform: translate(-1%, -1.5%) rotate(-3deg);
+  }
+  45%, 100%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+@keyframes tern-bottom-attack{
+  0%, 65%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+  75%{
+    transform: translate(-2%, -6%) rotate(-7deg);
+  }
+  82%{
+    transform: translate(1%, 1.5%) rotate(3deg);
+  }
+  95%, 100%{
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+/* при каждом ударе звезды разлетаются как искры */
 .right-3 .sparkle{
-  animation: flip-hv 0.64s ease-in-out infinite;
+  animation: star-burst 1.6s ease-out infinite;
 }
-.sparkle-3-2, .sparkle-3-5{
-  animation-delay: 0.03s;
-}
-.sparkle-3-3, .sparkle-3-6{
-  animation-delay: 0.06s;
-}
-@keyframes flip-hv{
-  0%{
-    transform: scale(1, 1);
+.sparkle-3-1{ --dx: -34%; --dy: 72%; }
+.sparkle-3-2{ --dx: 70%; --dy: 40%; }
+.sparkle-3-3{ --dx: 75%; --dy: -27%; }
+.sparkle-3-4{ --dx: -59%; --dy: -54%; }
+.sparkle-3-5{ --dx: 17%; --dy: -78%; }
+.sparkle-3-6{ --dx: 44%; --dy: 67%; }
+@keyframes star-burst{
+  0%, 22%{
+    transform: translate(0, 0) scale(1) rotate(0deg);
   }
-  20%{
-    transform: scale(1, 1);
+  28%{
+    transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(25deg);
   }
-  30%{
-    transform: scale(-1, 1);
+  45%, 72%{
+    transform: translate(0, 0) scale(1) rotate(0deg);
   }
-  50%{
-    transform: scale(-1, 1);
+  78%{
+    transform: translate(var(--dx), var(--dy)) scale(1.3) rotate(-25deg);
   }
-  60%{
-    transform: scale(-1, -1);
-  }
-  80%{
-    transform: scale(-1, -1);
-  }
-  90%{
-    transform: scale(1, 1);
-  }
-  100%{
-    transform: scale(1, 1);
+  95%, 100%{
+    transform: translate(0, 0) scale(1) rotate(0deg);
   }
 }
-.right-3:hover .birds-terns{
-  animation-play-state: paused;
-}
+
 /* звезды плавно едут за курсором */
 .right-3 .sparkle{
   transition: translate 0.3s ease-out;
