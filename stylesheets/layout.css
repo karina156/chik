@@ -460,11 +460,6 @@ height: 14vw;
 .drop-ball-1, .drop-ball-2, .drop-ball-3, .drop-ball-4, .drop-ball-5{
   width: 36.1%;
 }
-.ball{
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--black);
-}
 .drop-ball-1{
   top: 54%;
   left: 6.4%;
