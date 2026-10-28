@@ -38,20 +38,40 @@ slogan.innerHTML = '';
 typing();
 
 // пунктир и ласточка
+// ласточка сама рисует пунктир: линия появляется у нее за хвостом
 const flight = document.getElementById('flight');
-const swallowMove = document.getElementById('swallow-move');
+const drawLine = flight.querySelector('.draw-line');
+const swallow = flight.querySelector('.swallow');
+const lineLength = drawLine.getTotalLength();
+const passTime = 1700; // за сколько мс пролетает линию в одну сторону
 let started = false;
+let flightStart = 0;
+
+function fly(now) {
+  if (!flightStart) flightStart = now;
+  const k = ((now - flightStart) / passTime) % 2;
+  const firstPass = (now - flightStart) < passTime;
+  // туда и обратно: 0 -> 1 -> 0
+  const pos = k < 1 ? k : 2 - k;
+
+  // в первый раз линия рисуется ровно до ласточки
+  drawLine.style.strokeDashoffset = firstPass ? 1 - pos : 0;
+
+  const point = drawLine.getPointAtLength(pos * lineLength);
+  swallow.setAttribute('transform', 'translate(' + point.x + ' ' + point.y + ')');
+  requestAnimationFrame(fly);
+}
 
 // запускаем, когда блок появился на экране
 const observer = new IntersectionObserver(function (entries) {
   if (entries[0].isIntersecting && !started) {
     started = true;
-    flight.classList.add('drawing');
-    // когда линия дорисовалась, ласточка летит
-    setTimeout(function () {
-      flight.classList.add('flying');
-      swallowMove.beginElement();
-    }, 1055);
+    flight.classList.add('flying');
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      drawLine.style.strokeDashoffset = 0;
+    } else {
+      requestAnimationFrame(fly);
+    }
   }
 }, { threshold: 0.4 });
 
@@ -403,3 +423,164 @@ if (!noMotion && window.matchMedia('(pointer: fine)').matches) {
     document.body.appendChild(t);
   });
 }
+
+// ---------------------------------------------------------
+// ФОТО ПТИЦ
+
+// птицы выныривают из волн, когда до них долистали
+if (!noMotion) {
+  left2.classList.add('js-birds');
+  const birdsObserver = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      left2.classList.add('birds-up');
+      birdsObserver.disconnect();
+    }
+  }, { threshold: 0.4 });
+  birdsObserver.observe(left2);
+}
+
+// по клику из клюва вылетают лишние кольца
+left2.addEventListener('click', function (e) {
+  const r = left2.getBoundingClientRect();
+  const y = (e.clientY - r.top) / r.height;
+  const sound = left2.querySelector(y < 0.55 ? '.sound-big' : '.sound-small');
+  for (let i = 0; i < 3; i++) {
+    const ring = document.createElement('span');
+    ring.className = 'ring-extra';
+    ring.style.animationDelay = (i * 0.12) + 's';
+    ring.addEventListener('animationend', function () { ring.remove(); });
+    sound.appendChild(ring);
+  }
+});
+
+// крачки отлетают от курсора
+const right3 = document.querySelector('.right-3');
+const terns = right3.querySelectorAll('.tern');
+
+right3.addEventListener('mousemove', function (e) {
+  terns.forEach(function (tern) {
+    // центр птицы - примерно середина ее непрозрачной части
+    const r = tern.getBoundingClientRect();
+    const cx = r.left + r.width * (tern.classList.contains('tern-top') ? 0.45 : 0.55);
+    const cy = r.top + r.height * (tern.classList.contains('tern-top') ? 0.34 : 0.71);
+    const dx = cx - e.clientX;
+    const dy = cy - e.clientY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const near = r.width * 0.45;
+    if (dist < near) {
+      // чем ближе курсор, тем дальше отлетает
+      const push = (near - dist) / near * 18;
+      tern.style.translate = (dx / dist * push) + 'vw ' + (dy / dist * push) + 'vw';
+    } else {
+      tern.style.translate = '0 0';
+    }
+  });
+});
+right3.addEventListener('mouseleave', function () {
+  terns.forEach(function (tern) { tern.style.translate = '0 0'; });
+});
+
+// перья при клике на любую птицу
+function dropFeathers(x, y) {
+  if (noMotion) return;
+  for (let i = 0; i < 8; i++) {
+    const f = document.createElement('img');
+    f.src = '../chik/images/feather.svg';
+    f.className = 'feather';
+    f.alt = '';
+    f.style.left = x + 'px';
+    f.style.top = y + 'px';
+    f.style.width = (1 + Math.random() * 1.4) + 'vw';
+    f.style.setProperty('--fx', (Math.random() * 16 - 8) + 'vw');
+    f.style.setProperty('--fy', (Math.random() * -8) + 'vw');
+    f.style.setProperty('--fr', (Math.random() * 360) + 'deg');
+    f.style.animationDelay = (Math.random() * 0.15) + 's';
+    f.addEventListener('animationend', function () { f.remove(); });
+    document.body.appendChild(f);
+  }
+}
+
+['.left-2', '.parrot', '.right-3', '#flight'].forEach(function (sel) {
+  document.querySelector(sel).addEventListener('click', function (e) {
+    dropFeathers(e.clientX, e.clientY);
+  });
+});
+
+// ---------------------------------------------------------
+// ГОЛОВА ПОПУГАЯ СЛЕДИТ ЗА КУРСОРОМ, ЕСЛИ МЫШКА СТОИТ - МОРГАЕТ
+const parrotHead = document.querySelector('.parrot-head');
+const eyelid = document.querySelector('.eyelid');
+let idleTimer = null;
+let blinkTimer = null;
+
+function blink() {
+  eyelid.classList.remove('blink');
+  void eyelid.offsetWidth;
+  eyelid.classList.add('blink');
+}
+
+document.addEventListener('mousemove', function (e) {
+  if (noMotion) return;
+  const r = parrotHead.getBoundingClientRect();
+  const hx = r.left + r.width * 0.48;
+  const hy = r.top + r.height * 0.13;
+  // наклон от -15 до 15 градусов в сторону мышки
+  let angle = (e.clientX - hx) / (window.innerWidth / 2) * 15;
+  angle += (e.clientY - hy) / (window.innerHeight / 2) * 6 * (e.clientX < hx ? -1 : 1);
+  angle = Math.max(-15, Math.min(15, angle));
+  parrotHead.style.rotate = angle + 'deg';
+
+  // мышка остановилась на 1.2с - начинаем моргать
+  clearTimeout(idleTimer);
+  clearInterval(blinkTimer);
+  idleTimer = setTimeout(function () {
+    blink();
+    blinkTimer = setInterval(blink, 1800);
+  }, 1200);
+});
+
+// ---------------------------------------------------------
+// ФОТО ОЖИВАЮТ ПРИ НАВЕДЕНИИ
+const birdBig = left2.querySelector('.bird-big');
+const birdSmall = left2.querySelector('.bird-small');
+
+left2.addEventListener('mousemove', function (e) {
+  const r = left2.getBoundingClientRect();
+  const y = (e.clientY - r.top) / r.height;
+  birdBig.classList.toggle('lit', y < 0.55);
+  birdSmall.classList.toggle('lit', y >= 0.55);
+});
+left2.addEventListener('mouseleave', function () {
+  birdBig.classList.remove('lit');
+  birdSmall.classList.remove('lit');
+});
+
+// крачки светятся, когда курсор рядом
+right3.addEventListener('mousemove', function (e) {
+  terns.forEach(function (tern) {
+    const r = tern.getBoundingClientRect();
+    const cx = r.left + r.width * (tern.classList.contains('tern-top') ? 0.45 : 0.55);
+    const cy = r.top + r.height * (tern.classList.contains('tern-top') ? 0.34 : 0.71);
+    const dist = Math.hypot(cx - e.clientX, cy - e.clientY);
+    tern.classList.toggle('lit', dist < r.width * 0.7);
+  });
+});
+right3.addEventListener('mouseleave', function () {
+  terns.forEach(function (tern) { tern.classList.remove('lit'); });
+});
+
+// ---------------------------------------------------------
+// ГЛИТЧ: иногда фото раздваивается на салатовую и фиолетовую копии
+const glitchPhotos = document.querySelectorAll('.bird, .tern, .parrot');
+
+function glitch() {
+  const el = glitchPhotos[Math.floor(Math.random() * glitchPhotos.length)];
+  el.animate([
+    { filter: 'drop-shadow(0.8vw 0 0 #D9EE61) drop-shadow(-0.8vw 0 0 #6552D0)', offset: 0 },
+    { filter: 'drop-shadow(-0.6vw 0.3vw 0 #D9EE61) drop-shadow(0.6vw -0.3vw 0 #6552D0)', offset: 0.33 },
+    { filter: 'drop-shadow(1vw 0 0 #D9EE61) drop-shadow(-1vw 0 0 #6552D0)', offset: 0.66 },
+    { filter: 'none', offset: 1 }
+  ], { duration: 250, easing: 'steps(3)' });
+  setTimeout(glitch, 1200 + Math.random() * 2000);
+}
+if (!noMotion) setTimeout(glitch, 1500);

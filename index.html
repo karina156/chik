@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Веб-плакат Chik</title>
   <link rel="icon" href="../chik/favicons/fav.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="stylesheets/style.css?v=18" />
+  <link rel="stylesheet" href="stylesheets/style.css?v=20" />
 </head>
 
 <body>
@@ -115,7 +115,14 @@
  <!-- правая сторона -->
 <div class="right-1">
   <img class="star" src="../chik/images/big-star-1.svg" alt="большая-звезда-позади-попугая">
-  <img class="parrot" src="../chik/images/parrot.svg" alt="попугай">
+  <!-- попугай из двух слоев: тело и голова, голова поворачивается за курсором -->
+  <div class="parrot">
+    <img class="parrot-body" src="../chik/images/parrot.svg" alt="попугай">
+    <div class="parrot-head">
+      <img src="../chik/images/parrot.svg" alt="">
+      <span class="eyelid"></span>
+    </div>
+  </div>
   <!-- sparkles / x-stars -->
   <img class="sparkle star1" src="../chik/images/star-1.svg" alt="маленькая-звезда-1">
   <img class="sparkle star2" src="../chik/images/star-2.svg" alt="маленькая-звезда-2">
@@ -141,6 +148,9 @@
     <img class="wave wave-2" src="../chik/images/wave-2.svg" alt="волна">
     <img class="wave wave-3" src="../chik/images/wave-3.svg" alt="волна">
     <img class="bird bird-small" src="../chik/images/bird-small.png" alt="птица">
+    <!-- звуковые кольца из клювов -->
+    <div class="sound sound-big"><span></span><span></span><span></span></div>
+    <div class="sound sound-small"><span></span><span></span><span></span></div>
     <div class="purple-bottom"></div>
     <img class="wave wave-4" src="../chik/images/wave-4.svg" alt="волна">
     <img class="sparkle sparkle-2-1" src="../chik/images/sparkle-black-1.svg" alt="звезда">
@@ -187,9 +197,7 @@
       </defs>
       <path mask="url(#draw-mask)" d="M18.9595 6.00049L179.929 118.635L18.9595 203.931L179.929 287.041L13.9292 349.919L179.929 446.151L18.9595 497" stroke="#D9EE61" stroke-width="12" stroke-linecap="round" stroke-dasharray="41 41"/>
       <!-- ласточка -->
-      <image class="swallow" href="../chik/images/swallow.png" x="-90" y="-90" width="180" height="180">
-        <animateMotion id="swallow-move" begin="indefinite" dur="3.4s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear" path="M18.9595 6.00049L179.929 118.635L18.9595 203.931L179.929 287.041L13.9292 349.919L179.929 446.151L18.9595 497"/>
-      </image>
+      <image class="swallow" href="../chik/images/swallow.png" x="-90" y="-90" width="180" height="180"/>
     </svg>
     <p class="slogan" id="slogan">Мы — птицы, <br>и мы будем<br>чирикать</p>
     <!-- буквы и круги падают сверху -->
@@ -296,6 +304,6 @@
     <p class="footer-big">Камила Рихтер,<br>Анна Комкова</p>
   </div>
 </footer>
-<script src="../chik/scripts/script.js?v=18"></script>
+<script src="../chik/scripts/script.js?v=20"></script>
 </body>
 </html>
