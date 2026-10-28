@@ -107,8 +107,7 @@ parrot.addEventListener('click', function () {
   }
 });
 
-// голова попугая смотрит на мышку, если мышка стоит - моргает
-const parrotHead = document.querySelector('.parrot-head');
+// попугай наклоняется к мышке, если мышка стоит - моргает
 const eyelid = document.querySelector('.eyelid');
 let idleTimer = null;
 let blinkTimer = null;
@@ -129,17 +128,11 @@ document.addEventListener('mousemove', function (e) {
     return;
   }
 
-  const head = parrotHead.getBoundingClientRect();
-  const hx = head.left + head.width * 0.48;
-  const hy = head.top + head.height * 0.13;
-  let angle = (e.clientX - hx) / (window.innerWidth / 2) * 15;
-  if (e.clientX < hx) {
-    angle -= (e.clientY - hy) / (window.innerHeight / 2) * 6;
-  } else {
-    angle += (e.clientY - hy) / (window.innerHeight / 2) * 6;
-  }
-  angle = Math.max(-15, Math.min(15, angle));
-  parrotHead.style.rotate = angle + 'deg';
+  const body = parrot.getBoundingClientRect();
+  const px = body.left + body.width / 2;
+  let angle = (e.clientX - px) / (window.innerWidth / 2) * 8;
+  angle = Math.max(-8, Math.min(8, angle));
+  parrot.style.rotate = angle + 'deg';
 
   clearTimeout(idleTimer);
   clearInterval(blinkTimer);

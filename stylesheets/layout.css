@@ -221,23 +221,11 @@ height: 14vw;
   left: 55%;
   transform: translateX(-50%);
 }
-/* попугай: тело и голова */
+/* попугай */
 .parrot img{
   display: block;
   width: 100%;
   height: auto;
-}
-.parrot-body{
-  -webkit-mask-image: radial-gradient(33% 10% at 48% 13%, transparent 88%, #000 100%);
-  mask-image: radial-gradient(33% 10% at 48% 13%, transparent 88%, #000 100%);
-}
-.parrot-head{
-  position: absolute;
-  inset: 0;
-  -webkit-mask-image: radial-gradient(36% 11.5% at 48% 13%, #000 90%, transparent 100%);
-  mask-image: radial-gradient(36% 11.5% at 48% 13%, #000 90%, transparent 100%);
-  transform-origin: 50% 23%;
-  transition: rotate 0.25s ease-out;
 }
 .eyelid{
   position: absolute;
