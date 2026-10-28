@@ -1,9 +1,9 @@
 /* БЕГУЩАЯ СТРОКА */
-/* двигается из script.js: тормозит при наведении, ускоряется от скролла */
+/* двигается в script.js */
 .marquee__track{
   will-change: transform;
 }
-/* буквы подпрыгивают волной при наведении */
+/* буквы прыгают волной */
 .ltr{
   display: inline-block;
   white-space: pre;
@@ -41,7 +41,7 @@
     margin-left: -5.8vw;
   }
 }
-/* при наведении раскатываются в линию как бусины */
+/* при наведении в линию как бусины */
 .circle-wrap{
   transition: margin-left 0.4s;
 }
@@ -115,12 +115,32 @@
     transform: scale(1.05);
   }
 }
-/* при наведении буквы разлетаются и собираются */
-.logo-icon{ --sx: -70px; --sy: 20px; --sr: -30deg; }
-.logo-c{ --sx: -40px; --sy: -50px; --sr: -25deg; }
-.logo-h{ --sx: -10px; --sy: 60px; --sr: 15deg; }
-.logo-i{ --sx: 20px; --sy: -60px; --sr: 30deg; }
-.logo-k{ --sx: 60px; --sy: 40px; --sr: -20deg; }
+/* буквы разлетаются */
+.logo-icon{
+  --sx: -70px;
+  --sy: 20px;
+  --sr: -30deg;
+}
+.logo-c{
+  --sx: -40px;
+  --sy: -50px;
+  --sr: -25deg;
+}
+.logo-h{
+  --sx: -10px;
+  --sy: 60px;
+  --sr: 15deg;
+}
+.logo-i{
+  --sx: 20px;
+  --sy: -60px;
+  --sr: 30deg;
+}
+.logo-k{
+  --sx: 60px;
+  --sy: 40px;
+  --sr: -20deg;
+}
 .left-center-1:hover .logo-part{
   animation: logo-scatter 0.9s ease-in-out;
 }
@@ -167,7 +187,7 @@
 .microphone-1:hover .microphone-track{
   animation-play-state: paused;
 }
-/* микрофоны покачиваются в такт */
+/* микрофоны поют */
 .microphone-1 img{
   animation: mic-sing 0.25s ease-in-out infinite alternate;
   transform-origin: 50% 0;
@@ -203,7 +223,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(0deg);
   }
 }
-/* попугай чирикает по клику */
+/* попугай чирикает */
 .parrot{
   cursor: pointer;
 }
@@ -326,7 +346,7 @@ animation: star-sway 0.34s ease-in-out infinite;
 .left-2{
   cursor: pointer;
 }
-/* курсор у текста который печатается */
+/* курсор у слогана */
 .slogan::after{
   content: "|";
   animation: cursor-blink 0.29s steps(1) infinite;
@@ -339,7 +359,6 @@ animation: star-sway 0.34s ease-in-out infinite;
     opacity: 0;
   }
 }
-/* нотки-птички прыгают */
 .note-bird{
   animation: note-jump 0.38s ease-in-out infinite;
 }
@@ -357,7 +376,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: translateY(-1.2vw);
   }
 }
-/* хор: по очереди открывают клюв */
+/* нотки-птички поют хором */
 .note-bird{
   animation: note-jump 1.2s ease-in-out infinite;
 }
@@ -392,13 +411,13 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(-25deg);
   }
 }
-/* при наведении поют все сразу */
+/* все сразу */
 .notes-2:hover .note-bird,
 .notes-2:hover .nb-beak{
   animation-duration: 0.4s;
   animation-delay: 0s;
 }
-/* головы птиц переворачиваются по вертикали */
+/* головы птиц флип */
 .heads{
   animation: heads-flip 1.27s ease-in-out infinite;
 }
@@ -422,20 +441,12 @@ animation: star-sway 0.34s ease-in-out infinite;
 .heads:hover{
   animation-play-state: paused;
 }
-/* пунктир прорисовывается */
+/* пунктир */
 .draw-line{
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
 }
 
-@keyframes line-draw{
-  0%{
-    stroke-dashoffset: 1;
-  }
-  100%{
-    stroke-dashoffset: 0;
-  }
-}
 /* буквы и круги падают вниз */
 .drop{
   transform: translateY(-120vw);
@@ -443,16 +454,33 @@ animation: star-sway 0.34s ease-in-out infinite;
 .falling .drop{
   animation: drop-fall 0.42s ease-in forwards;
 }
-/* сначала падает то что внизу */
-.falling .drop-ball-4{ animation-delay: 0s; }
-.falling .drop-ball-3{ animation-delay: 0.08s; }
-.falling .drop-i{ animation-delay: 0.17s; }
-.falling .drop-k{ animation-delay: 0.25s; }
-.falling .drop-ball-5{ animation-delay: 0.34s; }
-.falling .drop-ball-1{ animation-delay: 0.42s; }
-.falling .drop-h{ animation-delay: 0.51s; }
-.falling .drop-ball-2{ animation-delay: 0.59s; }
-.falling .drop-c{ animation-delay: 0.68s; }
+.falling .drop-ball-4{
+  animation-delay: 0s;
+}
+.falling .drop-ball-3{
+  animation-delay: 0.08s;
+}
+.falling .drop-i{
+  animation-delay: 0.17s;
+}
+.falling .drop-k{
+  animation-delay: 0.25s;
+}
+.falling .drop-ball-5{
+  animation-delay: 0.34s;
+}
+.falling .drop-ball-1{
+  animation-delay: 0.42s;
+}
+.falling .drop-h{
+  animation-delay: 0.51s;
+}
+.falling .drop-ball-2{
+  animation-delay: 0.59s;
+}
+.falling .drop-c{
+  animation-delay: 0.68s;
+}
 @keyframes drop-fall{
   0%{
     transform: translateY(-120vw);
@@ -506,17 +534,38 @@ animation: star-sway 0.34s ease-in-out infinite;
 }
 
 /* ЭКРАН 3 */
-/* плашки слева едут вправо, справа влево, бьются о стенку и возвращаются */
-/* --run это расстояние до стенки в процентах от ширины плашки */
+/* плашки едут до стенки и обратно */
 .tag{
   animation: tag-run 1.69s ease-in-out infinite;
 }
-.tag-1{ --run: 145%; --tilt: -4deg; }
-.tag-2{ --run: 145%; --tilt: -4deg; animation-delay: 0.25s; }
-.tag-3{ --run: 169%; --tilt: -4deg; animation-delay: 0.51s; }
-.tag-4{ --run: -197%; --tilt: 4deg; }
-.tag-5{ --run: -164%; --tilt: 4deg; animation-delay: 0.25s; }
-.tag-6{ --run: -163%; --tilt: 4deg; animation-delay: 0.51s; }
+.tag-1{
+  --run: 145%;
+  --tilt: -4deg;
+}
+.tag-2{
+  --run: 145%;
+  --tilt: -4deg;
+  animation-delay: 0.25s;
+}
+.tag-3{
+  --run: 169%;
+  --tilt: -4deg;
+  animation-delay: 0.51s;
+}
+.tag-4{
+  --run: -197%;
+  --tilt: 4deg;
+}
+.tag-5{
+  --run: -164%;
+  --tilt: 4deg;
+  animation-delay: 0.25s;
+}
+.tag-6{
+  --run: -163%;
+  --tilt: 4deg;
+  animation-delay: 0.51s;
+}
 @keyframes tag-run{
   0%{
     transform: translateX(0) rotate(0deg);
@@ -534,7 +583,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: translateX(0) rotate(0deg);
   }
 }
-/* поймал мышкой - остановилась */
+/* поймал мышкой */
 .tag:hover{
   animation-play-state: paused;
 }
@@ -550,10 +599,9 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: translate(0.6vw, -0.6vw);
   }
 }
-/* chik сначала маленькая и резко становится нормальной */
+/* chik вырастает */
 .chik-lime{
   transform: scale(0.1);
-  /* обратно в нормальный размер - резко, с пружинкой */
   transition: transform 0.1s cubic-bezier(0.3, 1.8, 0.5, 1);
 }
 .popped .chik-lime{
@@ -577,7 +625,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: scale(1);
   }
 }
-/* уменьшается только при наведении */
+/* при наведении уменьшается */
 .popped:hover .chik-lime{
   transform: scale(0.1);
   transition: transform 0.25s ease-in-out;
@@ -598,7 +646,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(0deg);
   }
 }
-/* при наведении звенит как колокольчик */
+/* колокольчик */
 .logo-note-box:hover .logo-note{
   transform-origin: 50% 0;
   animation: bell-ring 1.4s ease-out;
@@ -629,7 +677,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(0deg);
   }
 }
-/* нотки покачиваются пока падают */
+/* падающие нотки */
 .fall-note{
   animation: note-sway 0.59s ease-in-out infinite alternate;
 }
@@ -654,7 +702,7 @@ animation: star-sway 0.34s ease-in-out infinite;
   animation-play-state: paused;
 }
 
-/* птицы спорят: по очереди бросаются друг на друга */
+/* крачки спорят */
 .tern-top{
   animation: tern-top-attack 1.6s ease-in-out infinite;
   transform-origin: 45% 34%;
@@ -691,16 +739,34 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: translate(0, 0) rotate(0deg);
   }
 }
-/* при каждом ударе звезды разлетаются как искры */
+/* звезды как искры */
 .right-3 .sparkle{
   animation: star-burst 1.6s ease-out infinite;
 }
-.sparkle-3-1{ --dx: -34%; --dy: 72%; }
-.sparkle-3-2{ --dx: 70%; --dy: 40%; }
-.sparkle-3-3{ --dx: 75%; --dy: -27%; }
-.sparkle-3-4{ --dx: -59%; --dy: -54%; }
-.sparkle-3-5{ --dx: 17%; --dy: -78%; }
-.sparkle-3-6{ --dx: 44%; --dy: 67%; }
+.sparkle-3-1{
+  --dx: -34%;
+  --dy: 72%;
+}
+.sparkle-3-2{
+  --dx: 70%;
+  --dy: 40%;
+}
+.sparkle-3-3{
+  --dx: 75%;
+  --dy: -27%;
+}
+.sparkle-3-4{
+  --dx: -59%;
+  --dy: -54%;
+}
+.sparkle-3-5{
+  --dx: 17%;
+  --dy: -78%;
+}
+.sparkle-3-6{
+  --dx: 44%;
+  --dy: 67%;
+}
 @keyframes star-burst{
   0%, 22%{
     transform: translate(0, 0) scale(1) rotate(0deg);
@@ -719,7 +785,6 @@ animation: star-sway 0.34s ease-in-out infinite;
   }
 }
 
-/* звезды плавно едут за курсором */
 .right-3 .sparkle{
   transition: translate 0.3s ease-out;
 }
@@ -732,7 +797,7 @@ animation: star-sway 0.34s ease-in-out infinite;
   color: var(--purple);
 }
 
-/* звезды в подвале крутятся в разные стороны */
+/* звезды крутятся */
 .footer-star-img{
   animation: star-spin 14s linear infinite;
 }
@@ -747,14 +812,14 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: rotate(360deg);
   }
 }
-/* курсор пока печатается имя */
+/* курсор у имени */
 .typing::after{
   content: "|";
   animation: cursor-blink 0.29s steps(1) infinite;
 }
 
 /* ФОТО ПТИЦ */
-/* птицы спрятаны в волнах и выныривают, когда долистали */
+/* птицы выныривают из волн */
 .bird{
   transition: translate 0.8s cubic-bezier(0.3, 1.5, 0.5, 1);
 }
@@ -768,20 +833,19 @@ animation: star-sway 0.34s ease-in-out infinite;
 .js-birds.birds-up .bird{
   translate: 0 0;
 }
-/* крачки отлетают от курсора */
 .tern{
   transition: translate 0.5s ease-out;
 }
-/* фирменные нотки при клике на птицу */
-.feather{
+/* нотки при клике на птицу */
+.fly-note{
   position: fixed;
   z-index: 9998;
   height: auto;
   pointer-events: none;
   translate: -50% -50%;
-  animation: feather-fall 1.8s ease-in forwards;
+  animation: fly-note-fall 1.8s ease-in forwards;
 }
-@keyframes feather-fall{
+@keyframes fly-note-fall{
   0%{
     opacity: 1;
     transform: translate(0, 0) rotate(0deg);
@@ -813,12 +877,7 @@ animation: star-sway 0.34s ease-in-out infinite;
     transform: scaleY(1);
   }
 }
-/* фото обычно чуть приглушены, при наведении оживают */
-/* в обычном состоянии фото как в макете */
-.bird, .tern, .parrot{
-  filter: none;
-}
-/* пружинка, чтобы птица как будто выпрыгивала из плаката */
+/* птицы оживают при наведении */
 .bird{
   transition: translate 0.8s cubic-bezier(0.3, 1.5, 0.5, 1), filter 0.3s, scale 0.35s cubic-bezier(0.3, 1.8, 0.5, 1);
 }
@@ -877,7 +936,7 @@ html, html *{
   }
 }
 
-/* если пользователь отключил анимации */
+/* если анимации выключены */
 @media (prefers-reduced-motion: reduce){
   *{
     animation: none !important;

@@ -1,7 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background:#0A0A0A;
-  /* чтобы блоки, которые выезжают сбоку, не давали горизонтальный скролл */
   overflow-x: hidden;
 }
 
@@ -210,7 +209,6 @@ height: 14vw;
   height: 37vw;
   top: 40%;
   left: 53%;
-  /* центрируем через margin, чтобы rotate крутил звезду вокруг ее центра */
   margin-left: -22vw;
   margin-top: -18.5vw;
 }
@@ -223,14 +221,13 @@ height: 14vw;
   left: 55%;
   transform: translateX(-50%);
 }
-/* слои попугая */
+/* попугай: тело и голова */
 .parrot img{
   display: block;
   width: 100%;
   height: auto;
 }
 .parrot-body{
-  /* в теле вырезаем голову, чтобы при повороте не было второй головы */
   -webkit-mask-image: radial-gradient(33% 10% at 48% 13%, transparent 88%, #000 100%);
   mask-image: radial-gradient(33% 10% at 48% 13%, transparent 88%, #000 100%);
 }
@@ -501,13 +498,6 @@ height: 14vw;
 .drop-ball-1, .drop-ball-2, .drop-ball-3, .drop-ball-4, .drop-ball-5{
   width: 36.1%;
 }
-/* круги-блоки из старой версии страницы, если браузер её закэшировал */
-.ball{
-  width: 100%;
-  padding-top: 100%;
-  border-radius: 50%;
-  background: var(--black);
-}
 .drop-ball-1{
   top: 54%;
   left: 6.4%;
@@ -701,7 +691,7 @@ height: 14vw;
   left: 53.5%;
   width: 33%;
 }
-/* птицы без звезд, чтобы их можно было переворачивать отдельно */
+/* крачки */
 .birds-box{
   position: absolute;
   top: 0;
@@ -711,20 +701,12 @@ height: 14vw;
   overflow: hidden;
   pointer-events: none;
 }
-.birds-terns, .tern{
+.tern{
   position: absolute;
   top: 0;
   left: -17.5%;
   width: 117.5%;
   height: 100%;
-}
-.birds-flying{
-  position: absolute;
-  top: 0;
-  left: 34.2%;
-  width: 65.8%;
-  height: 100%;
-  object-fit: cover;
 }
 .sparkle-3-1{
   top: 74.7%;
@@ -765,7 +747,7 @@ height: 14vw;
   overflow: hidden;
   background: var(--black);
 }
-/* обертка размером как старая обрезанная звезда, внутри звезда целиком */
+/* звезды */
 .footer-star-1{
   position: absolute;
   bottom: 0;

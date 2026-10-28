@@ -75,12 +75,22 @@
   }
 }
 @media (max-width: 1023px){
-  /* остальные звезды первого экрана */
-  .star3{ width: 19.6vw; }
-  .star4, .star5{ width: 6vw; }
-  .star6{ width: 5.6vw; }
-  .star7{ width: 5.4vw; }
-  .star8{ width: 8vw; }
+  /* звезды */
+  .star3{
+    width: 19.6vw;
+  }
+  .star4, .star5{
+    width: 6vw;
+  }
+  .star6{
+    width: 5.6vw;
+  }
+  .star7{
+    width: 5.4vw;
+  }
+  .star8{
+    width: 8vw;
+  }
 
   /* ЭКРАН 2 */
   .screen-2{

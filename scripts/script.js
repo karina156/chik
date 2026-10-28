@@ -1,223 +1,16 @@
-// эффект печатной машинки для слогана
-const slogan = document.getElementById('slogan');
-const text = 'Мы — птицы,\nи мы будем\nчирикать';
-let i = 0;
-let deleting = false;
-
-function typing() {
-  if (!deleting) {
-    i++;
-  } else {
-    i--;
-  }
-
-  // переносы строк меняем на <br>
-  slogan.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
-
-  if (!deleting && i === text.length) {
-    // напечатали всё, ждём и стираем
-    deleting = true;
-    setTimeout(typing, 1000);
-    return;
-  }
-  if (deleting && i === 0) {
-    // стерли, печатаем заново
-    deleting = false;
-    setTimeout(typing, 260);
-    return;
-  }
-
-  if (deleting) {
-    setTimeout(typing, 16);
-  } else {
-    setTimeout(typing, 45);
-  }
-}
-
-slogan.innerHTML = '';
-typing();
-
-// пунктир и ласточка
-// ласточка сама рисует пунктир: линия появляется у нее за хвостом
-const flight = document.getElementById('flight');
-const drawLine = flight.querySelector('.draw-line');
-const swallow = flight.querySelector('.swallow');
-const lineLength = drawLine.getTotalLength();
-const passTime = 1700; // за сколько мс пролетает линию в одну сторону
-let started = false;
-let flightStart = 0;
-
-function fly(now) {
-  if (!flightStart) flightStart = now;
-  const k = ((now - flightStart) / passTime) % 2;
-  const firstPass = (now - flightStart) < passTime;
-  // туда и обратно: 0 -> 1 -> 0
-  const pos = k < 1 ? k : 2 - k;
-
-  // в первый раз линия рисуется ровно до ласточки
-  drawLine.style.strokeDashoffset = firstPass ? 1 - pos : 0;
-
-  const point = drawLine.getPointAtLength(pos * lineLength);
-  swallow.setAttribute('transform', 'translate(' + point.x + ' ' + point.y + ')');
-  requestAnimationFrame(fly);
-}
-
-// запускаем, когда блок появился на экране
-const observer = new IntersectionObserver(function (entries) {
-  if (entries[0].isIntersecting && !started) {
-    started = true;
-    flight.classList.add('flying');
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      drawLine.style.strokeDashoffset = 0;
-    } else {
-      requestAnimationFrame(fly);
-    }
-  }
-}, { threshold: 0.4 });
-
-observer.observe(flight);
-
-// буквы chik падают, когда колонку видно
-const chikCol = document.getElementById('chik-col');
-
-const chikObserver = new IntersectionObserver(function (entries) {
-  if (entries[0].isIntersecting) {
-    chikCol.classList.add('falling');
-    chikObserver.disconnect();
-  }
-}, { threshold: 0.3 });
-
-chikObserver.observe(chikCol);
-
-// падающие нотки
-const notesBox = document.getElementById('notes-fall');
-const notes = [];
-
-document.querySelectorAll('.fall-note').forEach(function (el) {
-  const note = {
-    el: el,
-    y: Number(el.dataset.top),          // где нотка сейчас, в % от высоты блока
-    speed: 0.28 + Math.random() * 0.22,  // скорость, % за кадр
-    caught: false
-  };
-  // ловим мышкой
-  el.addEventListener('mouseenter', function () {
-    note.caught = true;
-    el.classList.add('caught');
-  });
-  el.addEventListener('mouseleave', function () {
-    note.caught = false;
-    el.classList.remove('caught');
-  });
-  notes.push(note);
-});
-
-// пересекаются ли нотки по горизонтали
-// у svg нет offsetLeft, поэтому берем getBoundingClientRect
-function sameColumn(a, b) {
-  const ra = a.el.getBoundingClientRect();
-  const rb = b.el.getBoundingClientRect();
-  return ra.left < rb.right && rb.left < ra.right;
-}
-
-function fall() {
-  const boxH = notesBox.offsetHeight;
-
-  // сначала двигаем нижние, чтобы верхние упирались в них
-  notes.sort(function (a, b) { return b.y - a.y; });
-
-  notes.forEach(function (note) {
-    if (note.caught) return; // пойманная стоит
-
-    const h = note.el.getBoundingClientRect().height / boxH * 100;
-    let newY = note.y + note.speed;
-    let blocked = false;
-
-    // упираемся только в пойманную нотку или в ту, что уже на ней стоит
-    notes.forEach(function (other) {
-      if (other === note) return;
-      if (!other.caught && !other.stuck) return;
-      if (!sameColumn(note, other)) return;
-      // нотка должна быть над другой, а не уже внутри нее
-      if (note.y + h <= other.y + 0.5 && newY + h > other.y) {
-        newY = other.y - h;
-        blocked = true;
-      }
-    });
-
-    note.stuck = blocked;
-    note.y = newY;
-
-    // упала за низ - начинаем сверху
-    if (note.y > 100) {
-      note.y = -h - Math.random() * 20;
-      note.stuck = false;
-    }
-    note.el.style.top = note.y + '%';
-  });
-
-  requestAnimationFrame(fall);
-}
-
-// если человек выключил анимации - нотки просто стоят
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  requestAnimationFrame(fall);
-}
-
-// надпись chik резко появляется из маленькой
-const chikBox = document.querySelector('.chik-box');
-
-const chikBoxObserver = new IntersectionObserver(function (entries) {
-  if (entries[0].isIntersecting) {
-    chikBox.classList.add('popped');
-    chikBoxObserver.disconnect();
-  }
-}, { threshold: 0.5 });
-
-chikBoxObserver.observe(chikBox);
-
-// звездочки справа двигаются за курсором
-const rightBlock = document.querySelector('.right-3');
-const rightStars = rightBlock.querySelectorAll('.sparkle');
-
-rightBlock.addEventListener('mousemove', function (e) {
-  const rect = rightBlock.getBoundingClientRect();
-  // где курсор относительно центра блока, от -1 до 1
-  const mx = (e.clientX - rect.left) / rect.width * 2 - 1;
-  const my = (e.clientY - rect.top) / rect.height * 2 - 1;
-
-  rightStars.forEach(function (star, i) {
-    // у каждой звезды своя сила, четные бегут от курсора, нечетные к нему
-    const power = (i + 2) * 0.8;
-    const side = i % 2 === 0 ? -1 : 1;
-    const x = mx * power * side;
-    const y = my * power * side;
-    // translate отдельно от transform, чтобы не ломать флип
-    star.style.translate = x + 'vw ' + y + 'vw';
-  });
-});
-
-rightBlock.addEventListener('mouseleave', function () {
-  rightStars.forEach(function (star) {
-    star.style.translate = '0 0';
-  });
-});
-
-// ---------------------------------------------------------
-// общие штуки
+// если в системе выключены анимации, ничего не двигаем
 const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ---------------------------------------------------------
-// БЕГУЩАЯ СТРОКА
+/* БЕГУЩАЯ СТРОКА */
 const marquee = document.querySelector('.marquee');
 const track = document.querySelector('.marquee__track');
 
-// режем текст на буквы, чтобы они прыгали волной
+// делим текст на буквы чтобы они прыгали волной
 let letterIndex = 0;
 track.querySelectorAll('span').forEach(function (span) {
-  const text = span.textContent;
+  const words = span.textContent;
   span.textContent = '';
-  for (const ch of text) {
+  for (const ch of words) {
     const letter = document.createElement('span');
     letter.className = 'ltr';
     letter.textContent = ch;
@@ -229,54 +22,68 @@ track.querySelectorAll('span').forEach(function (span) {
 
 let marqueeX = 0;
 let marqueeHover = false;
-let marqueeSpeed = 1;   // 1 - обычная скорость, при наведении меньше
-let scrollBoost = 0;    // добавка от скролла
+let marqueeSpeed = 1;
+let scrollBoost = 0;
 let lastScroll = window.scrollY;
 let lastTime = performance.now();
 
-marquee.addEventListener('mouseenter', function () { marqueeHover = true; });
-marquee.addEventListener('mouseleave', function () { marqueeHover = false; });
+marquee.addEventListener('mouseenter', function () {
+  marqueeHover = true;
+});
+marquee.addEventListener('mouseleave', function () {
+  marqueeHover = false;
+});
 
+// скролл вниз - быстрее, вверх - едет обратно
 window.addEventListener('scroll', function () {
   const delta = window.scrollY - lastScroll;
   lastScroll = window.scrollY;
-  // вниз - быстрее, вверх - едет в обратную сторону
   scrollBoost += delta * 0.004;
   scrollBoost = Math.max(-3, Math.min(3, scrollBoost));
-}, { passive: true });
+});
 
 function runMarquee(now) {
   const dt = Math.min(now - lastTime, 50);
   lastTime = now;
   const half = track.scrollWidth / 2;
-  const base = half / 6760; // как было в css: половина строки за 6.76с
+  const base = half / 6760;
 
-  const target = marqueeHover ? 0.2 : 1;
-  marqueeSpeed += (target - marqueeSpeed) * 0.08; // плавно тормозим
+  // при наведении тормозит
+  if (marqueeHover) {
+    marqueeSpeed += (0.2 - marqueeSpeed) * 0.08;
+  } else {
+    marqueeSpeed += (1 - marqueeSpeed) * 0.08;
+  }
   const v = base * marqueeSpeed + scrollBoost;
-  scrollBoost *= 0.93; // скролл кончился - добавка затухает
+  scrollBoost = scrollBoost * 0.93;
 
   marqueeX -= v * dt;
-  if (marqueeX <= -half) marqueeX += half;
-  if (marqueeX > 0) marqueeX -= half;
+  if (marqueeX <= -half) {
+    marqueeX += half;
+  }
+  if (marqueeX > 0) {
+    marqueeX -= half;
+  }
   track.style.transform = 'translateX(' + marqueeX + 'px)';
   requestAnimationFrame(runMarquee);
 }
-if (!noMotion) requestAnimationFrame(runMarquee);
 
-// ---------------------------------------------------------
-// ПОПУГАЙ ЧИРИКАЕТ
+if (!noMotion) {
+  requestAnimationFrame(runMarquee);
+}
+
+/* ЭКРАН 1 */
+// попугай чирикает по клику
 const parrot = document.querySelector('.parrot');
 const right1 = document.querySelector('.right-1');
 const beakNotes = ['note-1', 'note-2', 'note-5', 'note-6', 'note-7'];
 
 parrot.addEventListener('click', function () {
-  // перезапускаем прыжок
   parrot.classList.remove('chirp');
   void parrot.offsetWidth;
   parrot.classList.add('chirp');
 
-  // где клюв
+  // клюв
   const p = parrot.getBoundingClientRect();
   const box = right1.getBoundingClientRect();
   const beakX = p.left + p.width * 0.3 - box.left;
@@ -293,44 +100,150 @@ parrot.addEventListener('click', function () {
     n.style.setProperty('--dy', (-8 - Math.random() * 14) + 'vw');
     n.style.setProperty('--rot', (Math.random() * 120 - 60) + 'deg');
     n.style.animationDelay = (i * 0.06) + 's';
-    n.addEventListener('animationend', function () { n.remove(); });
+    n.addEventListener('animationend', function () {
+      n.remove();
+    });
     right1.appendChild(n);
   }
 });
 
-// ---------------------------------------------------------
-// БОЛЬШАЯ ЗВЕЗДА СМОТРИТ НА КУРСОР
+// голова попугая смотрит на мышку, если мышка стоит - моргает
+const parrotHead = document.querySelector('.parrot-head');
+const eyelid = document.querySelector('.eyelid');
+let idleTimer = null;
+let blinkTimer = null;
+
+function blink() {
+  eyelid.classList.remove('blink');
+  void eyelid.offsetWidth;
+  eyelid.classList.add('blink');
+}
+
+// большая звезда поворачивается за мышкой
 const bigStar = document.querySelector('.star');
 let starAngle = 0;
 let starTarget = 0;
 
 document.addEventListener('mousemove', function (e) {
-  const r = bigStar.getBoundingClientRect();
-  const cx = r.left + r.width / 2;
-  const cy = r.top + r.height / 2;
-  starTarget = Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI;
+  if (noMotion) {
+    return;
+  }
+
+  const head = parrotHead.getBoundingClientRect();
+  const hx = head.left + head.width * 0.48;
+  const hy = head.top + head.height * 0.13;
+  let angle = (e.clientX - hx) / (window.innerWidth / 2) * 15;
+  if (e.clientX < hx) {
+    angle -= (e.clientY - hy) / (window.innerHeight / 2) * 6;
+  } else {
+    angle += (e.clientY - hy) / (window.innerHeight / 2) * 6;
+  }
+  angle = Math.max(-15, Math.min(15, angle));
+  parrotHead.style.rotate = angle + 'deg';
+
+  clearTimeout(idleTimer);
+  clearInterval(blinkTimer);
+  idleTimer = setTimeout(function () {
+    blink();
+    blinkTimer = setInterval(blink, 1800);
+  }, 1200);
+
+  const star = bigStar.getBoundingClientRect();
+  const sx = star.left + star.width / 2;
+  const sy = star.top + star.height / 2;
+  starTarget = Math.atan2(e.clientY - sy, e.clientX - sx) * 180 / Math.PI;
 });
 
 function turnStar() {
-  // самый короткий поворот
   let diff = starTarget - starAngle;
   diff = ((diff + 540) % 360) - 180;
-  starAngle += diff * 0.03; // медленно
+  starAngle += diff * 0.03;
   bigStar.style.rotate = starAngle + 'deg';
   requestAnimationFrame(turnStar);
 }
-if (!noMotion) requestAnimationFrame(turnStar);
 
-// ---------------------------------------------------------
-// ПТИЦА КРИЧИТ СИЛЬНЕЕ, ВОЛНЫ КАК ЭКВАЛАЙЗЕР
+if (!noMotion) {
+  requestAnimationFrame(turnStar);
+}
+
+/* ЭКРАН 2 */
+// слоган печатается
+const slogan = document.getElementById('slogan');
+const text = 'Мы — птицы,\nи мы будем\nчирикать';
+let i = 0;
+let deleting = false;
+
+function typing() {
+  if (!deleting) {
+    i++;
+  } else {
+    i--;
+  }
+
+  slogan.innerHTML = text.slice(0, i).replace(/\n/g, '<br>');
+
+  // напечатали - ждем и стираем
+  if (!deleting && i === text.length) {
+    deleting = true;
+    setTimeout(typing, 1000);
+    return;
+  }
+  // стерли - печатаем заново
+  if (deleting && i === 0) {
+    deleting = false;
+    setTimeout(typing, 260);
+    return;
+  }
+
+  if (deleting) {
+    setTimeout(typing, 16);
+  } else {
+    setTimeout(typing, 45);
+  }
+}
+
+slogan.innerHTML = '';
+typing();
+
+// птицы и волны
 const left2 = document.querySelector('.left-2');
 const waves = left2.querySelectorAll('.wave');
+const birdBig = left2.querySelector('.bird-big');
+const birdSmall = left2.querySelector('.bird-small');
 
+// птицы выныривают из волн
+if (!noMotion) {
+  left2.classList.add('js-birds');
+  const birdsObserver = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      left2.classList.add('birds-up');
+      birdsObserver.disconnect();
+    }
+  }, { threshold: 0.4 });
+  birdsObserver.observe(left2);
+}
+
+// сверху большая птица, снизу маленькая
+left2.addEventListener('mousemove', function (e) {
+  const r = left2.getBoundingClientRect();
+  const y = (e.clientY - r.top) / r.height;
+  birdBig.classList.toggle('lit', y < 0.55);
+  birdSmall.classList.toggle('lit', y >= 0.55);
+});
+
+left2.addEventListener('mouseleave', function () {
+  birdBig.classList.remove('lit');
+  birdSmall.classList.remove('lit');
+});
+
+// по клику птица кричит сильнее, а волны прыгают
 left2.addEventListener('click', function (e) {
   const r = left2.getBoundingClientRect();
   const y = (e.clientY - r.top) / r.height;
-  // сверху большая птица, снизу маленькая
-  const bird = left2.querySelector(y < 0.55 ? '.bird-big' : '.bird-small');
+  let bird = birdSmall;
+  if (y < 0.55) {
+    bird = birdBig;
+  }
 
   bird.animate([
     { rotate: '0deg', scale: '1' },
@@ -340,26 +253,236 @@ left2.addEventListener('click', function (e) {
     { rotate: '0deg', scale: '1' }
   ], { duration: 700, easing: 'ease-in-out' });
 
-  waves.forEach(function (wave, i) {
+  waves.forEach(function (wave, k) {
     wave.animate([
       { scale: '1 1' },
       { scale: '1 1.35' },
       { scale: '1 0.9' },
       { scale: '1 1.2' },
       { scale: '1 1' }
-    ], { duration: 600, delay: i * 60, easing: 'ease-in-out' });
+    ], { duration: 600, delay: k * 60, easing: 'ease-in-out' });
   });
 });
 
-// ---------------------------------------------------------
-// ИМЯ В ПОДВАЛЕ ПЕЧАТАЕТСЯ
+// ласточка рисует пунктир и летает по нему
+const flight = document.getElementById('flight');
+const drawLine = flight.querySelector('.draw-line');
+const swallow = flight.querySelector('.swallow');
+const lineLength = drawLine.getTotalLength();
+const passTime = 1700;
+let started = false;
+let flightStart = 0;
+
+function fly(now) {
+  if (!flightStart) {
+    flightStart = now;
+  }
+  const k = ((now - flightStart) / passTime) % 2;
+  let pos = k;
+  if (k > 1) {
+    pos = 2 - k;
+  }
+
+  // первый раз линия рисуется за ласточкой
+  if (now - flightStart < passTime) {
+    drawLine.style.strokeDashoffset = 1 - pos;
+  } else {
+    drawLine.style.strokeDashoffset = 0;
+  }
+
+  const point = drawLine.getPointAtLength(pos * lineLength);
+  swallow.setAttribute('transform', 'translate(' + point.x + ' ' + point.y + ')');
+  requestAnimationFrame(fly);
+}
+
+const observer = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting && !started) {
+    started = true;
+    flight.classList.add('flying');
+    if (noMotion) {
+      drawLine.style.strokeDashoffset = 0;
+    } else {
+      requestAnimationFrame(fly);
+    }
+  }
+}, { threshold: 0.4 });
+
+observer.observe(flight);
+
+/* ЭКРАН 3 */
+// надпись chik вырастает
+const chikBox = document.querySelector('.chik-box');
+
+const chikBoxObserver = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting) {
+    chikBox.classList.add('popped');
+    chikBoxObserver.disconnect();
+  }
+}, { threshold: 0.5 });
+
+chikBoxObserver.observe(chikBox);
+
+// падающие нотки, их можно поймать мышкой
+const notesBox = document.getElementById('notes-fall');
+const notes = [];
+
+document.querySelectorAll('.fall-note').forEach(function (el) {
+  const note = {
+    el: el,
+    y: Number(el.dataset.top),
+    speed: 0.28 + Math.random() * 0.22,
+    caught: false
+  };
+  el.addEventListener('mouseenter', function () {
+    note.caught = true;
+    el.classList.add('caught');
+  });
+  el.addEventListener('mouseleave', function () {
+    note.caught = false;
+    el.classList.remove('caught');
+  });
+  notes.push(note);
+});
+
+// нотки друг над другом или нет
+function sameColumn(a, b) {
+  const ra = a.el.getBoundingClientRect();
+  const rb = b.el.getBoundingClientRect();
+  return ra.left < rb.right && rb.left < ra.right;
+}
+
+function fall() {
+  const boxH = notesBox.offsetHeight;
+
+  // сначала нижние
+  notes.sort(function (a, b) {
+    return b.y - a.y;
+  });
+
+  notes.forEach(function (note) {
+    if (note.caught) {
+      return;
+    }
+
+    const h = note.el.getBoundingClientRect().height / boxH * 100;
+    let newY = note.y + note.speed;
+    let blocked = false;
+
+    // упираемся в пойманную нотку или в ту что на ней стоит
+    notes.forEach(function (other) {
+      if (other === note) {
+        return;
+      }
+      if (!other.caught && !other.stuck) {
+        return;
+      }
+      if (!sameColumn(note, other)) {
+        return;
+      }
+      if (note.y + h <= other.y + 0.5 && newY + h > other.y) {
+        newY = other.y - h;
+        blocked = true;
+      }
+    });
+
+    note.stuck = blocked;
+    note.y = newY;
+
+    // упала вниз - снова сверху
+    if (note.y > 100) {
+      note.y = -h - Math.random() * 20;
+      note.stuck = false;
+    }
+    note.el.style.top = note.y + '%';
+  });
+
+  requestAnimationFrame(fall);
+}
+
+if (!noMotion) {
+  requestAnimationFrame(fall);
+}
+
+// буквы chik падают
+const chikCol = document.getElementById('chik-col');
+
+const chikObserver = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting) {
+    chikCol.classList.add('falling');
+    chikObserver.disconnect();
+  }
+}, { threshold: 0.3 });
+
+chikObserver.observe(chikCol);
+
+// правый блок: звезды за мышкой, крачки пугаются
+const right3 = document.querySelector('.right-3');
+const rightStars = right3.querySelectorAll('.sparkle');
+const terns = right3.querySelectorAll('.tern');
+
+right3.addEventListener('mousemove', function (e) {
+  const rect = right3.getBoundingClientRect();
+  const mx = (e.clientX - rect.left) / rect.width * 2 - 1;
+  const my = (e.clientY - rect.top) / rect.height * 2 - 1;
+
+  // четные звезды бегут от мышки, нечетные к ней
+  rightStars.forEach(function (star, k) {
+    const power = (k + 2) * 0.8;
+    let side = 1;
+    if (k % 2 === 0) {
+      side = -1;
+    }
+    star.style.translate = (mx * power * side) + 'vw ' + (my * power * side) + 'vw';
+  });
+
+  terns.forEach(function (tern) {
+    const r = tern.getBoundingClientRect();
+    let cx = r.left + r.width * 0.55;
+    let cy = r.top + r.height * 0.71;
+    if (tern.classList.contains('tern-top')) {
+      cx = r.left + r.width * 0.45;
+      cy = r.top + r.height * 0.34;
+    }
+    const dx = cx - e.clientX;
+    const dy = cy - e.clientY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const near = r.width * 0.45;
+
+    tern.classList.toggle('lit', dist < r.width * 0.7);
+
+    // чем ближе мышка, тем дальше отлетает
+    if (dist < near) {
+      const push = (near - dist) / near * 18;
+      tern.style.translate = (dx / dist * push) + 'vw ' + (dy / dist * push) + 'vw';
+    } else {
+      tern.style.translate = '0 0';
+    }
+  });
+});
+
+right3.addEventListener('mouseleave', function () {
+  rightStars.forEach(function (star) {
+    star.style.translate = '0 0';
+  });
+  terns.forEach(function (tern) {
+    tern.style.translate = '0 0';
+    tern.classList.remove('lit');
+  });
+});
+
+/* ПОДВАЛ */
+// имя печатается
 const footerName = document.getElementById('footer-name');
 const nameText = footerName.textContent;
 
 const footerObserver = new IntersectionObserver(function (entries) {
-  if (!entries[0].isIntersecting) return;
+  if (!entries[0].isIntersecting) {
+    return;
+  }
   footerObserver.disconnect();
-  if (noMotion) return;
+  if (noMotion) {
+    return;
+  }
   let k = 0;
   footerName.textContent = '';
   footerName.classList.add('typing');
@@ -368,20 +491,26 @@ const footerObserver = new IntersectionObserver(function (entries) {
     footerName.textContent = nameText.slice(0, k);
     if (k >= nameText.length) {
       clearInterval(timer);
-      setTimeout(function () { footerName.classList.remove('typing'); }, 1200);
+      setTimeout(function () {
+        footerName.classList.remove('typing');
+      }, 1200);
     }
   }, 70);
 }, { threshold: 0.5 });
+
 footerObserver.observe(document.querySelector('.footer'));
 
-// ---------------------------------------------------------
-// ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
-// классы ставим скриптом: если js не загрузится, сайт все равно будет виден
+/* ВЕСЬ САЙТ */
+// блоки выезжают когда до них долистали
 const revealList = [
-  ['.left-1', 'reveal-left'], ['.right-1', 'reveal-right'],
-  ['.left-2', 'reveal-right'], ['.right-2', 'reveal-left'],
-  ['.left-3', 'reveal-left'], ['.right-3', 'reveal-right'],
-  ['.footer-student', 'reveal-up'], ['.footer-curators', 'reveal-up']
+  ['.left-1', 'reveal-left'],
+  ['.right-1', 'reveal-right'],
+  ['.left-2', 'reveal-right'],
+  ['.right-2', 'reveal-left'],
+  ['.left-3', 'reveal-left'],
+  ['.right-3', 'reveal-right'],
+  ['.footer-student', 'reveal-up'],
+  ['.footer-curators', 'reveal-up']
 ];
 
 if (!noMotion) {
@@ -401,164 +530,39 @@ if (!noMotion) {
   });
 }
 
-// ---------------------------------------------------------
-// СЛЕД ИЗ НОТОК ЗА КУРСОРОМ
-if (!noMotion && window.matchMedia('(pointer: fine)').matches) {
-  let trailX = 0;
-  let trailY = 0;
-  document.addEventListener('mousemove', function (e) {
-    const dx = e.clientX - trailX;
-    const dy = e.clientY - trailY;
-    if (dx * dx + dy * dy < 40 * 40) return; // не чаще чем раз в 40px
-    trailX = e.clientX;
-    trailY = e.clientY;
-    const t = document.createElement('img');
-    t.src = '../chik/images/cursor-note.png';
-    t.className = 'trail-note';
-    t.alt = '';
-    t.style.left = e.clientX + 'px';
-    t.style.top = e.clientY + 'px';
-    t.style.setProperty('--r', (Math.random() * 80 - 40) + 'deg');
-    t.addEventListener('animationend', function () { t.remove(); });
-    document.body.appendChild(t);
-  });
-}
-
-// ---------------------------------------------------------
-// ФОТО ПТИЦ
-
-// птицы выныривают из волн, когда до них долистали
-if (!noMotion) {
-  left2.classList.add('js-birds');
-  const birdsObserver = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) {
-      left2.classList.add('birds-up');
-      birdsObserver.disconnect();
-    }
-  }, { threshold: 0.4 });
-  birdsObserver.observe(left2);
-}
-
-// крачки отлетают от курсора
-const right3 = document.querySelector('.right-3');
-const terns = right3.querySelectorAll('.tern');
-
-right3.addEventListener('mousemove', function (e) {
-  terns.forEach(function (tern) {
-    // центр птицы - примерно середина ее непрозрачной части
-    const r = tern.getBoundingClientRect();
-    const cx = r.left + r.width * (tern.classList.contains('tern-top') ? 0.45 : 0.55);
-    const cy = r.top + r.height * (tern.classList.contains('tern-top') ? 0.34 : 0.71);
-    const dx = cx - e.clientX;
-    const dy = cy - e.clientY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const near = r.width * 0.45;
-    if (dist < near) {
-      // чем ближе курсор, тем дальше отлетает
-      const push = (near - dist) / near * 18;
-      tern.style.translate = (dx / dist * push) + 'vw ' + (dy / dist * push) + 'vw';
-    } else {
-      tern.style.translate = '0 0';
-    }
-  });
-});
-right3.addEventListener('mouseleave', function () {
-  terns.forEach(function (tern) { tern.style.translate = '0 0'; });
-});
-
-// фирменные нотки разлетаются при клике на любую птицу
+// нотки разлетаются при клике на птицу
 const brandNotes = ['note-1', 'note-2', 'note-3', 'note-4', 'note-5', 'note-6', 'note-7'];
 
-function dropFeathers(x, y) {
-  if (noMotion) return;
-  for (let i = 0; i < 8; i++) {
-    const f = document.createElement('img');
-    f.src = '../chik/images/' + brandNotes[Math.floor(Math.random() * brandNotes.length)] + '.svg';
-    f.className = 'feather';
-    f.alt = '';
-    f.style.left = x + 'px';
-    f.style.top = y + 'px';
-    f.style.width = (2 + Math.random() * 2) + 'vw';
-    f.style.setProperty('--fx', (Math.random() * 16 - 8) + 'vw');
-    f.style.setProperty('--fy', (Math.random() * -8) + 'vw');
-    f.style.setProperty('--fr', (Math.random() * 360) + 'deg');
-    f.style.animationDelay = (Math.random() * 0.15) + 's';
-    f.addEventListener('animationend', function () { f.remove(); });
-    document.body.appendChild(f);
+function dropNotes(x, y) {
+  if (noMotion) {
+    return;
+  }
+  for (let k = 0; k < 8; k++) {
+    const n = document.createElement('img');
+    n.src = '../chik/images/' + brandNotes[Math.floor(Math.random() * brandNotes.length)] + '.svg';
+    n.className = 'fly-note';
+    n.alt = '';
+    n.style.left = x + 'px';
+    n.style.top = y + 'px';
+    n.style.width = (2 + Math.random() * 2) + 'vw';
+    n.style.setProperty('--fx', (Math.random() * 16 - 8) + 'vw');
+    n.style.setProperty('--fy', (Math.random() * -8) + 'vw');
+    n.style.setProperty('--fr', (Math.random() * 360) + 'deg');
+    n.style.animationDelay = (Math.random() * 0.15) + 's';
+    n.addEventListener('animationend', function () {
+      n.remove();
+    });
+    document.body.appendChild(n);
   }
 }
 
 ['.left-2', '.parrot', '.right-3', '#flight'].forEach(function (sel) {
   document.querySelector(sel).addEventListener('click', function (e) {
-    dropFeathers(e.clientX, e.clientY);
+    dropNotes(e.clientX, e.clientY);
   });
 });
 
-// ---------------------------------------------------------
-// ГОЛОВА ПОПУГАЯ СЛЕДИТ ЗА КУРСОРОМ, ЕСЛИ МЫШКА СТОИТ - МОРГАЕТ
-const parrotHead = document.querySelector('.parrot-head');
-const eyelid = document.querySelector('.eyelid');
-let idleTimer = null;
-let blinkTimer = null;
-
-function blink() {
-  eyelid.classList.remove('blink');
-  void eyelid.offsetWidth;
-  eyelid.classList.add('blink');
-}
-
-document.addEventListener('mousemove', function (e) {
-  if (noMotion) return;
-  const r = parrotHead.getBoundingClientRect();
-  const hx = r.left + r.width * 0.48;
-  const hy = r.top + r.height * 0.13;
-  // наклон от -15 до 15 градусов в сторону мышки
-  let angle = (e.clientX - hx) / (window.innerWidth / 2) * 15;
-  angle += (e.clientY - hy) / (window.innerHeight / 2) * 6 * (e.clientX < hx ? -1 : 1);
-  angle = Math.max(-15, Math.min(15, angle));
-  parrotHead.style.rotate = angle + 'deg';
-
-  // мышка остановилась на 1.2с - начинаем моргать
-  clearTimeout(idleTimer);
-  clearInterval(blinkTimer);
-  idleTimer = setTimeout(function () {
-    blink();
-    blinkTimer = setInterval(blink, 1800);
-  }, 1200);
-});
-
-// ---------------------------------------------------------
-// ФОТО ОЖИВАЮТ ПРИ НАВЕДЕНИИ
-const birdBig = left2.querySelector('.bird-big');
-const birdSmall = left2.querySelector('.bird-small');
-
-left2.addEventListener('mousemove', function (e) {
-  const r = left2.getBoundingClientRect();
-  const y = (e.clientY - r.top) / r.height;
-  birdBig.classList.toggle('lit', y < 0.55);
-  birdSmall.classList.toggle('lit', y >= 0.55);
-});
-left2.addEventListener('mouseleave', function () {
-  birdBig.classList.remove('lit');
-  birdSmall.classList.remove('lit');
-});
-
-// крачки светятся, когда курсор рядом
-right3.addEventListener('mousemove', function (e) {
-  terns.forEach(function (tern) {
-    const r = tern.getBoundingClientRect();
-    const cx = r.left + r.width * (tern.classList.contains('tern-top') ? 0.45 : 0.55);
-    const cy = r.top + r.height * (tern.classList.contains('tern-top') ? 0.34 : 0.71);
-    const dist = Math.hypot(cx - e.clientX, cy - e.clientY);
-    tern.classList.toggle('lit', dist < r.width * 0.7);
-  });
-});
-right3.addEventListener('mouseleave', function () {
-  terns.forEach(function (tern) { tern.classList.remove('lit'); });
-});
-
-// ---------------------------------------------------------
-// ГЛИТЧ: иногда фото раздваивается на салатовую и фиолетовую копии
+// глитч на фотках птиц
 const glitchPhotos = document.querySelectorAll('.bird, .tern, .parrot');
 
 function glitch() {
@@ -571,4 +575,33 @@ function glitch() {
   ], { duration: 250, easing: 'steps(3)' });
   setTimeout(glitch, 1200 + Math.random() * 2000);
 }
-if (!noMotion) setTimeout(glitch, 1500);
+
+if (!noMotion) {
+  setTimeout(glitch, 1500);
+}
+
+// след из ноток за курсором
+if (!noMotion && window.matchMedia('(pointer: fine)').matches) {
+  let trailX = 0;
+  let trailY = 0;
+  document.addEventListener('mousemove', function (e) {
+    const dx = e.clientX - trailX;
+    const dy = e.clientY - trailY;
+    if (dx * dx + dy * dy < 1600) {
+      return;
+    }
+    trailX = e.clientX;
+    trailY = e.clientY;
+    const t = document.createElement('img');
+    t.src = '../chik/images/cursor-note.png';
+    t.className = 'trail-note';
+    t.alt = '';
+    t.style.left = e.clientX + 'px';
+    t.style.top = e.clientY + 'px';
+    t.style.setProperty('--r', (Math.random() * 80 - 40) + 'deg');
+    t.addEventListener('animationend', function () {
+      t.remove();
+    });
+    document.body.appendChild(t);
+  });
+}
