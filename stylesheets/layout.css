@@ -418,12 +418,72 @@ height: 14vw;
   text-align: center;
   color: var(--lime);
 }
-.chik-vertical{
+/* колонка с буквами chik */
+.chik-col{
   position: absolute;
   top: 0;
   left: 66.5%;
   width: 33.5%;
   height: 100%;
+  overflow: hidden;
+  background: var(--lime);
+}
+.drop{
+  position: absolute;
+}
+.hit{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.drop-c{
+  top: 37.4%;
+  left: 14%;
+  width: 63.9%;
+}
+.drop-h{
+  top: 47.4%;
+  left: 35.5%;
+  width: 60.9%;
+}
+.drop-k{
+  top: 68.8%;
+  left: 4.5%;
+  width: 76.8%;
+}
+.drop-i{
+  top: 80.7%;
+  left: 31.8%;
+  width: 54%;
+}
+/* круги */
+.drop-ball-1, .drop-ball-2, .drop-ball-3, .drop-ball-4, .drop-ball-5{
+  width: 36.1%;
+}
+.ball{
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--black);
+}
+.drop-ball-1{
+  top: 54%;
+  left: 6.4%;
+}
+.drop-ball-2{
+  top: 41.8%;
+  left: 61.8%;
+}
+.drop-ball-3{
+  top: 88.1%;
+  left: 61.5%;
+}
+.drop-ball-4{
+  top: 87.3%;
+  left: 6.4%;
+}
+.drop-ball-5{
+  top: 68.3%;
+  left: 61.5%;
 }
 
 /* ЭКРАН 3 */

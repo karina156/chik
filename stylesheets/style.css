@@ -1,5 +1,5 @@
-@import 'reset.css';
-@import 'fonts.css';
-@import 'layout.css';
-@import 'animation.css';
-@import 'adaptive.css';
+@import 'reset.css?v=3';
+@import 'fonts.css?v=3';
+@import 'layout.css?v=3';
+@import 'animation.css?v=3';
+@import 'adaptive.css?v=3';

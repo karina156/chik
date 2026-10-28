@@ -253,23 +253,73 @@ animation: star-sway 0.8s ease-in-out infinite;
     stroke-dashoffset: 0;
   }
 }
-/* надпись chik трясется при наведении */
-.chik-vertical:hover{
-  animation: chik-shake 0.2s linear infinite;
+/* буквы и круги падают вниз */
+.drop{
+  transform: translateY(-120vw);
 }
-@keyframes chik-shake{
+.falling .drop{
+  animation: drop-fall 1s ease-in forwards;
+}
+/* сначала падает то что внизу */
+.falling .drop-ball-4{ animation-delay: 0s; }
+.falling .drop-ball-3{ animation-delay: 0.2s; }
+.falling .drop-i{ animation-delay: 0.4s; }
+.falling .drop-k{ animation-delay: 0.6s; }
+.falling .drop-ball-5{ animation-delay: 0.8s; }
+.falling .drop-ball-1{ animation-delay: 1s; }
+.falling .drop-h{ animation-delay: 1.2s; }
+.falling .drop-ball-2{ animation-delay: 1.4s; }
+.falling .drop-c{ animation-delay: 1.6s; }
+@keyframes drop-fall{
   0%{
-    transform: rotate(0deg);
+    transform: translateY(-120vw);
   }
-  25%{
-    transform: rotate(1deg);
+  70%{
+    transform: translateY(0);
   }
-  75%{
-    transform: rotate(-1deg);
+  82%{
+    transform: translateY(-3vw);
+  }
+  92%{
+    transform: translateY(0);
+  }
+  96%{
+    transform: translateY(-0.8vw);
   }
   100%{
-    transform: rotate(0deg);
+    transform: translateY(0);
   }
+}
+/* при наведении сталкиваются */
+.hit{
+  transition: transform 0.5s cubic-bezier(0.3, 1.8, 0.5, 1);
+}
+.chik-col:hover .hit-c{
+  transform: translate(8%, 12%) rotate(12deg);
+}
+.chik-col:hover .hit-h{
+  transform: translate(-12%, -8%) rotate(-14deg);
+}
+.chik-col:hover .hit-k{
+  transform: translate(10%, -10%) rotate(9deg);
+}
+.chik-col:hover .hit-i{
+  transform: translate(-10%, -12%) rotate(-16deg);
+}
+.chik-col:hover .hit-ball-1{
+  transform: translate(28%, -18%);
+}
+.chik-col:hover .hit-ball-2{
+  transform: translate(-28%, 22%);
+}
+.chik-col:hover .hit-ball-3{
+  transform: translate(-22%, -28%);
+}
+.chik-col:hover .hit-ball-4{
+  transform: translate(26%, -22%);
+}
+.chik-col:hover .hit-ball-5{
+  transform: translate(-32%, 12%);
 }
 
 /* ЭКРАН 3 */
@@ -381,5 +431,8 @@ animation: star-sway 0.8s ease-in-out infinite;
   }
   .draw-line{
     stroke-dashoffset: 0;
+  }
+  .drop{
+    transform: none;
   }
 }

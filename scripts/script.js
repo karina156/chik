@@ -56,3 +56,15 @@ const observer = new IntersectionObserver(function (entries) {
 }, { threshold: 0.4 });
 
 observer.observe(flight);
+
+// буквы chik падают, когда колонку видно
+const chikCol = document.getElementById('chik-col');
+
+const chikObserver = new IntersectionObserver(function (entries) {
+  if (entries[0].isIntersecting) {
+    chikCol.classList.add('falling');
+    chikObserver.disconnect();
+  }
+}, { threshold: 0.3 });
+
+chikObserver.observe(chikCol);
